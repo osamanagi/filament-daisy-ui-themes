@@ -47,6 +47,7 @@ try {
                                 document.querySelector('.fi-input-wrp')
                             if (node?.getClientRects().length && input)
                                 window.__frames.push({
+                                    time: performance.now(),
                                     theme: document.documentElement.dataset
                                         .theme,
                                     dark: document.documentElement.classList.contains(
@@ -76,6 +77,13 @@ try {
                     await route.continue()
                 })
                 await page.goto(`http://127.0.0.1:810${major}/${panel}/login`)
+                await page.waitForFunction(
+                    () =>
+                        window.__frames.length &&
+                        performance.getEntriesByType('paint').length,
+                    undefined,
+                    { timeout: 10000, polling: 50 },
+                )
                 await page.waitForTimeout(250)
                 Object.assign(
                     data,

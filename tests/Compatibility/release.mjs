@@ -1,5 +1,10 @@
 import { spawn } from 'node:child_process'
-import { mkdirSync, createWriteStream, writeFileSync } from 'node:fs'
+import {
+    mkdirSync,
+    createWriteStream,
+    writeFileSync,
+    readFileSync,
+} from 'node:fs'
 import { resolve } from 'node:path'
 const output = resolve(
     process.env.COMPAT_OUTPUT || 'docs/compatibility/milestone6/stock',
@@ -37,12 +42,15 @@ await Promise.all(
             const code = await new Promise((resolve) =>
                 child.on('exit', resolve),
             )
-            log.end()
+            await new Promise((resolve) => log.end(resolve))
             results.push({ browser, suite, exitCode: code })
             console.log(
                 `${browser}/${suite}: ${code === 0 ? 'PASS' : 'FAIL (see log)'}`,
             )
-            if (code !== 0) process.exitCode = 1
+            if (code !== 0) {
+                process.exitCode = 1
+                console.error(readFileSync(`${directory}/${suite}.log`, 'utf8'))
+            }
         }
     }),
 )

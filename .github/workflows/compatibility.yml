@@ -1,5 +1,16 @@
 name: browser compatibility
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      suites:
+        description: Browser suites to execute
+        type: choice
+        default: state-paint,switcher,state,visual
+        options:
+          - state-paint,switcher,state,visual
+          - state-paint
 permissions:
   contents: read
 concurrency:
@@ -20,6 +31,7 @@ jobs:
       PLAYWRIGHT_DIR: /tmp/daisy-browser-tools
       TAILWIND_DIR: /tmp/daisy-tailwind
       COMPAT_BROWSERS: ${{ matrix.browser }}
+      COMPAT_SUITES: ${{ inputs.suites || 'state-paint,switcher,state,visual' }}
       COMPAT_OUTPUT: docs/compatibility/ci
       DEPENDENCIES: ${{ matrix.dependencies }}
       CSS_LANE: ${{ matrix.css }}
@@ -47,7 +59,8 @@ jobs:
           python3 tests/Compatibility/check-archive.py /tmp/daisy-dist/themes.zip
       - name: Install consumers and browser tooling
         # Resolve the requested floor/latest tooling; retain generated locks in artifacts.
-        run: | # zizmor: ignore[adhoc-packages] Compatibility matrix deliberately resolves versions with a read-only token.
+        run:
+          | # zizmor: ignore[adhoc-packages] Compatibility matrix deliberately resolves versions with a read-only token.
           flags=()
           if [ "$DEPENDENCIES" = latest ]; then flags+=(--latest); fi
           python3 tests/Compatibility/install.py "$COMPAT_FIXTURES" --archive /tmp/daisy-dist/themes.zip "${flags[@]}"
