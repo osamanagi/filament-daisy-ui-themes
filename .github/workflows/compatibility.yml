@@ -46,7 +46,8 @@ jobs:
           composer archive --format=zip --dir=/tmp/daisy-dist --file=themes
           python3 tests/Compatibility/check-archive.py /tmp/daisy-dist/themes.zip
       - name: Install consumers and browser tooling
-        run: |
+        # Resolve the requested floor/latest tooling; retain generated locks in artifacts.
+        run: | # zizmor: ignore[adhoc-packages] Compatibility matrix deliberately resolves versions with a read-only token.
           flags=()
           if [ "$DEPENDENCIES" = latest ]; then flags+=(--latest); fi
           python3 tests/Compatibility/install.py "$COMPAT_FIXTURES" --archive /tmp/daisy-dist/themes.zip "${flags[@]}"
@@ -80,5 +81,6 @@ jobs:
             docs/compatibility/ci
             /tmp/daisy-release-apps/filament*/composer.lock
             /tmp/daisy-tailwind/package-lock.json
+            /tmp/daisy-browser-tools/package-lock.json
             /tmp/filament*.log
           retention-days: 14
