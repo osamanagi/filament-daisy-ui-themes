@@ -1,87 +1,119 @@
-# Integrating Daisy Ui themes into Filament apps
+# daisyUI themes for Filament
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/nagi/filament-daisy-ui-themes.svg?style=flat-square)](https://packagist.org/packages/nagi/filament-daisy-ui-themes)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/nagi/filament-daisy-ui-themes/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/nagi/filament-daisy-ui-themes/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/nagi/filament-daisy-ui-themes/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/nagi/filament-daisy-ui-themes/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/nagi/filament-daisy-ui-themes.svg?style=flat-square)](https://packagist.org/packages/nagi/filament-daisy-ui-themes)
-
-
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+A Composer panel plugin that applies Cupcake, Nord, or Dracula to native
+Filament components and adds a topbar theme selector. The chosen theme controls
+Filament's internal light/dark appearance and persists per panel in the browser.
 
 ## Installation
 
-You can install the package via composer:
+In an existing Filament application:
 
-```bash
+```sh
 composer require nagi/filament-daisy-ui-themes
 ```
 
-> [!IMPORTANT]
-> If you have not set up a custom theme and are using Filament Panels follow the instructions in the [Filament Docs](https://filamentphp.com/docs/4.x/styling/overview#creating-a-custom-theme) first.
-
-After setting up a custom theme add the plugin's views to your theme css file or your app's css file if using the standalone packages.
-
-```css
-@source '../../../../vendor/nagi/filament-daisy-ui-themes/resources/**/*.blade.php';
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-daisy-ui-themes-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-daisy-ui-themes-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-daisy-ui-themes-views"
-```
-
-This is the contents of the published config file:
+Enable the plugin in your panel provider:
 
 ```php
-return [
-];
+use Nagi\FilamentDaisyUiThemes\FilamentDaisyUiThemesPlugin;
+
+return $panel
+    // Your existing panel configuration...
+    ->plugin(
+        FilamentDaisyUiThemesPlugin::make()
+            ->themes(['cupcake', 'nord', 'dracula'])
+            ->defaultTheme('nord')
+    );
 ```
 
-## Usage
+Publish assets after installing or upgrading:
 
-```php
-$filamentDaisyUiThemes = new Nagi\FilamentDaisyUiThemes();
-echo $filamentDaisyUiThemes->echoPhrase('Hello, Nagi!');
+```sh
+php artisan filament:assets
 ```
 
-## Testing
+Run that command in your deployment workflow after Composer installation.
+No npm installation, custom Tailwind theme, view copying, migration, or User
+model changes are required for the included themes. The package ships compiled
+CSS and JavaScript. During development before a published release, use a
+Composer path repository pointing to this checkout and require the package
+with `@dev`; the remaining installation steps are identical.
 
-```bash
+## Configuration and behavior
+
+`themes()` sets the panel's available choices; `defaultTheme()` must belong to
+that list. Defaults are all three themes and Cupcake. Empty lists, unsupported
+names, and excluded defaults throw configuration errors. Configure a separate
+plugin instance on each panel. Place the plugin after conflicting panel color
+or appearance configuration; it owns the semantic palettes and appearance mode.
+
+The topbar palette icon opens a native Filament dropdown. Use Enter or Space
+to open it, Tab to move through choices, Enter to select, and Escape to dismiss.
+The current choice has a check mark and an accessible pressed state. Login uses
+the saved choice or panel default; its simple layout has no topbar selector.
+Panels without a topbar likewise have no selector.
+
+Preferences use `filament-daisy-theme:<panel-id>` in localStorage. Unknown or
+removed choices fall back to the panel default. Logout preserves the preference;
+it is browser-local, not an account setting. Filament's native light/dark/system
+switcher is hidden, and OS preference changes do not override the chosen theme.
+The native Filament `theme` preference remains untouched.
+
+## Compatibility and limits
+
+Composer accepts Filament `^4.14 || ^5.9`. Verified development versions are:
+
+| Filament | Livewire | Laravel |
+| --- | --- | --- |
+| 4.14.0 | 3.8.9 | 12.69.2 |
+| 5.9.0 | 4.4.6 | 12.69.2 |
+
+The shared assets use daisyUI 5.7.46. Custom Filament CSS should use Tailwind
+4.1+; optional custom CSS can override the adapter, so verify your own changes.
+The release workflow tests both dependency lanes in Chromium, Firefox, and
+WebKit with stock CSS and custom Tailwind themes. See the milestone 6 findings
+for executed checks and remaining certification work.
+
+Core assets contain theme tokens and the native Filament adapter, not daisyUI
+component styles or resets. Adding `btn` or other daisyUI classes to custom
+markup requires your own separate component CSS.
+
+The plugin uses an isolated bridge to Filament's Alpine `theme` store. All
+plugin panels share the native system default so their SPA head scripts match;
+the selected daisyUI theme sets the actual mode. Use full page navigation across
+unrelated layouts or panels with different native initialization. Enabled panels
+load the styles; public pages and other panels do not receive global asset tags.
+
+Compiled CSS and the small JavaScript bootstrap are rendered inline through
+panel hooks. This prevents first-entry Livewire navigation from displaying a
+new panel before external assets arrive. CSS follows the host Filament theme;
+the adapter controls semantic palettes while unrelated host customizations
+remain effective. This adds the compiled asset bytes to each panel response.
+Strict CSP policies must accommodate inline styles/scripts and Filament/Alpine
+itself; strict-CSP operation is not certified.
+
+## Development and verification
+
+```sh
 composer test
+composer test:lint
+composer analyse
+npm ci
+npm run build
+npm run check:js
+npm run build:themes
+npm run check:themes
 ```
 
-## Changelog
+`npm` is needed to rebuild assets only. Commit `resources/dist/` with source
+changes. See [fixture instructions](tests/Compatibility/README.md) for clean
+Composer installs, browser tests, screenshots, and exact dependency pins.
+[Compatibility findings](docs/compatibility/milestone6-findings.md) record the
+release matrix, observed failures, and gate status.
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+## License and contributing
 
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](.github/SECURITY.md) on how to report security vulnerabilities.
-
-## Credits
-
-- [osamanagi](https://github.com/osamanagi)
-- [All Contributors](../../contributors)
-
-## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+MIT; see [LICENSE.md](LICENSE.md). The distributed daisyUI theme data includes
+its [MIT attribution](resources/dist/DAISYUI-LICENSE.txt).
+See [contributing guidelines](.github/CONTRIBUTING.md) and the
+[security policy](.github/SECURITY.md).

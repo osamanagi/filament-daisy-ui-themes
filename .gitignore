@@ -5,7 +5,9 @@
 .vscode
 build
 coverage
-docs
+/docs/*
+!/docs/compatibility-findings.md
+!/docs/compatibility/
 node_modules
 phpunit.xml
 phpstan.neon

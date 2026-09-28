@@ -1,78 +1,78 @@
 name: tests
-
-on:
-  push:
-  pull_request:
-
+on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-
 jobs:
-  run-tests:
-    runs-on: ${{ matrix.os }}
+  package:
+    runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        php: [8.4, 8.3, 8.2]
-        laravel: [13.*, 12.*, 11.*]
-        stability: [prefer-lowest, prefer-stable]
         include:
-          - laravel: 13.*
-            testbench: 11.*
-            carbon: 3.*
-            collision: 8.*
-          - laravel: 12.*
-            testbench: 10.*
-            carbon: 3.*
-            collision: 8.*
-          - laravel: 11.*
-            testbench: 9.*
-            carbon: 3.*
-            collision: 8.*
-        exclude:
-          - laravel: 13.*
-            php: 8.2
-
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
-
+          - {
+              php: '8.2',
+              laravel: '11.*',
+              testbench: '9.*',
+              filament: '4.14.0',
+              livewire: '3.8.9',
+            }
+          - {
+              php: '8.2',
+              laravel: '11.*',
+              testbench: '9.*',
+              filament: '5.9.0',
+              livewire: '4.4.6',
+            }
+          - {
+              php: '8.3',
+              laravel: '12.*',
+              testbench: '10.*',
+              filament: '^4.14',
+              livewire: '^3.8.9',
+            }
+          - {
+              php: '8.3',
+              laravel: '12.*',
+              testbench: '10.*',
+              filament: '^5.9',
+              livewire: '^4.4.6',
+            }
+          - {
+              php: '8.4',
+              laravel: '13.*',
+              testbench: '11.*',
+              filament: '^4.14',
+              livewire: '^3.8.9',
+            }
+          - {
+              php: '8.4',
+              laravel: '13.*',
+              testbench: '11.*',
+              filament: '^5.9',
+              livewire: '^4.4.6',
+            }
+    name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }} / Filament ${{ matrix.filament }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-
-      - name: Cache Composer dependencies
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ~/.composer/cache/files
-          key: composer-${{ matrix.os }}-${{ matrix.php }}-${{ matrix.laravel }}-${{ matrix.stability }}-${{ hashFiles('composer.json') }}
-          restore-keys: |
-            composer-${{ matrix.os }}-${{ matrix.php }}-${{ matrix.laravel }}-
-            composer-${{ matrix.os }}-${{ matrix.php }}-
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          extensions: intl, mbstring, pdo_sqlite, zip, gd
           coverage: none
-
-      - name: Setup problem matchers
+      - name: Resolve the compatibility lane
+        env:
+          LARAVEL: ${{ matrix.laravel }}
+          TESTBENCH: ${{ matrix.testbench }}
+          FILAMENT: ${{ matrix.filament }}
+          LIVEWIRE: ${{ matrix.livewire }}
         run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-      - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.carbon }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
-
-      - name: List installed dependencies
-        run: composer show -D
-
-      - name: Execute tests
-        run: vendor/bin/pest --ci
+          composer require "laravel/framework:$LARAVEL" "orchestra/testbench:$TESTBENCH" "filament/filament:$FILAMENT" "livewire/livewire:$LIVEWIRE" --no-update --no-interaction
+          composer update --prefer-dist --no-interaction
+      - run: vendor/bin/pest --ci
+      - run: vendor/bin/phpstan analyse --no-progress
+      - run: vendor/bin/pint --test

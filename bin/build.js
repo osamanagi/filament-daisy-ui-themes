@@ -1,8 +1,18 @@
 import esbuild from 'esbuild'
+import { readFileSync } from 'node:fs'
 
 const isDev = process.argv.includes('--dev')
 
 async function compile(options) {
+    if (process.argv.includes('--check')) {
+        const result = await esbuild.build({ ...options, write: false })
+        if (
+            readFileSync(options.outfile, 'utf8') !== result.outputFiles[0].text
+        ) {
+            throw new Error('Compiled JavaScript is stale. Run npm run build.')
+        }
+        return
+    }
     const context = await esbuild.context(options)
 
     if (isDev) {
@@ -25,22 +35,31 @@ const defaultOptions = {
     treeShaking: true,
     target: ['es2020'],
     minify: !isDev,
-    plugins: [{
-        name: 'watchPlugin',
-        setup: function (build) {
-            build.onStart(() => {
-                console.log(`Build started at ${new Date(Date.now()).toLocaleTimeString()}: ${build.initialOptions.outfile}`)
-            })
+    plugins: [
+        {
+            name: 'watchPlugin',
+            setup: function (build) {
+                build.onStart(() => {
+                    console.log(
+                        `Build started at ${new Date(Date.now()).toLocaleTimeString()}: ${build.initialOptions.outfile}`,
+                    )
+                })
 
-            build.onEnd((result) => {
-                if (result.errors.length > 0) {
-                    console.log(`Build failed at ${new Date(Date.now()).toLocaleTimeString()}: ${build.initialOptions.outfile}`, result.errors)
-                } else {
-                    console.log(`Build finished at ${new Date(Date.now()).toLocaleTimeString()}: ${build.initialOptions.outfile}`)
-                }
-            })
-        }
-    }],
+                build.onEnd((result) => {
+                    if (result.errors.length > 0) {
+                        console.log(
+                            `Build failed at ${new Date(Date.now()).toLocaleTimeString()}: ${build.initialOptions.outfile}`,
+                            result.errors,
+                        )
+                    } else {
+                        console.log(
+                            `Build finished at ${new Date(Date.now()).toLocaleTimeString()}: ${build.initialOptions.outfile}`,
+                        )
+                    }
+                })
+            },
+        },
+    ],
 }
 
 compile({

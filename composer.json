@@ -24,7 +24,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "filament/filament": "^5.0",
+        "filament/filament": "^4.14 || ^5.9",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
@@ -77,5 +77,23 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "archive": {
+        "exclude": [
+            "/vendor",
+            "/node_modules",
+            "/build",
+            "/.agents",
+            "/.phpunit.cache",
+            "/.env*",
+            "/AGENTS.md",
+            "/DAISYUI_FILAMENT_PLUGIN_PLAN.md",
+            "/package-lock.json",
+            "/bin",
+            "/.npmrc",
+            "/skills-lock.json",
+            "/rector.php",
+            "/composer.lock"
+        ]
+    }
 }
