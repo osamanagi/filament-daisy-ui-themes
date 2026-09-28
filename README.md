@@ -78,7 +78,9 @@ Core assets contain theme tokens and the native Filament adapter, not daisyUI
 component styles or resets. Adding `btn` or other daisyUI classes to custom
 markup requires your own separate component CSS.
 
-The plugin uses an isolated bridge to Filament's Alpine `theme` store. All
+The plugin uses an isolated bridge to Filament's Alpine `theme` store. A small
+observer corrects native bootstrap changes to the root `.dark` class before
+paint while a plugin panel is active. All
 plugin panels share the native system default so their SPA head scripts match;
 the selected daisyUI theme sets the actual mode. Use full page navigation across
 unrelated layouts or panels with different native initialization. Enabled panels

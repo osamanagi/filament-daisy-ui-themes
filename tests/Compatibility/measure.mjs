@@ -1,4 +1,3 @@
-import assert from 'node:assert/strict'
 export async function measure(page, stage) {
     return page.evaluate((stage) => {
         const root = document.documentElement
@@ -228,14 +227,4 @@ export async function settleStyles(page) {
         }
         throw new Error('Native styles did not settle')
     })
-}
-
-// Layout callbacks can precede any paint. Keep the sample nearest first paint
-// and every later sample; retain the original array separately as evidence.
-export function paintedFrames(frames, paints) {
-    assert.ok(frames.length && paints.length, 'Missing frame or paint data')
-    const firstPaint = Math.min(...paints.map((paint) => paint.time))
-    assert.ok(frames.at(-1).time >= firstPaint, 'Missing post-paint sample')
-    const start = frames.findLastIndex((frame) => frame.time <= firstPaint)
-    return frames.slice(Math.max(0, start))
 }

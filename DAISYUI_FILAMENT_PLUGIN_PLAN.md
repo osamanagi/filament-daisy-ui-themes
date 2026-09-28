@@ -417,6 +417,8 @@ milestone 6 below for the follow-up verification.
 **In progress.** Release workflows and archive-installed fixtures are implemented.
 The shared adapter remains unchanged; compiled CSS now renders synchronously
 through the configured panel hook to prevent a first-entry Livewire CSS race.
+A shared root-class guard also corrects native bootstrap appearance overrides
+before the next frame.
 See [milestone 6 findings](docs/compatibility/milestone6-findings.md) for executed
 checks, failures, evidence, and the pending CI gate. Do not start milestone 7
 until the full gate passes.

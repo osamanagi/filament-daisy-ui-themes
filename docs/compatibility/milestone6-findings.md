@@ -1,91 +1,162 @@
 # Milestone 6: Release verification
 
-## Status and scope
+## Gate status
 
-Verification is in progress. The remote CI gate is **not yet passed**. This
-milestone adds release automation and tests the three existing themes; it does
-not expand theme coverage or begin milestone 7.
+**Final CI is running.** The final implementation has passed local first-paint
+and root-state regression checks. The complete release matrix must finish
+before this gate closes. Milestone 7 has not started.
 
-## Installed versions and distribution
+The repository remains a Composer panel plugin. Fixtures, databases, browser
+binaries, and host npm dependencies live in disposable external applications.
+The review branch is `milestone-6-verification`; nothing is merged or released.
+
+## Installed versions
 
 | Fixture | Filament | Livewire | Laravel |
 | --- | --- | --- | --- |
 | Filament 4 | 4.14.0 | 3.8.9 | 12.69.2 |
 | Filament 5 | 5.9.0 | 4.4.6 | 12.69.2 |
 
-At verification, the newest stable Filament 4/5 releases equal these declared
-minimums. The automated latest lane resolves again on each run. Both fixtures
-use identical compiled daisyUI **5.7.46** assets. Browser tooling is Playwright
-**1.58.2**: Chromium **145.0.7632.6**, Firefox **146.0.1**, WebKit **26.0**.
-Custom host CSS is built separately with Tailwind **4.1.0** and **4.3.3**.
-Local PHP is **8.4.8**; the installed PHP 8.3 binary also runs package tests.
+At verification, these Filament versions are both the declared minimum and
+newest stable release in their major. CI resolves the latest lane afresh.
+Both fixtures share daisyUI **5.7.46** compiled assets. Host CSS is independently
+built using Tailwind **4.1.0** and **4.3.3**. Playwright **1.58.2** supplies
+Chromium **145.0.7632.6**, Firefox **146.0.1**, and WebKit **26.0**.
+Local PHP is **8.4.8**; package CI additionally covers PHP 8.2 and 8.3.
 
-Both `/tmp/daisy-filament-milestone6/filament{4,5}` applications install a
-Composer ZIP, without source symlinks, dependency metadata overrides, or npm
-installation. `filament:assets` publishes the package assets. Fixture resources
-are host test content, separately autoloaded from `tests/Compatibility`.
-[Installation evidence](milestone6/install-evidence.json) records versions,
-archive size/hash, and byte comparisons against the package runtime.
+## Distribution and installation
 
-The original Composer archive included development dependencies (62 MB and
-22,407 entries). Explicit archive exclusions now produce 32 entries, about
-19 KB compressed, retaining source, views, translations, compiled assets, and
-license attribution. `check-archive.py` checks runtime bytes and exclusions.
+`install.py --archive` installs the actual Composer ZIP into two clean apps,
+without source symlinks, dependency overrides, npm, or manual package-asset
+copying. It runs `filament:assets`. Fixture resource classes are host test
+content autoloaded separately; the released package does not depend on them.
+Custom-theme lanes subsequently build the host's own CSS using external tooling
+and remove the temporary npm-resolution symlink.
 
-## Failures investigated and changes
+The original archive accidentally contained vendor/npm dependencies: 62 MB and
+22,407 entries. Explicit exclusions reduce it to 32 files, about 19 KB compressed,
+while retaining source, views, translations, compiled assets, and licenses.
+`check-archive.py` compares required runtime files with the workspace and rejects
+development dependencies. [Local archive evidence](milestone6/install-evidence.json)
+records the earlier ZIP installation; final CI installs the updated distribution.
 
-- **First SPA entry could precede CSS arrival.** WebKit entering a themed panel
-  from a fresh native baseline exposed an unthemed table before external CSS
-  loaded. A `data-theme` attribute alone did not establish correct rendering.
-  The plugin now emits its existing compiled theme CSS followed by adapter CSS
-  synchronously at `STYLES_AFTER`. The compiled JS already uses the same inline
-  approach. No CSS rules, Filament views, or version-specific adapter branches
-  were added. This costs inline asset bytes per response and requires CSP
-  accommodation; it removes the extra asset fetch from the first-entry path.
-- **Cross-engine color serialization differed.** WebKit serializes an OKLCH hue
-  as `260.730988` where Chromium reports `260.731`. Expected color strings are
-  now normalized by the same engine. Native surface RGB and contrast assertions
-  remain unchanged.
-- **Settled captures could sample native transitions.** Component measurements
-  now await finite animations. First-paint checks still sample visible frames
-  without this wait. The harness also waits for modal closure before navigating
-  away; previously the unthemed baseline could emit Livewire teardown errors.
-- **Static analysis configuration was incomplete.** Loading the installed
-  Larastan extension makes the existing options valid. The current-panel plugin
-  getter now checks its returned instance, resolving the actual return-type
-  finding without suppressing it.
+## Runtime changes and recommended architecture
 
-Initial failures and incomplete diagnostic runs remain under
-`milestone6/stock/`, `milestone6/retests/`, and `milestone6/diagnostics/`.
-They are not passing certification evidence.
+The same adapter and controller serve both Filament majors. No copied Filament
+views, new CSS overrides, or version-specific branches were needed.
 
-## Automated coverage
+1. **Synchronous compiled CSS:** WebKit first entering a themed panel from a
+   fresh native baseline could display the new body before external CSS arrived.
+   The package now renders existing theme CSS followed by adapter CSS through
+   the panel's `STYLES_AFTER` hook. Its small compiled JavaScript already renders
+   synchronously. Native host CSS remains first; unrelated host customization
+   survives, while plugin semantic palettes take precedence.
+2. **Root appearance guard:** Both installed Filament versions initialize the
+   Alpine theme store from their native preference and call a native bootstrap
+   that can re-add `.dark` between render hooks. A small `MutationObserver`
+   checks only the root class and reapplies the selected appearance when it
+   disagrees. It repairs the class in a microtask before the next rendering
+   opportunity. The existing Alpine-store bridge remains isolated; the native
+   `theme` storage preference is untouched. The guard is inactive when the
+   controller leaves a configured panel.
+3. **Typed current-plugin lookup:** PHPStan exposed a real return-type issue;
+   the getter now validates the returned plugin instance. Loading the installed
+   Larastan extension also fixes previously unrecognized configuration options.
 
-Pest verifies plugin registration, isolated panel options, invalid allowlists
-and defaults, asset registration, native switcher removal, encoded panel state,
-selector output, synchronous compiled CSS, and absence of hooks on unconfigured
-panels. Stored-value fallback is client behavior and is tested in browsers.
+Inline delivery adds roughly 17 KB of CSS and 1.6 KB of JS to panel responses.
+Strict CSP needs to accommodate inline styles/scripts and Filament/Alpine;
+strict-CSP operation is not certified. Assets remain registered and publishable.
+Consumers still require no daisyUI/npm installation for included themes.
 
-Each browser/CSS lane covers both Filament majors at desktop 1440×1000 and
-mobile 390×844, with Cupcake, Nord, and Dracula:
+## Verification matrix
 
-- Delayed-CSS first paint, invalid/removed preferences, native light/dark/system.
-- Keyboard selection, focus, pressed state, refresh, and mobile positioning.
-- Livewire navigation, history, light/dark transitions, OS changes, logout,
-  independent panels, public-page isolation, and fresh entry from a native panel.
-- Native tables, forms, validation, controls, uploads, pagination, filtering,
-  selection, notifications, tooltips, dropdowns, and body-teleported modals.
+Each browser/CSS/dependency lane independently installs both Filament majors
+and checks Cupcake, Nord, and Dracula at desktop 1440×1000 and mobile 390×844.
 
-Reports include computed surfaces, foreground/background contrast, palette
-values, appearance state, browser errors, and screenshot paths. Custom CSS lanes
-also assert the host's 72px topbar survives while the plugin palette takes
-precedence. Screenshots supplement these checks; they are not pixel-baseline
-certification or a complete accessibility audit.
+| Suite | Cases/captures per lane | Coverage |
+| --- | ---: | --- |
+| First paint | 30 | Delayed CSS; native light/dark/system; valid, unknown, and removed preferences |
+| Selector | 80 | Real keyboard/mouse selection, focus, pressed state, refresh, mobile bounds |
+| State/navigation | 200 | Refresh, Livewire/history, OS changes, per-panel storage, logout, isolation, first entry, deliberate native-class overrides |
+| Native components | 404 | Tables, forms, validation, controls, uploads, filters, selection, pagination, notifications, tooltips, dropdowns, body-teleported modals, login |
+
+The release workflow has **18 lanes**: minimum/latest dependencies × stock,
+Tailwind 4.1.0, and latest Tailwind CSS × Chromium, Firefox, and WebKit. Package
+CI has six lanes: PHP 8.2/Laravel 11, PHP 8.3/Laravel 12, and PHP 8.4/Laravel 13,
+with each Filament major. No blanket claim about every Filament component or
+complete accessibility conformance is made.
+
+Pest checks plugin registration, panel-option isolation, allowlists/defaults,
+asset registration, native switcher removal, safe configuration encoding,
+selector output, inline compiled CSS, and absence of unconfigured-panel hooks.
+Stored-value fallback belongs to the browser checks.
+
+## Failures investigated
+
+- **Asynchronous CSS arrival:** fixed by synchronous compiled styles, as above.
+- **Native startup class drift:** a Chromium capture showed `.dark = true` at
+  269.3 ms, corrected at 276.9 ms, with first paint reported at 288 ms. Paint
+  timestamps alone do not establish which pixels reached the screen. Instead
+  of accepting a filtered sample, the final implementation prevents the state
+  drift and retains assertions over **every sampled frame**.
+  [Original samples](milestone6/diagnostics/ci-chromium-before-paint.json).
+- **Empty first-paint data:** one WebKit job had no animation frames or paint
+  entries when a fixed 250 ms wait expired. The harness now waits at most ten
+  seconds for data, then observes another 250 ms. Missing evidence still fails.
+  [Original empty capture](milestone6/diagnostics/ci-webkit-empty-first-paint.json).
+- **Color serialization:** WebKit reports OKLCH hue `260.730988` where Chromium
+  reports `260.731`. Expected CSS strings are normalized by the same engine;
+  RGB surface and contrast checks remain unchanged.
+- **Native transitions:** settled measurements now wait for finite animations.
+  The harness waits for modal closure before navigation; otherwise even native
+  unthemed baselines could emit Livewire teardown errors. Paint checks do not
+  wait for transitions or filter incorrect frames.
+- **Concurrent cache clears:** file-cache directory deletion raced between local
+  browser workers. Disposable fixtures now use Laravel's database cache.
+- **CI tooling:** unused Pest Livewire helpers blocked PHP 8.2/Livewire 4 and were
+  removed. PCOV supplies the coverage driver requested by PHPUnit. Zizmor runs
+  in normal CI mode because repository code scanning is disabled. Intentional
+  write-workflow credentials and matrix tooling installs have scoped, documented
+  exceptions; the audit itself remains enabled.
+
+Failed and superseded diagnostic runs are retained separately. The earlier
+local stock matrix passed 2,106 captures/cases before the final root guard;
+[local indexes](milestone6/local-results.json) identify successful retests rather
+than rewriting failed logs. The final guard separately passed **90 local
+first-paint scenarios** and **50 Filament 5 desktop state checks**, including
+pre-frame correction for all three themes. Final CI is the release evidence
+for the updated runtime.
+
+## Native computed-style and screenshot evidence
+
+Representative Filament 5 / WebKit stock form measurements (unchanged CSS):
+
+| Theme | Native input wrapper background | Input text contrast | Primary button contrast | Mode |
+| --- | --- | ---: | ---: | --- |
+| Cupcake | `oklch(0.97788 0.004 56.375)` | 15.92 | 5.20 | light |
+| Nord | `oklch(0.95127 0.007 260.730988)` | 10.84 | 5.04 | light |
+| Dracula | `oklch(0.28822 0.022 277.507996)` | 14.24 | 8.29 | dark |
+
+Custom CSS checks assert the host's **72px** topbar remains active while native
+surfaces and overlays match the selected theme. Earlier full CI artifacts were
+inspected in all three engines, with no component findings or browser errors.
+These reference screenshots show actual native components:
+
+- [Cupcake portal / Filament 4 / Chromium](milestone6/stock-final/chromium/4-cupcake-desktop-portal-modal.png)
+- [Cupcake mobile table / Filament 4 / Firefox](milestone6/stock-final/firefox/4-cupcake-mobile-table.png)
+- [Dracula form / Filament 4 / WebKit](milestone6/stock-final/webkit/4-dracula-desktop-edit.png)
+- [Nord mobile portal / Filament 5 / WebKit](milestone6/stock-final/webkit/5-nord-mobile-portal-modal.png)
+- [Cupcake custom Tailwind 4.3.3 form](milestone6/ci-samples/chromium-tailwind-4.3.3-filament4-cupcake-form.png)
+- [Nord custom Tailwind 4.1.0 form](milestone6/ci-samples/firefox-tailwind-4.1.0-filament5-nord-form.png)
+- [Dracula custom Tailwind 4.1.0 portal](milestone6/ci-samples/webkit-tailwind-4.1.0-filament5-dracula-portal.png)
+
+Adjacent CI sample JSON contains computed styles. Full reports/screenshots stay
+local or in CI artifacts; selected evidence is committed to limit repository size.
 
 ## Commands and reproducibility
 
 See [fixture instructions](../../tests/Compatibility/README.md) for archive
-installation, browser tooling, servers, and custom CSS builds. Principal checks:
+installation, servers, browser tooling, custom CSS builds, and diagnostic filters.
 
 ```sh
 vendor/bin/pest
@@ -99,8 +170,7 @@ python3 tests/Compatibility/check-archive.py /tmp/daisy-dist/themes.zip
 node tests/Compatibility/release.mjs
 ```
 
-The browser workflow has 18 lanes: minimum/latest dependencies × three CSS
-modes × three engines. Each lane independently installs both Filament majors.
-The package workflow has six lanes across PHP 8.2/Laravel 11, PHP 8.3/Laravel 12,
-and PHP 8.4/Laravel 13, with each Filament major. Workflow syntax is checked with
-Actionlint. Local checks do not certify unexecuted remote dependency lanes.
+Local Pest passes **12 tests / 38 assertions**; Pint, PHPStan, compiled-asset
+checks, Composer validation, archive checks, and Actionlint pass. The earlier
+[six-lane package CI](https://github.com/osamanagi/filament-daisy-ui-themes/actions/runs/36465833890)
+passed. Final run links and gate results are recorded below after completion.

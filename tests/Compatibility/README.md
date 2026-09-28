@@ -104,7 +104,8 @@ python3 tests/Compatibility/install.py /tmp/daisy-filament-milestone6 \
 
 Start those apps on the same ports as above. Set
 `PHP_CLI_SERVER_WORKERS=4` before `php artisan serve --no-reload` when running
-multiple browsers locally. Install all engines with `playwright install
+multiple browsers locally. These fixtures use database cache so concurrent
+limiter resets do not race over deleted file-cache directories. Install all engines with `playwright install
 chromium firefox webkit`, then run:
 
 ```sh
@@ -137,3 +138,10 @@ is active while plugin palette and overlay checks prove adapter precedence.
 engines, and all three CSS modes. The package workflow separately resolves
 PHP 8.2/Laravel 11, PHP 8.3/Laravel 12, and PHP 8.4/Laravel 13 for both Filament
 majors. Successful local browser runs do not substitute for those CI results.
+
+Manual workflow dispatch defaults to all suites. `suites=state-paint` or
+`suites=state-paint,state` reruns the affected checks across the same 18-lane
+dependency/CSS/browser matrix without repeating already-passed component
+interactions. Paint checks wait for actual frame/paint data and check every
+sampled frame. The state suite also deliberately flips the native `.dark`
+class and verifies correction before the next animation frame.

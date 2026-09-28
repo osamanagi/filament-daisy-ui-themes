@@ -1,0 +1,35 @@
+[
+  {
+    "browser": "chromium",
+    "stock": {
+      "firstPaint": 30,
+      "switcher": 80,
+      "state": 188,
+      "visual": 404
+    },
+    "visualEvidence": "chromium-local-visual-results.json",
+    "note": "Chromium uses explicit successful retests; original run.json retains its failure."
+  },
+  {
+    "browser": "firefox",
+    "stock": {
+      "firstPaint": 30,
+      "switcher": 80,
+      "state": 188,
+      "visual": 404
+    },
+    "visualEvidence": "firefox-local-visual-results.json",
+    "note": ""
+  },
+  {
+    "browser": "webkit",
+    "stock": {
+      "firstPaint": 30,
+      "switcher": 80,
+      "state": 188,
+      "visual": 404
+    },
+    "visualEvidence": "webkit-local-visual-results.json",
+    "note": ""
+  }
+]

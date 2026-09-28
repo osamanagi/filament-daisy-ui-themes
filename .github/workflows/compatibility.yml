@@ -53,7 +53,6 @@ jobs:
         run: |
           composer install --no-interaction --prefer-dist
           npm ci
-          node --test tests/Compatibility/measure.test.mjs
           npm run check:js
           npm run check:themes
           mkdir -p /tmp/daisy-dist

@@ -13,3 +13,6 @@ phpunit.xml
 phpstan.neon
 testbench.yaml
 vendor
+# Full browser evidence stays local or in CI artifacts; commit selected samples explicitly.
+/docs/compatibility/milestone6/*/
+/docs/compatibility/ci/

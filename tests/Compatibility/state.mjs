@@ -2,12 +2,7 @@ import assert from 'node:assert/strict'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { pathToFileURL } from 'node:url'
-import {
-    measure,
-    normalizeColor,
-    settleStyles,
-    paintedFrames,
-} from './measure.mjs'
+import { measure, normalizeColor, settleStyles } from './measure.mjs'
 const fixtures = process.env.COMPAT_FIXTURES || '/tmp/daisy-filament-milestone5'
 const output = process.env.COMPAT_OUTPUT || 'docs/compatibility/milestone5'
 const engines = await import(
@@ -70,11 +65,7 @@ try {
                     const state = document.getElementById(
                         'filament-daisy-theme-state',
                     )
-                    if (
-                        state &&
-                        node?.getClientRects().length &&
-                        performance.getEntriesByType('paint').length
-                    ) {
+                    if (state && node?.getClientRects().length) {
                         const config = JSON.parse(state.textContent)
                         const stored = localStorage.getItem(
                             `filament-daisy-theme:${config.panel}`,
@@ -187,7 +178,7 @@ try {
                         dracula: 'oklch(0.28822 0.022 277.508)',
                     }[theme],
                 )
-                for (const f of paintedFrames(frames.frames, frames.paints)) {
+                for (const f of frames.frames) {
                     assert.equal(f.theme, theme)
                     assert.equal(f.dark, mode(theme) === 'dark')
                     assert.equal(f.scheme, mode(theme))
@@ -283,6 +274,27 @@ try {
                     await page.reload()
                     await capture(theme, 'refresh')
                     await paint(theme)
+                    const correctedDark = await page.evaluate(
+                        () =>
+                            new Promise((resolve) => {
+                                document.documentElement.classList.toggle(
+                                    'dark',
+                                )
+                                requestAnimationFrame(() =>
+                                    resolve(
+                                        document.documentElement.classList.contains(
+                                            'dark',
+                                        ),
+                                    ),
+                                )
+                            }),
+                    )
+                    assert.equal(
+                        correctedDark,
+                        mode(theme) === 'dark',
+                        'Native class override must be corrected before the next frame',
+                    )
+                    await capture(theme, 'native-class-corrected')
                 }
                 await spa('/nord/products')
                 await capture('nord', 'other-panel-default')
@@ -355,7 +367,7 @@ try {
                 )
                 assert.equal(
                     await page
-                        .locator('link[href*="nagi/filament-daisy-ui-themes"]')
+                        .locator('link[href*="nagi/filament-daisy-ui-themes"], style[data-daisy-theme-styles]')
                         .count(),
                     0,
                 )

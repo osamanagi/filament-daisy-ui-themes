@@ -45,6 +45,19 @@
         apply,
         current: () => selected,
     }
+    // Filament's parser-time bootstrap can reapply its native preference between hooks.
+    // Correct that class in a microtask before the browser can paint it.
+    new MutationObserver(() => {
+        if (
+            config &&
+            document.documentElement.classList.contains('dark') !==
+                (config.themes[selected] === 'dark')
+        )
+            apply()
+    }).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+    })
     const initialize = () => {
         apply()
         // Register after Filament so its system-preference listener cannot win.
