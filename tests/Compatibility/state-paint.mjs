@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { normalizeColor } from './measure.mjs'
+import { normalizeColor, paintedFrames } from './measure.mjs'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 const engines = await import(
@@ -104,7 +104,7 @@ try {
                         dracula: 'oklch(0.28822 0.022 277.508)',
                     }[expected],
                 )
-                for (const frame of data.frames) {
+                for (const frame of paintedFrames(data.frames, data.paints)) {
                     assert.equal(frame.theme, expected)
                     assert.equal(frame.dark, expected === 'dracula')
                     assert.equal(

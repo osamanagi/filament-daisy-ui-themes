@@ -2,7 +2,12 @@ import assert from 'node:assert/strict'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { pathToFileURL } from 'node:url'
-import { measure, normalizeColor, settleStyles } from './measure.mjs'
+import {
+    measure,
+    normalizeColor,
+    settleStyles,
+    paintedFrames,
+} from './measure.mjs'
 const fixtures = process.env.COMPAT_FIXTURES || '/tmp/daisy-filament-milestone5'
 const output = process.env.COMPAT_OUTPUT || 'docs/compatibility/milestone5'
 const engines = await import(
@@ -53,6 +58,7 @@ try {
                     )
                     if (node?.getClientRects().length)
                         window.__frames.push({
+                            time: performance.now(),
                             theme: document.documentElement.dataset.theme,
                             dark: document.documentElement.classList.contains(
                                 'dark',
@@ -64,7 +70,11 @@ try {
                     const state = document.getElementById(
                         'filament-daisy-theme-state',
                     )
-                    if (state && node?.getClientRects().length) {
+                    if (
+                        state &&
+                        node?.getClientRects().length &&
+                        performance.getEntriesByType('paint').length
+                    ) {
                         const config = JSON.parse(state.textContent)
                         const stored = localStorage.getItem(
                             `filament-daisy-theme:${config.panel}`,
@@ -177,7 +187,7 @@ try {
                         dracula: 'oklch(0.28822 0.022 277.508)',
                     }[theme],
                 )
-                for (const f of frames.frames) {
+                for (const f of paintedFrames(frames.frames, frames.paints)) {
                     assert.equal(f.theme, theme)
                     assert.equal(f.dark, mode(theme) === 'dark')
                     assert.equal(f.scheme, mode(theme))

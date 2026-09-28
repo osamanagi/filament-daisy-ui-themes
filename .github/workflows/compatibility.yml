@@ -11,6 +11,7 @@ on:
         options:
           - state-paint,switcher,state,visual
           - state-paint
+          - state-paint,state
 permissions:
   contents: read
 concurrency:
@@ -52,6 +53,7 @@ jobs:
         run: |
           composer install --no-interaction --prefer-dist
           npm ci
+          node --test tests/Compatibility/measure.test.mjs
           npm run check:js
           npm run check:themes
           mkdir -p /tmp/daisy-dist
