@@ -44,7 +44,7 @@ for major, livewire in [(4,'3.8.9'),(5,'4.4.6')]:
         manifest['repositories'] = [{'type':'package','package':metadata}]
     (app/'composer.json').write_text(json.dumps(manifest,indent=4)+'\n')
     key = base64.b64encode(os.urandom(32)).decode()
-    (app/'.env').write_text(f'APP_NAME="Clean compatibility {major}"\nAPP_ENV=local\nAPP_DEBUG=true\nAPP_KEY=base64:{key}\nAPP_URL=http://127.0.0.1:810{major}\nDB_CONNECTION=sqlite\nSESSION_DRIVER=file\nSESSION_COOKIE=filament{major}_clean\nCACHE_STORE=file\nQUEUE_CONNECTION=sync\n')
+    (app/'.env').write_text(f'APP_NAME="Clean compatibility {major}"\nAPP_ENV=local\nAPP_DEBUG=true\nAPP_KEY=base64:{key}\nAPP_URL=http://127.0.0.1:810{major}\nDB_CONNECTION=sqlite\nSESSION_DRIVER=file\nSESSION_COOKIE=filament{major}_clean\nCACHE_STORE=database\nQUEUE_CONNECTION=sync\n')
     (app/'database/database.sqlite').touch()
     (app/'bootstrap/providers.php').write_text('<?php\nreturn [App\\Providers\\AppServiceProvider::class, Compatibility\\FixtureProvider::class];\n')
     (app/'routes/web.php').write_text('<?php\n')
