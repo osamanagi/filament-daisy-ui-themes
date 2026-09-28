@@ -16,10 +16,10 @@ use Filament\Widgets\WidgetsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Livewire\LivewireServiceProvider;
+use Nagi\FilamentDaisyUiThemes\FilamentDaisyUiThemesServiceProvider;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
-use Nagi\FilamentDaisyUiThemes\FilamentDaisyUiThemesServiceProvider;
 
 class TestCase extends Orchestra
 {
