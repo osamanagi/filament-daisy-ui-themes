@@ -63,7 +63,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: intl, mbstring, pdo_sqlite, zip, gd
-          coverage: none
+          coverage: pcov
       - name: Resolve the compatibility lane
         env:
           LARAVEL: ${{ matrix.laravel }}
