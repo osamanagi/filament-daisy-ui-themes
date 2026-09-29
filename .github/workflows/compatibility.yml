@@ -91,6 +91,12 @@ jobs:
             node tests/Compatibility/host-theme.mjs
           fi
       - name: Test both panels and every shipped theme
+        env:
+          # The suites inside a browser run concurrently and share these two
+          # fixtures. The built-in PHP server is single-threaded unless workers
+          # are requested, which would serialise every request and undo the
+          # overlap entirely. See tests/Compatibility/README.md.
+          PHP_CLI_SERVER_WORKERS: '4'
         run: |
           if [ "$CSS_LANE" != stock ]; then export COMPAT_HOST_THEME=1; fi
           php "$COMPAT_FIXTURES/filament4/artisan" serve --host=127.0.0.1 --port=8104 > /tmp/filament4.log 2>&1 &

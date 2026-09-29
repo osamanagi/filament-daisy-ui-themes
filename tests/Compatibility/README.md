@@ -117,6 +117,13 @@ COMPAT_OUTPUT=docs/compatibility/milestone6/stock \
 The runner defaults to the milestone 6 apps and executes first-paint, selector,
 state/navigation, and full native-component suites for all three browsers.
 `COMPAT_BROWSERS=webkit` or `COMPAT_SUITES=state,visual` narrows a diagnostic run.
+The suites within a browser run concurrently, because they are independent and
+the slowest one otherwise sets the job's wall clock; `visual` is additionally
+split across both Filament majors, so it writes `summary-4.json` and
+`summary-5.json` rather than a single `summary.json`. `COMPAT_CONCURRENCY`
+(default 3) bounds how many suites run at once. Raise `PHP_CLI_SERVER_WORKERS`
+to at least that bound, as above, or the single-threaded fixture servers serialise
+the requests and the overlap is lost.
 Reports retain computed styles, contrast measurements, screenshots, and errors.
 First-paint checks sample visible frames; settled component checks wait for
 finite native transitions to finish before comparing colors.
