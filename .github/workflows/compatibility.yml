@@ -1,16 +1,18 @@
 name: browser compatibility
-# Runs on pull requests, on the default branch, and on demand. Each commit is
-# triggered by one event only: a feature-branch push relies on its pull request,
-# so the matrix is not run twice for the same change. Standard GitHub-hosted
-# runners are free for public repositories, so this matrix does not consume paid
-# minutes; tests/Compatibility/README.md documents how to run the same suites
-# locally when a faster loop is wanted.
+# Runs on pull requests, on the default branch, nightly, and on demand. Each
+# commit is triggered by one event only: a feature-branch push relies on its pull
+# request, so the matrix is not run twice for the same change. Standard
+# GitHub-hosted runners are free for public repositories, so this matrix does not
+# consume paid minutes; tests/Compatibility/README.md documents how to run the
+# same suites locally when a faster loop is wanted.
 #
-# Pull requests run a reduced matrix so the gate returns while the diff is still
-# being reviewed, and markdown-only changes do not run it at all. The engine and
-# CSS axes are kept because those are the ones that have found real bugs — a
-# WebKit custom-theme regression among them; the newest-dependency axis waits for
-# the default branch, which runs the full matrix on every merge.
+# The full matrix is 18 lanes plus three audit lanes. Twenty-one jobs saturate
+# this account's concurrency — jobs queue past roughly 17 in flight — and the
+# backlog left the next pull request's checks waiting, so the full matrix runs on
+# the nightly schedule and on demand instead of on every merge. Pull requests and
+# merges keep every engine and both CSS floor lanes, because those are the axes
+# that have found real bugs (a WebKit custom-theme regression among them), and
+# markdown-only changes run nothing at all.
 on:
   pull_request:
     paths-ignore:
@@ -19,6 +21,9 @@ on:
     branches: [main, 5.x]
     paths-ignore:
       - '**/*.md'
+  schedule:
+    # Full matrix, including the newest CSS and dependency lanes.
+    - cron: '17 4 * * *'
   workflow_dispatch:
     inputs:
       suites:
@@ -42,10 +47,11 @@ jobs:
       fail-fast: false
       matrix:
         browser: [chromium, firefox, webkit]
-        # Every engine and both CSS lanes on a pull request; the newest-dependency
-        # lane is default-branch only. See the header comment for why.
-        css: ${{ github.event_name == 'pull_request' && fromJSON('["stock","4.1.0"]') || fromJSON('["stock","4.1.0","latest"]') }}
-        dependencies: ${{ github.event_name == 'pull_request' && fromJSON('["minimum"]') || fromJSON('["minimum","latest"]') }}
+        # Every engine and both CSS floor lanes always; the newest CSS and
+        # dependency lanes only on the nightly schedule and on demand. See the
+        # header comment.
+        css: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && fromJSON('["stock","4.1.0","latest"]') || fromJSON('["stock","4.1.0"]') }}
+        dependencies: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && fromJSON('["minimum","latest"]') || fromJSON('["minimum"]') }}
     env:
       COMPAT_FIXTURES: /tmp/daisy-release-apps
       PLAYWRIGHT_DIR: /tmp/daisy-browser-tools
@@ -91,6 +97,12 @@ jobs:
             node tests/Compatibility/host-theme.mjs
           fi
       - name: Test both panels and every shipped theme
+        env:
+          # The suites inside a browser run concurrently and share these two
+          # fixtures. The built-in PHP server is single-threaded unless workers
+          # are requested, which would serialise every request and undo the
+          # overlap entirely. See tests/Compatibility/README.md.
+          PHP_CLI_SERVER_WORKERS: '4'
         run: |
           if [ "$CSS_LANE" != stock ]; then export COMPAT_HOST_THEME=1; fi
           php "$COMPAT_FIXTURES/filament4/artisan" serve --host=127.0.0.1 --port=8104 > /tmp/filament4.log 2>&1 &

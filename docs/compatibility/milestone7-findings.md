@@ -233,6 +233,48 @@ The lesson mirrors the YAML one: a gate that never returns an exit code is
 indistinguishable from a passing gate, and only the platform's own log shows the
 difference.
 
+## CI cost and latency of the matrix
+
+The browser matrix is the part of CI a reviewer waits on, so its timings are
+recorded here rather than remembered. Measured on the slowest lane of run
+36585986223 (`webkit, 4.1.0, minimum`, 928s in total):
+
+| Step | Time |
+| --- | ---: |
+| `release.mjs` suite runs | 794s |
+| Install consumers and browser tooling | 99s |
+| Shipped-artifact checks and distribution | 14s |
+| Runner setup | ~20s |
+
+Inside `release.mjs` the four suites ran one after another while only browsers
+were parallel, so the lane's duration was their sum:
+
+| Suite | Time |
+| --- | ---: |
+| state-paint | 35s |
+| switcher | 88s |
+| state | 159s |
+| visual | 512s |
+
+`visual` alone was 64% of the lane, and the lane is the job's wall clock, so the
+matrix's latency was set by that single suite. Reducing the number of lanes would
+not have helped at all.
+
+Two constraints shaped the fix. First, this account queues jobs once a run has
+more than roughly 17 in flight — PR #3's run showed 17 in progress with 4 queued —
+so sharding into more jobs would have made the gate slower rather than faster.
+Second, the fixtures are single-threaded `php artisan serve` processes unless
+`PHP_CLI_SERVER_WORKERS` is set, so overlapping work only pays off once the
+servers can accept concurrent requests.
+
+The runner therefore executes suites concurrently under a bounded pool
+(`COMPAT_CONCURRENCY`, default 3, scheduled longest-first) with `visual` split
+across both majors inside the same lane, and CI sets `PHP_CLI_SERVER_WORKERS` so
+the fixtures keep up. Pull requests additionally run a reduced matrix: every
+engine and both CSS lanes, because those are the axes that have found real bugs,
+with the newest-dependency lane deferred to the default branch, which still runs
+the full matrix on every merge. Markdown-only changes do not trigger the workflow.
+
 ## Reproducing
 
 ```sh
