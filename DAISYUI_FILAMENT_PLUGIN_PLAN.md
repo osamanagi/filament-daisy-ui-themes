@@ -39,7 +39,10 @@ allowlist fallback, isolated Alpine synchronization, and the cross-panel SPA
 head-script fix. Milestone 5's pinned clean-install and selector gate passed; see
 [package findings](docs/compatibility/milestone5-findings.md). The public plugin,
 native selector, compiled assets, and Composer installs were checked in both
-versions. Milestones 6–7 have not started.
+versions. Milestone 6's automated and browser release matrix passed; see
+[release findings](docs/compatibility/milestone6-findings.md). Package CI runs
+six PHP/Laravel/Filament lanes and the browser matrix runs 18
+browser/CSS/dependency lanes across three engines. Milestone 7 has not started.
 
 | Separate fixture | Filament | Livewire | Laravel | Tailwind | daisyUI |
 | --- | --- | --- | --- | --- | --- |
@@ -414,14 +417,14 @@ milestone 6 below for the follow-up verification.
 
 ## Milestone 6: Automated and browser verification
 
-**In progress.** Release workflows and archive-installed fixtures are implemented.
+**Passed.** Release workflows and archive-installed fixtures are implemented.
 The shared adapter remains unchanged; compiled CSS now renders synchronously
 through the configured panel hook to prevent a first-entry Livewire CSS race.
 A shared root-class guard also corrects native bootstrap appearance overrides
 before the next frame.
 See [milestone 6 findings](docs/compatibility/milestone6-findings.md) for executed
-checks, failures, evidence, and the pending CI gate. Do not start milestone 7
-until the full gate passes.
+checks, failures, evidence, and the final CI results. Milestone 7 has not
+started.
 
 Use Pest for package behavior that can be verified without a browser:
 

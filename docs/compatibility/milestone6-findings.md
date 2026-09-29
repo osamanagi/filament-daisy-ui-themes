@@ -2,9 +2,10 @@
 
 ## Gate status
 
-**Final CI is running.** The final implementation has passed local first-paint
-and root-state regression checks. The complete release matrix must finish
-before this gate closes. Milestone 7 has not started.
+**Passed.** The final implementation passed local first-paint and root-state
+regression checks, and the complete release matrix finished green. Every lane
+of the package CI and the 18-lane browser matrix succeeded on the final commit.
+Milestone 7 has not started.
 
 The repository remains a Composer panel plugin. Fixtures, databases, browser
 binaries, and host npm dependencies live in disposable external applications.
@@ -171,6 +172,22 @@ node tests/Compatibility/release.mjs
 ```
 
 Local Pest passes **12 tests / 38 assertions**; Pint, PHPStan, compiled-asset
-checks, Composer validation, archive checks, and Actionlint pass. The earlier
-[six-lane package CI](https://github.com/osamanagi/filament-daisy-ui-themes/actions/runs/36465833890)
-passed. Final run links and gate results are recorded below after completion.
+checks, Composer validation, archive checks, and Actionlint pass.
+
+## Final CI results
+
+Final commit `862a188c13a1bfeaf2d6349d0de3f328f8f6dbef` on
+`milestone-6-verification`. All workflows completed successfully.
+
+| Workflow | Lanes | Result | Run |
+| --- | ---: | --- | --- |
+| `browser compatibility` | 18 (Chromium/Firefox/WebKit × stock/Tailwind 4.1.0/latest × minimum/latest) | success | [#36470567321](https://github.com/osamanagi/filament-daisy-ui-themes/actions/runs/36470567321) |
+| `tests` | 6 (PHP 8.2/8.3/8.4 × Laravel 11/12/13 × Filament 4.14/5.9) | success | [#36470567206](https://github.com/osamanagi/filament-daisy-ui-themes/actions/runs/36470567206) |
+| `zizmor` | workflow audit | success | [#36470567255](https://github.com/osamanagi/filament-daisy-ui-themes/actions/runs/36470567255) |
+
+The browser matrix ran first-paint, selector, state/navigation, and native
+component suites for every shipped theme (Cupcake, Nord, Dracula) at desktop
+and mobile sizes. The package lanes each ran Pest, PHPStan, and Pint. This
+closes the milestone 6 gate; the release matrix remains a pinned verification
+baseline, not a blanket claim for every Filament component or full
+accessibility conformance.
