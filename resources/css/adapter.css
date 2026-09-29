@@ -3,14 +3,9 @@
     color: var(--color-base-content);
 }
 
-/* daisyUI's base-100 is the page surface. Filament paints the dark page with
-   --gray-950 while its widgets use --gray-900, which the generated ramp maps to
-   base-100; the page therefore rendered a step darker than the widgets and left
-   visible gutters between them. Painting the page with base-100 makes the panel
-   one surface. */
-:root[data-theme] :is(body, .fi-body) {
-    background-color: var(--color-base-100);
-}
+/* The page keeps Filament's own hierarchy: a secondary underlay behind base-100
+   surfaces. Painting it with base-100 instead flattens widgets, tables and forms
+   into the background, so the underlay is deliberately left alone. */
 
 /* Filament compiles bg-white to a literal: palettes alone cannot replace it. */
 :root[data-theme]
@@ -18,6 +13,10 @@
         .fi-topbar,
         .fi-ta-ctn,
         .fi-section,
+        .fi-section-content-ctn,
+        .fi-wi-stats-overview-stat,
+        .fi-modal-header,
+        .fi-modal-footer,
         .fi-modal-window,
         .fi-dropdown-panel,
         .fi-simple-main,

@@ -14,9 +14,10 @@ First release.
   `themeSwitcherHook()`, defaulting to the end of the topbar.
 - Keeps Filament's own border radii. daisyUI's per-theme `--radius-*` tokens are
   not applied, so switching themes never changes component shape.
-- Paints the panel page with the theme's `base-100`, so gutters between
-  dashboard widgets match the widget surfaces rather than Filament's darker
-  `--gray-950` page background.
+- Themes the surfaces Filament paints with a literal white that the generated
+  palettes could not reach: widget stat cards, section content, and modal
+  headers and footers. Filament's page underlay is left intact, so panels stay
+  distinguishable from the background.
 - Treats the selected theme as the source of truth for Filament's internal
   light/dark styling, so the operating system preference cannot override it.
 - Stores the choice per panel under `filament-daisy-theme:<panel-id>`; unknown or

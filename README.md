@@ -88,10 +88,10 @@ milestone 7 findings for the exact scope.
 
 A theme is colour only. Buttons, inputs, panels, badges, and checkboxes keep
 Filament's own border radii and do not follow each daisyUI theme's `--radius-*`
-tokens, so switching themes never changes component shape. The panel page is
-painted with the theme's `base-100` as well, so gutters between dashboard widgets
-match the widget surfaces instead of showing Filament's darker `--gray-950` page
-background.
+tokens, so switching themes never changes component shape. Filament's surface
+hierarchy is preserved as well: the page keeps its secondary underlay behind
+`base-100` panels, so widgets, tables, and forms stay clearly separated from the
+background instead of fading into it.
 
 daisyUI 5.7.46 ships these 35 themes. Classification comes from each theme's own
 `color-scheme` token, not from its name:

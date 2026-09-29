@@ -161,6 +161,17 @@ const measure = (page, selectors) =>
             theme: document.documentElement.dataset.theme,
             dark: document.documentElement.classList.contains('dark'),
             scheme: document.documentElement.style.colorScheme,
+            // Surfaces must stay distinguishable from the page. Painting the
+            // page with base-100 once flattened widgets, tables and forms into
+            // the background, which no contrast measurement noticed.
+            pageBackground: getComputedStyle(document.body).backgroundColor,
+            surfaceBackground: (() => {
+                const el = document.querySelector(
+                    '.fi-wi-stats-overview-stat, .fi-section, .fi-ta-ctn',
+                )
+
+                return el ? getComputedStyle(el).backgroundColor : null
+            })(),
             nodes,
         }
     }, selectors)
@@ -289,10 +300,23 @@ const unstable = [...shapes].filter(([, radii]) => radii.size > 1)
 for (const [key, radii] of unstable)
     console.log(`SHAPE ${key}: ${[...radii].join(' vs ')}`)
 
+const flat = []
+for (const run of results.runs)
+    for (const stage of run.stages)
+        if (
+            stage.pageBackground &&
+            stage.surfaceBackground &&
+            stage.pageBackground === stage.surfaceBackground
+        )
+            flat.push(`filament${run.major} ${run.theme} ${stage.stage}`)
+for (const entry of flat)
+    console.log(`FLAT ${entry}: the surface is the same colour as the page`)
+
 const failed = results.runs.filter(
     (run) => run.failures.length || run.errors.length,
 )
 console.log(
-    `\n${results.runs.length - failed.length}/${results.runs.length} theme/version runs clean at ${threshold}:1 (${browserName}); ${unstable.length} shape mismatches`,
+    `\n${results.runs.length - failed.length}/${results.runs.length} theme/version runs clean at ${threshold}:1 (${browserName}); ${unstable.length} shape mismatches, ${flat.length} flat surfaces`,
 )
-process.exitCode = failed.length > 0 || unstable.length > 0 ? 1 : 0
+process.exitCode =
+    failed.length > 0 || unstable.length > 0 || flat.length > 0 ? 1 : 0
