@@ -1,0 +1,14 @@
+{
+  "browser": "26.0",
+  "cases": [
+    {
+      "major": 4,
+      "stored": "cupcake",
+      "native": "light",
+      "expected": "cupcake",
+      "errors": [],
+      "frames": [],
+      "paints": []
+    }
+  ]
+}

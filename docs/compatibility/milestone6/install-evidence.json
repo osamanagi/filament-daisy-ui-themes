@@ -1,0 +1,51 @@
+{
+  "archive": {
+    "path": "/tmp/daisy-m6-dist/filament-daisy-ui-themes.zip",
+    "sha256": "394d21172497c1334dcb25a03330ac5b97bdbab18dddabe04f24c2cdb13fb251",
+    "bytes": 19199,
+    "entries": 32
+  },
+  "apps": [
+    {
+      "filament": 4,
+      "versions": {
+        "filament/filament": "v4.14.0",
+        "laravel/framework": "v12.69.2",
+        "livewire/livewire": "v3.8.9"
+      },
+      "packageIsSymlink": false,
+      "hasNodeModules": false,
+      "runtimeMatchesWorkspace": {
+        "src/FilamentDaisyUiThemesPlugin.php": true,
+        "resources/views/styles.blade.php": true,
+        "resources/dist/themes.css": true,
+        "resources/dist/adapter.css": true,
+        "resources/dist/filament-daisy-ui-themes.js": true,
+        "resources/dist/theme-data.json": true
+      }
+    },
+    {
+      "filament": 5,
+      "versions": {
+        "filament/filament": "v5.9.0",
+        "laravel/framework": "v12.69.2",
+        "livewire/livewire": "v4.4.6"
+      },
+      "packageIsSymlink": false,
+      "hasNodeModules": false,
+      "runtimeMatchesWorkspace": {
+        "src/FilamentDaisyUiThemesPlugin.php": true,
+        "resources/views/styles.blade.php": true,
+        "resources/dist/themes.css": true,
+        "resources/dist/adapter.css": true,
+        "resources/dist/filament-daisy-ui-themes.js": true,
+        "resources/dist/theme-data.json": true
+      }
+    }
+  ],
+  "tooling": {
+    "daisyui": "5.7.46",
+    "tailwindFloor": "4.1.0",
+    "tailwindLatest": "4.3.3"
+  }
+}

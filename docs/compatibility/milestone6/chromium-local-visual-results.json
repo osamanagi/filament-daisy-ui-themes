@@ -1,0 +1,102 @@
+[
+  {
+    "id": "4-baseline-light-desktop",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-baseline-light-desktop.json",
+    "captures": 8
+  },
+  {
+    "id": "4-baseline-light-mobile",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium-baseline/4-baseline-light-mobile.json",
+    "captures": 9
+  },
+  {
+    "id": "4-baseline-dark-desktop",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-baseline-dark-desktop.json",
+    "captures": 8
+  },
+  {
+    "id": "4-baseline-dark-mobile",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-baseline-dark-mobile.json",
+    "captures": 9
+  },
+  {
+    "id": "4-cupcake-desktop",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-cupcake-desktop.json",
+    "captures": 28
+  },
+  {
+    "id": "4-cupcake-mobile",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-cupcake-mobile.json",
+    "captures": 28
+  },
+  {
+    "id": "4-nord-desktop",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-nord-desktop.json",
+    "captures": 28
+  },
+  {
+    "id": "4-nord-mobile",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-nord-mobile.json",
+    "captures": 28
+  },
+  {
+    "id": "4-dracula-desktop",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-dracula-desktop.json",
+    "captures": 28
+  },
+  {
+    "id": "4-dracula-mobile",
+    "source": "docs/compatibility/milestone6/stock-final/chromium/4-dracula-mobile.json",
+    "captures": 28
+  },
+  {
+    "id": "5-baseline-light-desktop",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-baseline-light-desktop.json",
+    "captures": 8
+  },
+  {
+    "id": "5-baseline-light-mobile",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-baseline-light-mobile.json",
+    "captures": 9
+  },
+  {
+    "id": "5-baseline-dark-desktop",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-baseline-dark-desktop.json",
+    "captures": 8
+  },
+  {
+    "id": "5-baseline-dark-mobile",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-baseline-dark-mobile.json",
+    "captures": 9
+  },
+  {
+    "id": "5-cupcake-desktop",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-cupcake-desktop.json",
+    "captures": 28
+  },
+  {
+    "id": "5-cupcake-mobile",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-cupcake-mobile.json",
+    "captures": 28
+  },
+  {
+    "id": "5-nord-desktop",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-nord-desktop.json",
+    "captures": 28
+  },
+  {
+    "id": "5-nord-mobile",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-nord-mobile.json",
+    "captures": 28
+  },
+  {
+    "id": "5-dracula-desktop",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-dracula-desktop.json",
+    "captures": 28
+  },
+  {
+    "id": "5-dracula-mobile",
+    "source": "docs/compatibility/milestone6/stock-retest/chromium/5-dracula-mobile.json",
+    "captures": 28
+  }
+]

@@ -26,3 +26,12 @@
 /tailwind.config.js     export-ignore
 /testbench.yaml         export-ignore
 /UPGRADING.md           export-ignore
+/.agents                export-ignore
+/AGENTS.md              export-ignore
+/DAISYUI_FILAMENT_PLUGIN_PLAN.md export-ignore
+/package-lock.json      export-ignore
+/bin                    export-ignore
+/.npmrc                 export-ignore
+/skills-lock.json        export-ignore
+/rector.php              export-ignore
+/composer.lock          export-ignore

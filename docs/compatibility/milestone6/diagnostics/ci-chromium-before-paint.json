@@ -1,0 +1,191 @@
+{
+  "browser": "145.0.7632.6",
+  "case": {
+    "major": 5,
+    "stored": "unknown",
+    "native": "system",
+    "expected": "cupcake",
+    "errors": [],
+    "frames": [
+      {
+        "time": 269.29999999998836,
+        "theme": "cupcake",
+        "dark": true,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)"
+      },
+      {
+        "time": 276.8999999999942,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)"
+      },
+      {
+        "time": 301.29999999998836,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 308.79999999998836,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 325.29999999998836,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 342,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 358.6000000000058,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 375.19999999998254,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 391.8999999999942,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 408.5,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 425.1000000000058,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 441.79999999998836,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 458.5,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 475.19999999998254,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 491.79999999998836,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 508.69999999998254,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 525.1999999999825,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 541.7999999999884,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      },
+      {
+        "time": 558.5,
+        "theme": "cupcake",
+        "dark": false,
+        "scheme": "light",
+        "surface": "oklch(0.97788 0.004 56.375)",
+        "input": "oklch(0.97788 0.004 56.375)",
+        "alpine": "light"
+      }
+    ],
+    "paints": [
+      {
+        "name": "first-paint",
+        "time": 288
+      },
+      {
+        "name": "first-contentful-paint",
+        "time": 288
+      }
+    ]
+  }
+}

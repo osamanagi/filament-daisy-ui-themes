@@ -1,0 +1,100 @@
+name: browser compatibility
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      suites:
+        description: Browser suites to execute
+        type: choice
+        default: state-paint,switcher,state,visual
+        options:
+          - state-paint,switcher,state,visual
+          - state-paint
+          - state-paint,state
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+        css: [stock, '4.1.0', latest]
+        dependencies: [minimum, latest]
+    env:
+      COMPAT_FIXTURES: /tmp/daisy-release-apps
+      PLAYWRIGHT_DIR: /tmp/daisy-browser-tools
+      TAILWIND_DIR: /tmp/daisy-tailwind
+      COMPAT_BROWSERS: ${{ matrix.browser }}
+      COMPAT_SUITES: ${{ inputs.suites || 'state-paint,switcher,state,visual' }}
+      COMPAT_OUTPUT: docs/compatibility/ci
+      DEPENDENCIES: ${{ matrix.dependencies }}
+      CSS_LANE: ${{ matrix.css }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240
+        with:
+          php-version: '8.4'
+          extensions: intl, mbstring, pdo_sqlite, zip, gd
+          coverage: none
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Check shipped artifacts and build a distribution
+        run: |
+          composer install --no-interaction --prefer-dist
+          npm ci
+          npm run check:js
+          npm run check:themes
+          mkdir -p /tmp/daisy-dist
+          composer archive --format=zip --dir=/tmp/daisy-dist --file=themes
+          python3 tests/Compatibility/check-archive.py /tmp/daisy-dist/themes.zip
+      - name: Install consumers and browser tooling
+        # Resolve the requested floor/latest tooling; retain generated locks in artifacts.
+        run:
+          | # zizmor: ignore[adhoc-packages] Compatibility matrix deliberately resolves versions with a read-only token.
+          flags=()
+          if [ "$DEPENDENCIES" = latest ]; then flags+=(--latest); fi
+          python3 tests/Compatibility/install.py "$COMPAT_FIXTURES" --archive /tmp/daisy-dist/themes.zip "${flags[@]}"
+          npm install --prefix "$PLAYWRIGHT_DIR" playwright@1.58.2
+          "$PLAYWRIGHT_DIR/node_modules/.bin/playwright" install --with-deps "$COMPAT_BROWSERS"
+          if [ "$CSS_LANE" != stock ]; then
+            npm install --prefix "$TAILWIND_DIR" "tailwindcss@$CSS_LANE" "@tailwindcss/cli@$CSS_LANE"
+            node tests/Compatibility/host-theme.mjs
+          fi
+      - name: Test both panels and every shipped theme
+        run: |
+          if [ "$CSS_LANE" != stock ]; then export COMPAT_HOST_THEME=1; fi
+          php "$COMPAT_FIXTURES/filament4/artisan" serve --host=127.0.0.1 --port=8104 > /tmp/filament4.log 2>&1 &
+          server4=$!
+          php "$COMPAT_FIXTURES/filament5/artisan" serve --host=127.0.0.1 --port=8105 > /tmp/filament5.log 2>&1 &
+          server5=$!
+          trap 'kill "$server4" "$server5" 2>/dev/null || true' EXIT
+          for port in 8104 8105; do
+            for attempt in {1..30}; do
+              if curl --fail --silent "http://127.0.0.1:$port/cupcake/login" > /dev/null; then break; fi
+              sleep 1
+            done
+            curl --fail --silent "http://127.0.0.1:$port/cupcake/login" > /dev/null
+          done
+          node tests/Compatibility/release.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: compatibility-${{ matrix.browser }}-${{ matrix.css }}-${{ matrix.dependencies }}
+          path: |
+            docs/compatibility/ci
+            /tmp/daisy-release-apps/filament*/composer.lock
+            /tmp/daisy-tailwind/package-lock.json
+            /tmp/daisy-browser-tools/package-lock.json
+            /tmp/filament*.log
+          retention-days: 14

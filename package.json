@@ -3,9 +3,13 @@
     "type": "module",
     "scripts": {
         "dev": "node bin/build.js --dev",
-        "build": "node bin/build.js"
+        "build": "node bin/build.js",
+        "build:themes": "node bin/build-themes.mjs",
+        "check:themes": "node bin/build-themes.mjs --check",
+        "check:js": "node bin/build.js --check"
     },
     "devDependencies": {
+        "daisyui": "5.7.46",
         "esbuild": "^0.28.0",
         "prettier": "^3.5.3"
     }

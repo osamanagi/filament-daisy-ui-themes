@@ -1,0 +1,662 @@
+{
+  "stage": "portal-modal",
+  "url": "http://127.0.0.1:8105/dracula/products?page=2",
+  "theme": "dracula",
+  "inlineThemeStyles": "a5af1e581e119d63a02151cfc18e00934b56ccae0f775d241bd153641dbf7ee5",
+  "dark": true,
+  "scheme": "dark",
+  "storedMode": "dark",
+  "expectedSurfaceRgb": [
+    40,
+    42,
+    54,
+    255
+  ],
+  "expectedUploadRgb": [
+    81,
+    250,
+    123,
+    255
+  ],
+  "alpineTheme": "dark",
+  "navigations": 2,
+  "paints": [
+    {
+      "name": "first-contentful-paint",
+      "time": 169
+    }
+  ],
+  "nodes": {
+    "body": {
+      "selector": "body",
+      "color": "oklch(0.97747 0.007 106.544998)",
+      "background": "oklch(0.24787 0.019 277.507996)",
+      "backgroundRgb": [
+        31,
+        32,
+        42,
+        255
+      ],
+      "effectiveBackground": [
+        31,
+        32,
+        42
+      ],
+      "border": "oklch(0.97747 0.007 106.544998)",
+      "shadow": "none",
+      "radius": "0px",
+      "contrast": 15.18,
+      "width": 1440,
+      "height": 1000,
+      "position": "static",
+      "ancestors": [
+        "html.fi dark"
+      ]
+    },
+    "topbar": {
+      "selector": ".fi-topbar",
+      "color": "oklch(0.97747 0.007 106.544998)",
+      "background": "oklch(0.28822 0.022 277.507996)",
+      "backgroundRgb": [
+        40,
+        42,
+        54,
+        255
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "oklch(0.97747 0.007 106.544998)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(1 0 0 / 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "radius": "0px",
+      "contrast": 13.37,
+      "width": 1440,
+      "height": 72,
+      "position": "static",
+      "ancestors": [
+        "div.fi-topbar-ctn",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "sidebar": {
+      "selector": ".fi-sidebar",
+      "color": "oklch(0.97747 0.007 106.544998)",
+      "background": "rgba(0, 0, 0, 0)",
+      "backgroundRgb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effectiveBackground": [
+        31,
+        32,
+        42
+      ],
+      "border": "oklch(0.97747 0.007 106.544998)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(1 0 0 / 0.1) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "radius": "0px",
+      "contrast": 15.18,
+      "width": 320,
+      "height": 928,
+      "position": "sticky",
+      "ancestors": [
+        "div.",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "table": {
+      "selector": ".fi-ta-ctn",
+      "color": "oklch(0.97747 0.007 106.544998)",
+      "background": "oklch(0.28822 0.022 277.507996)",
+      "backgroundRgb": [
+        40,
+        42,
+        54,
+        255
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "oklch(0.97747 0.007 106.544998)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(1 0 0 / 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "radius": "16px",
+      "contrast": 13.37,
+      "width": 1056,
+      "height": 496,
+      "position": "relative",
+      "ancestors": [
+        "div.fi-ta",
+        "div.fi-sc-component",
+        "div.fi-grid-col",
+        "div.fi-grid  fi-sc  fi-sc-has-gap",
+        "div.fi-page-content",
+        "div.fi-page-main",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "cell": {
+      "selector": ".fi-ta-text-item",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "backgroundRgb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "rgb(255, 255, 255)",
+      "shadow": "none",
+      "radius": "0px",
+      "contrast": 14.24,
+      "width": 337.9375,
+      "height": 56,
+      "position": "static",
+      "ancestors": [
+        "a.fi-ta-col",
+        "td.fi-ta-cell fi-ta-cell-name",
+        "tr.fi-ta-row fi-clickable",
+        "tbody.",
+        "table.fi-ta-table",
+        "div.fi-ta-content-ctn fi-fixed-positioning-context",
+        "div.fi-ta-main",
+        "div.fi-ta-ctn fi-ta-ctn-with-footer fi-ta-ctn-with-header",
+        "div.fi-ta",
+        "div.fi-sc-component",
+        "div.fi-grid-col",
+        "div.fi-grid  fi-sc  fi-sc-has-gap",
+        "div.fi-page-content",
+        "div.fi-page-main",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "heading": {
+      "selector": "h1",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "backgroundRgb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effectiveBackground": [
+        31,
+        32,
+        42
+      ],
+      "border": "rgb(255, 255, 255)",
+      "shadow": "none",
+      "radius": "0px",
+      "contrast": 16.18,
+      "width": 124.03125,
+      "height": 36,
+      "position": "static",
+      "ancestors": [
+        "div.",
+        "header.fi-header fi-header-has-breadcrumbs",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "input": {
+      "selector": ".fi-input",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "backgroundRgb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "rgb(255, 255, 255)",
+      "shadow": "none",
+      "radius": "0px",
+      "contrast": 14.24,
+      "width": 178,
+      "height": 36,
+      "position": "static",
+      "ancestors": [
+        "div.fi-input-wrp-content-ctn",
+        "div.fi-input-wrp",
+        "div.fi-ta-search-field",
+        "div.",
+        "div.fi-ta-header-toolbar",
+        "div.fi-ta-header-ctn",
+        "div.fi-ta-main",
+        "div.fi-ta-ctn fi-ta-ctn-with-footer fi-ta-ctn-with-header",
+        "div.fi-ta",
+        "div.fi-sc-component",
+        "div.fi-grid-col",
+        "div.fi-grid  fi-sc  fi-sc-has-gap",
+        "div.fi-page-content",
+        "div.fi-page-main",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "inputWrapper": {
+      "selector": ".fi-input-wrp",
+      "color": "oklch(0.97747 0.007 106.544998)",
+      "background": "oklch(0.28822 0.022 277.507996)",
+      "backgroundRgb": [
+        40,
+        42,
+        54,
+        255
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "oklch(0.97747 0.007 106.544998)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(1 0 0 / 0.2) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "radius": "8px",
+      "contrast": 13.37,
+      "width": 218,
+      "height": 36,
+      "position": "static",
+      "ancestors": [
+        "div.fi-ta-search-field",
+        "div.",
+        "div.fi-ta-header-toolbar",
+        "div.fi-ta-header-ctn",
+        "div.fi-ta-main",
+        "div.fi-ta-ctn fi-ta-ctn-with-footer fi-ta-ctn-with-header",
+        "div.fi-ta",
+        "div.fi-sc-component",
+        "div.fi-grid-col",
+        "div.fi-grid  fi-sc  fi-sc-has-gap",
+        "div.fi-page-content",
+        "div.fi-page-main",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "modal": {
+      "selector": ".fi-modal-window",
+      "color": "oklch(0.97747 0.007 106.544998)",
+      "background": "oklch(0.28822 0.022 277.507996)",
+      "backgroundRgb": [
+        40,
+        42,
+        54,
+        255
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "oklch(0.97747 0.007 106.544998)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(1 0 0 / 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px",
+      "radius": "16px",
+      "contrast": 13.37,
+      "width": 384,
+      "height": 132,
+      "position": "relative",
+      "ancestors": [
+        "div.fi-modal-window-ctn fi-clickable",
+        "div.fi-modal fi-absolute-positioning-context fi-modal-open",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "modalHeading": {
+      "selector": ".fi-modal-heading",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "backgroundRgb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "rgb(255, 255, 255)",
+      "shadow": "none",
+      "radius": "0px",
+      "contrast": 14.24,
+      "width": 132.171875,
+      "height": 24,
+      "position": "static",
+      "ancestors": [
+        "div.",
+        "div.fi-modal-header",
+        "div.fi-modal-window fi-modal-window-has-close-btn fi-modal-window-has-content fi-align-start fi-width-sm",
+        "div.fi-modal-window-ctn fi-clickable",
+        "div.fi-modal fi-absolute-positioning-context fi-modal-open",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "modalInput": {
+      "selector": ".fi-modal-open .fi-input",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgba(0, 0, 0, 0)",
+      "backgroundRgb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "rgb(255, 255, 255)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "radius": "0px",
+      "contrast": 14.24,
+      "width": 336,
+      "height": 36,
+      "position": "static",
+      "ancestors": [
+        "div.fi-input-wrp-content-ctn",
+        "div.fi-input-wrp",
+        "div.fi-modal-content",
+        "div.fi-modal-window fi-modal-window-has-close-btn fi-modal-window-has-content fi-align-start fi-width-sm",
+        "div.fi-modal-window-ctn fi-clickable",
+        "div.fi-modal fi-absolute-positioning-context fi-modal-open",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "modalInputWrapper": {
+      "selector": ".fi-modal-open .fi-input-wrp",
+      "color": "oklch(0.97747 0.007 106.544998)",
+      "background": "oklch(0.28822 0.022 277.507996)",
+      "backgroundRgb": [
+        40,
+        42,
+        54,
+        255
+      ],
+      "effectiveBackground": [
+        40,
+        42,
+        54
+      ],
+      "border": "oklch(0.97747 0.007 106.544998)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklch(0.682706 0.170091 346.812012) 0px 0px 0px 2px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "radius": "8px",
+      "contrast": 13.37,
+      "width": 336,
+      "height": 36,
+      "position": "static",
+      "ancestors": [
+        "div.fi-modal-content",
+        "div.fi-modal-window fi-modal-window-has-close-btn fi-modal-window-has-content fi-align-start fi-width-sm",
+        "div.fi-modal-window-ctn fi-clickable",
+        "div.fi-modal fi-absolute-positioning-context fi-modal-open",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "button": {
+      "selector": ".fi-btn.fi-color-primary",
+      "color": "oklch(0.15092 0.036 346.812012)",
+      "background": "oklch(0.75461 0.183 346.812012)",
+      "backgroundRgb": [
+        255,
+        121,
+        198,
+        255
+      ],
+      "effectiveBackground": [
+        255,
+        121,
+        198
+      ],
+      "border": "oklch(0.15092 0.036 346.812012)",
+      "shadow": "none",
+      "radius": "8px",
+      "contrast": 8.29,
+      "width": 102.59375,
+      "height": 36,
+      "position": "relative",
+      "ancestors": [
+        "div.fi-ac fi-align-start",
+        "div.fi-header-actions-ctn",
+        "header.fi-header fi-header-has-breadcrumbs",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "navigation": {
+      "selector": ".fi-sidebar-item-label",
+      "color": "oklch(0.83962 0.022 277.507996)",
+      "background": "rgba(0, 0, 0, 0)",
+      "backgroundRgb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "effectiveBackground": [
+        31,
+        32,
+        42
+      ],
+      "border": "oklch(0.83962 0.022 277.507996)",
+      "shadow": "none",
+      "radius": "0px",
+      "contrast": 9.83,
+      "width": 236,
+      "height": 20,
+      "position": "static",
+      "ancestors": [
+        "a.fi-sidebar-item-btn",
+        "li.fi-sidebar-item fi-sidebar-item-has-url",
+        "ul.fi-sidebar-group-items",
+        "li.fi-sidebar-group fi-active fi-collapsible",
+        "ul.fi-sidebar-nav-groups",
+        "nav.fi-sidebar-nav",
+        "div.fi-sidebar fi-main-sidebar fi-sidebar-open",
+        "div.",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "badge": {
+      "selector": ".fi-badge",
+      "color": "oklch(0.905471 0.063182 346.812012)",
+      "background": "oklab(0.753529 0.14631 -0.034284 / 0.1)",
+      "backgroundRgb": [
+        245,
+        137,
+        196,
+        26
+      ],
+      "effectiveBackground": [
+        60.90196078431373,
+        51.68627450980392,
+        68.47843137254901
+      ],
+      "border": "oklch(0.905471 0.063182 346.812012)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.753529 0.14631 -0.034284 / 0.3) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "radius": "16px",
+      "contrast": 8.73,
+      "width": 16,
+      "height": 15,
+      "position": "static",
+      "ancestors": [
+        "div.fi-icon-btn-badge-ctn",
+        "button.fi-force-enabled fi-ac-icon-btn-action fi-icon-btn fi-size-md",
+        "div.fi-dropdown-trigger",
+        "div.fi-dropdown fi-ta-filters-dropdown",
+        "div.",
+        "div.fi-ta-header-toolbar",
+        "div.fi-ta-header-ctn",
+        "div.fi-ta-main",
+        "div.fi-ta-ctn fi-ta-ctn-with-footer fi-ta-ctn-with-header",
+        "div.fi-ta",
+        "div.fi-sc-component",
+        "div.fi-grid-col",
+        "div.fi-grid  fi-sc  fi-sc-has-gap",
+        "div.fi-page-content",
+        "div.fi-page-main",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "checkbox": {
+      "selector": ".fi-checkbox-input",
+      "color": "oklch(0.682706 0.170091 346.812012)",
+      "background": "oklab(1 0 0 / 0.05)",
+      "backgroundRgb": [
+        255,
+        255,
+        255,
+        13
+      ],
+      "effectiveBackground": [
+        61.36278354479046,
+        63.164059976931945,
+        73.97171856978085
+      ],
+      "border": "oklch(0.682706 0.170091 346.812012)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(1 0 0 / 0.2) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "radius": "16px",
+      "contrast": 3.35,
+      "width": 16,
+      "height": 16,
+      "position": "static",
+      "ancestors": [
+        "th.fi-ta-cell fi-ta-selection-cell",
+        "tr.",
+        "thead.",
+        "table.fi-ta-table",
+        "div.fi-ta-content-ctn fi-fixed-positioning-context",
+        "div.fi-ta-main",
+        "div.fi-ta-ctn fi-ta-ctn-with-footer fi-ta-ctn-with-header",
+        "div.fi-ta",
+        "div.fi-sc-component",
+        "div.fi-grid-col",
+        "div.fi-grid  fi-sc  fi-sc-has-gap",
+        "div.fi-page-content",
+        "div.fi-page-main",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    },
+    "disabledButton": {
+      "selector": ".fi-btn:disabled",
+      "color": "rgb(255, 255, 255)",
+      "background": "oklab(1 0 0 / 0.05)",
+      "backgroundRgb": [
+        255,
+        255,
+        255,
+        13
+      ],
+      "effectiveBackground": [
+        42.41960784313726,
+        43.36862745098039,
+        52.858823529411765
+      ],
+      "border": "rgb(255, 255, 255)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(1 0 0 / 0.2) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "radius": "8px",
+      "contrast": 7.66,
+      "width": 97.171875,
+      "height": 36,
+      "position": "relative",
+      "ancestors": [
+        "div.fi-ac fi-align-start",
+        "div.fi-header-actions-ctn",
+        "header.fi-header fi-header-has-breadcrumbs",
+        "div.fi-page-header-main-ctn",
+        "div.fi-page fi-resource-list-records-page fi-resource-products",
+        "main.fi-main fi-width-7xl",
+        "div.fi-main-ctn",
+        "div.fi-layout",
+        "body.fi-body fi-panel-dracula fi-body-has-navigation fi-body-has-topbar",
+        "html.fi dark"
+      ]
+    }
+  },
+  "stylesheets": [
+    "http://127.0.0.1:8105/fonts/filament/filament/inter/index.css?v=5.9.0.0",
+    "http://127.0.0.1:8105/compatibility/host.css"
+  ],
+  "tokens": {
+    "--color-base-100": "oklch(28.822% .022 277.508)",
+    "--color-base-content": "oklch(97.747% .007 106.545)",
+    "--primary-600": "oklch(.59782352941176 .16913636363636 346.812)",
+    "--gray-950": "oklch(.24786999999999998 .019 277.508)"
+  },
+  "themeSwitchers": 0,
+  "topbarHeight": "4.5rem",
+  "viewport": {
+    "width": 1440,
+    "height": 1000,
+    "documentWidth": 1440
+  }
+}
