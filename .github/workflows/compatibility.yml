@@ -107,15 +107,19 @@ jobs:
           retention-days: 14
   theme-audit:
     # Every shipped theme is rendered and contrast-checked on both Filament
-    # majors. This is the milestone 7 gate; it is lighter than the 18-lane
-    # component matrix above.
+    # majors, on each engine the component matrix uses. This is the milestone 7
+    # gate; it is lighter than the 18-lane component matrix above.
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
     env:
       COMPAT_FIXTURES: /tmp/daisy-release-apps
       PLAYWRIGHT_DIR: /tmp/daisy-browser-tools
-      COMPAT_BROWSER: chromium
-      COMPAT_OUTPUT: docs/compatibility/ci-themes
+      COMPAT_BROWSER: ${{ matrix.browser }}
+      COMPAT_OUTPUT: docs/compatibility/ci-themes/${{ matrix.browser }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -161,7 +165,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: theme-audit
+          name: theme-audit-${{ matrix.browser }}
           path: |
             docs/compatibility/ci-themes
             /tmp/filament*.log

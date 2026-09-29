@@ -176,8 +176,9 @@ each selector (for example each badge colour) and keeping the worst. It
 converts `oklch()` computed colours through a canvas, because regex parsing of
 computed colours yields `NaN` and would pass silently. `COMPAT_BROWSER`,
 `COMPAT_MAJORS`, and `COMPAT_THEMES` narrow a diagnostic run. The `theme-audit`
-job in `.github/workflows/compatibility.yml` gates on this for Chromium across
-both Filament majors; the milestone 1–6 suites remain the full component matrix.
+job in `.github/workflows/compatibility.yml` gates on this across both Filament
+majors and every engine the component matrix uses (Chromium, Firefox, WebKit);
+the milestone 1–6 suites remain the full component matrix.
 
 Every suite here launches one browser and must close it in a `finally` block.
 Playwright keeps Node's event loop alive while a browser is open, so a script
