@@ -23,7 +23,7 @@ Install dependencies with `composer install` and `npm install`.
 - `npm run build:themes` / `npm run check:themes` — generate the pinned daisyUI theme assets and data, or check committed outputs for drift.
 - `npm run dev` — watch JavaScript with inline source maps; this does not start an application server.
 
-The browser compatibility matrix is deliberately manual in CI (`workflow_dispatch`); run it locally with the fixtures instead of pushing to spend Actions minutes.
+The browser compatibility matrix runs on pull requests and default-branch pushes; it is free for public repositories and can also be run locally against the fixtures.
 
 Use a consuming Laravel/Filament application to preview theme changes.
 

@@ -163,10 +163,11 @@ COMPAT_OUTPUT=/tmp/daisy-audit \
   node tests/Compatibility/theme-audit.mjs      # rendered audit + screenshots
 ```
 
-The browser suites are **not** part of the default CI. The 18-lane component
-matrix is expensive, so it is manual (`workflow_dispatch`) and expected to run
-locally or on a machine you control; only the cheap `tests` workflow runs
-automatically. Budget for a full matrix run before dispatching it.
+The browser suites run automatically on pull requests, on default-branch pushes,
+and on demand. Standard GitHub-hosted runners are free for public repositories,
+so the 18-lane component matrix does not consume paid minutes; it can also be
+run locally against the disposable fixtures, which gives a faster loop than
+waiting for CI.
 
 The rendered audit forces the OS colour preference to the opposite of each
 theme's appearance, proves the explicit theme still wins, and checks rendered

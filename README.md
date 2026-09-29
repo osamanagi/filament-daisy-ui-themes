@@ -134,9 +134,8 @@ changes. `bin/audit-themes.mjs` statically checks daisyUI's own semantic colour
 pairs for every theme. See [fixture instructions](tests/Compatibility/README.md)
 for clean Composer installs, the manifest-driven
 [browser theme audit](tests/Compatibility/theme-audit.mjs), screenshots, and
-exact dependency pins. Browser suites are deliberately **manual** in CI: the
-18-lane matrix is expensive, so it is dispatched on demand (or run locally)
-rather than on every push.
+exact dependency pins. Browser suites run on pull requests and default-branch
+pushes; they can also be run locally against the disposable fixtures.
 [Compatibility findings](docs/compatibility/milestone6-findings.md) record the
 release matrix and gate status; the
 [milestone 7 findings](docs/compatibility/milestone7-findings.md) record the

@@ -1,11 +1,14 @@
 name: browser compatibility
-# Manual only. This 18-lane matrix (three browsers x three CSS modes x two
-# dependency sets) is by far the most expensive workflow here, and it used to
-# run twice per pull request because both `push` and `pull_request` triggered
-# it. Run it locally (see tests/Compatibility/README.md) or dispatch it from the
-# Actions tab when a release actually needs the evidence; the lighter `tests`
-# workflow still runs automatically.
+# Runs on pull requests, on the default branch, and on demand. Each commit is
+# triggered by one event only: a feature-branch push relies on its pull request,
+# so the 18-lane matrix is not run twice for the same change. Standard
+# GitHub-hosted runners are free for public repositories, so this matrix does
+# not consume paid minutes; tests/Compatibility/README.md documents how to run
+# the same suites locally when a faster loop is wanted.
 on:
+  pull_request:
+  push:
+    branches: [main, 5.x]
   workflow_dispatch:
     inputs:
       suites:
