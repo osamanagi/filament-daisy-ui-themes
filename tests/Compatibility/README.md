@@ -39,8 +39,9 @@ php artisan serve --host=127.0.0.1 --port=8105
 ```
 
 Visit `/cupcake/login`, `/nord/login`, or `/dracula/login`; each allows all three
-themes and has the named default. `/restricted` allows only Nord. `/baseline`
-is native Filament without the plugin; `/compatibility-public` is a plain page.
+themes and has the named default. `/restricted` allows only Nord. `/allthemes`
+allowlists every shipped theme. `/baseline` is native Filament without the
+plugin; `/compatibility-public` is a plain page.
 Login: `tester@example.test` / `fixture-password`. Keep servers on localhost.
 
 ## Browser checks
@@ -145,3 +146,23 @@ dependency/CSS/browser matrix without repeating already-passed component
 interactions. Paint checks wait for actual frame/paint data and check every
 sampled frame. The state suite also deliberately flips the native `.dark`
 class and verifies correction before the next animation frame.
+
+## Milestone 7: expanded theme coverage
+
+Every built-in daisyUI theme is now generated into
+`resources/dist/themes/<name>.css`, and `FixtureProvider` exposes an
+`/allthemes` panel that allowlists all of them (the theme list is read from the
+shipped `theme-data.json`). The milestone 1–6 suites still describe the original
+three themes; the milestone 7 audit is manifest driven instead:
+
+```sh
+node bin/audit-themes.mjs                       # static semantic-pair contrast
+COMPAT_OUTPUT=/tmp/daisy-audit \
+  node tests/Compatibility/theme-audit.mjs      # rendered audit + screenshots
+```
+
+The rendered audit forces the OS colour preference to the opposite of each
+theme's appearance, proves the explicit theme still wins, and checks rendered
+text contrast (≥ 4.5:1) on native tables and forms. `COMPAT_BROWSER`,
+`COMPAT_MAJORS`, and `COMPAT_THEMES` narrow a diagnostic run. Only the previous
+milestone suites are wired into CI so far.
