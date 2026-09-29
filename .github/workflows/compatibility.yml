@@ -1,7 +1,11 @@
 name: browser compatibility
+# Manual only. This 18-lane matrix (three browsers x three CSS modes x two
+# dependency sets) is by far the most expensive workflow here, and it used to
+# run twice per pull request because both `push` and `pull_request` triggered
+# it. Run it locally (see tests/Compatibility/README.md) or dispatch it from the
+# Actions tab when a release actually needs the evidence; the lighter `tests`
+# workflow still runs automatically.
 on:
-  push:
-  pull_request:
   workflow_dispatch:
     inputs:
       suites:

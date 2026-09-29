@@ -163,6 +163,11 @@ COMPAT_OUTPUT=/tmp/daisy-audit \
   node tests/Compatibility/theme-audit.mjs      # rendered audit + screenshots
 ```
 
+The browser suites are **not** part of the default CI. The 18-lane component
+matrix is expensive, so it is manual (`workflow_dispatch`) and expected to run
+locally or on a machine you control; only the cheap `tests` workflow runs
+automatically. Budget for a full matrix run before dispatching it.
+
 The rendered audit forces the OS colour preference to the opposite of each
 theme's appearance, proves the explicit theme still wins, and checks rendered
 text contrast (≥ 4.5:1) on native tables and forms, measuring every variant of

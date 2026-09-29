@@ -1,5 +1,12 @@
 name: tests
-on: [push, pull_request, workflow_dispatch]
+# Package tests are cheap, so keep them on pull requests, on the default branch,
+# and on demand. Feature-branch pushes skip the duplicate run that the pull
+# request already produces.
+on:
+  pull_request:
+  push:
+    branches: [main, 5.x]
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
