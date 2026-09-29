@@ -39,8 +39,9 @@ php artisan serve --host=127.0.0.1 --port=8105
 ```
 
 Visit `/cupcake/login`, `/nord/login`, or `/dracula/login`; each allows all three
-themes and has the named default. `/restricted` allows only Nord. `/baseline`
-is native Filament without the plugin; `/compatibility-public` is a plain page.
+themes and has the named default. `/restricted` allows only Nord. `/allthemes`
+allowlists every shipped theme. `/baseline` is native Filament without the
+plugin; `/compatibility-public` is a plain page.
 Login: `tester@example.test` / `fixture-password`. Keep servers on localhost.
 
 ## Browser checks
@@ -145,3 +146,42 @@ dependency/CSS/browser matrix without repeating already-passed component
 interactions. Paint checks wait for actual frame/paint data and check every
 sampled frame. The state suite also deliberately flips the native `.dark`
 class and verifies correction before the next animation frame.
+
+## Milestone 7: expanded theme coverage
+
+Every built-in daisyUI theme is now generated into
+`resources/dist/themes/<name>.css`. `FixtureProvider` exposes an `/allthemes`
+panel that allowlists all of them (the theme list is read from the shipped
+`theme-data.json`), and the plugin assembles inline styles lazily, so this panel
+adds no per-request cost to the other panels. The milestone 1–6 suites still
+describe the original three themes; the milestone 7 audit is manifest driven
+instead:
+
+```sh
+node bin/audit-themes.mjs                       # static semantic-pair contrast
+COMPAT_OUTPUT=/tmp/daisy-audit \
+  node tests/Compatibility/theme-audit.mjs      # rendered audit + screenshots
+```
+
+The browser suites run automatically on pull requests, on default-branch pushes,
+and on demand. Standard GitHub-hosted runners are free for public repositories,
+so the 18-lane component matrix does not consume paid minutes; it can also be
+run locally against the disposable fixtures, which gives a faster loop than
+waiting for CI.
+
+The rendered audit forces the OS colour preference to the opposite of each
+theme's appearance, proves the explicit theme still wins, and checks rendered
+text contrast (≥ 4.5:1) on native tables and forms, measuring every variant of
+each selector (for example each badge colour) and keeping the worst. It
+converts `oklch()` computed colours through a canvas, because regex parsing of
+computed colours yields `NaN` and would pass silently. `COMPAT_BROWSER`,
+`COMPAT_MAJORS`, and `COMPAT_THEMES` narrow a diagnostic run. The `theme-audit`
+job in `.github/workflows/compatibility.yml` gates on this for Chromium across
+both Filament majors; the milestone 1–6 suites remain the full component matrix.
+
+Every suite here launches one browser and must close it in a `finally` block.
+Playwright keeps Node's event loop alive while a browser is open, so a script
+that reaches its last line without `await browser.close()` prints its results and
+then hangs indefinitely — in CI that only ends when the job's `timeout-minutes`
+fires, which looks like a slow job rather than a broken one. `composer verify`
+runs each step under a timeout, so a hang is reported as `TIMEOUT`.

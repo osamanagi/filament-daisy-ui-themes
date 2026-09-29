@@ -32,8 +32,11 @@ class FixtureProvider extends ServiceProvider
     public function register(): void
     {
         $this->loadViewsFrom(__DIR__, 'compatibility');
-        foreach (['baseline', 'cupcake', 'nord', 'dracula', 'restricted'] as $theme) {
-            Filament::registerPanel(function () use ($theme): Panel {
+        // Read the shipped manifest so the fixture covers every built-in theme.
+        $manifestPath = dirname((new \ReflectionClass(FilamentDaisyUiThemesPlugin::class))->getFileName()) . '/../resources/dist/theme-data.json';
+        $allThemes = array_keys(json_decode(file_get_contents($manifestPath), true, flags: JSON_THROW_ON_ERROR)['themes']);
+        foreach (['baseline', 'cupcake', 'nord', 'dracula', 'restricted', 'allthemes'] as $theme) {
+            Filament::registerPanel(function () use ($theme, $allThemes): Panel {
                 $panel = Panel::make()
                     ->id($theme)->path($theme)->login()->spa()
                     ->brandName('Compatibility · ' . ucfirst($theme))
@@ -49,7 +52,14 @@ class FixtureProvider extends ServiceProvider
                     ])
                     ->authMiddleware([Authenticate::class])
                     ->renderHook(PanelsRenderHook::TOPBAR_END, fn () => Blade::render(file_get_contents(__DIR__ . '/overlay.blade.php')))
-                    ->plugins($theme === 'baseline' ? [] : [FilamentDaisyUiThemesPlugin::make()->themes($theme === 'restricted' ? ['nord'] : ['cupcake', 'nord', 'dracula'])->defaultTheme($theme === 'restricted' ? 'nord' : $theme)]);
+                    ->plugins(match ($theme) {
+                        'baseline' => [],
+                        // /restricted proves the allowlist hides everything else.
+                        'restricted' => [FilamentDaisyUiThemesPlugin::make()->themes(['nord'])->defaultTheme('nord')],
+                        // /allthemes exposes every shipped theme for milestone 7 audits.
+                        'allthemes' => [FilamentDaisyUiThemesPlugin::make()->themes($allThemes)->defaultTheme('cupcake')],
+                        default => [FilamentDaisyUiThemesPlugin::make()->themes(['cupcake', 'nord', 'dracula'])->defaultTheme($theme)],
+                    });
                 if (getenv('COMPAT_HOST_THEME')) {
                     $panel->theme(url('/compatibility/host.css'));
                 }

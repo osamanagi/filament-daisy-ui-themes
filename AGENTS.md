@@ -15,12 +15,15 @@ Install dependencies with `composer install` and `npm install`.
 
 - `composer test` — run the Pest suite.
 - `composer test -- --filter="can test"` — run a matching test.
+- `composer verify` — run every local check (workflow YAML lint, lint, static analysis, tests, compiled assets, theme audit, distribution archive); `composer verify -- --browser` also runs the browser suites. This replaces the automatic `tests` workflow, which is the only one that runs on its own.
 - `composer analyse` — run PHPStan/Larastan at level 4.
 - `composer lint` / `composer test:lint` — apply Laravel Pint formatting or check it without edits.
 - `composer test:refactor` — preview Rector changes; `composer refactor` applies them.
 - `npm run build` / `npm run check:js` — build or verify and minify `resources/js/index.js` using esbuild.
-- `npm run build:themes` / `npm run check:themes` — generate the three pinned theme assets and data, or check committed outputs for drift.
+- `npm run build:themes` / `npm run check:themes` — generate the pinned daisyUI theme assets and data, or check committed outputs for drift.
 - `npm run dev` — watch JavaScript with inline source maps; this does not start an application server.
+
+The browser compatibility matrix runs on pull requests and default-branch pushes; it is free for public repositories and can also be run locally against the fixtures.
 
 Use a consuming Laravel/Filament application to preview theme changes.
 

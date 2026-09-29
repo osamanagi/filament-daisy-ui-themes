@@ -65,16 +65,21 @@ class FilamentDaisyUiThemesPlugin implements Plugin
         ];
         $json = json_encode($state, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR);
 
-        $styles = file_get_contents(__DIR__ . '/../resources/dist/themes.css') .
-            file_get_contents(__DIR__ . '/../resources/dist/adapter.css');
+        $inlineStyles = function () use ($themes): string {
+            $styles = '';
+            foreach ($themes as $theme) {
+                $styles .= file_get_contents(__DIR__ . "/../resources/dist/themes/{$theme}.css");
+            }
+
+            return $styles . file_get_contents(__DIR__ . '/../resources/dist/adapter.css');
+        };
         $script = file_get_contents(__DIR__ . '/../resources/dist/filament-daisy-ui-themes.js');
 
         $panel->darkMode()->themeSwitcher(false)
-            // Keep Filament's head script identical across themed SPA panels.
             ->defaultThemeMode(ThemeMode::System)
             ->colors($manifest[$this->defaultTheme]['palettes'])
             ->renderHook(PanelsRenderHook::HEAD_START, fn () => view('filament-daisy-ui-themes::head', ['json' => $json, 'script' => $script]))
-            ->renderHook(PanelsRenderHook::STYLES_AFTER, fn () => view('filament-daisy-ui-themes::styles', ['styles' => $styles]))
+            ->renderHook(PanelsRenderHook::STYLES_AFTER, fn () => view('filament-daisy-ui-themes::styles', ['styles' => $inlineStyles()]))
             ->renderHook(PanelsRenderHook::HEAD_END, fn () => view('filament-daisy-ui-themes::sync'))
             ->renderHook(PanelsRenderHook::BODY_START, fn () => view('filament-daisy-ui-themes::state', ['json' => $json]))
             ->renderHook(PanelsRenderHook::BODY_END, fn () => view('filament-daisy-ui-themes::activate'))

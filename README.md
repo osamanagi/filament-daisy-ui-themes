@@ -1,8 +1,9 @@
 # daisyUI themes for Filament
 
-A Composer panel plugin that applies Cupcake, Nord, or Dracula to native
-Filament components and adds a topbar theme selector. The chosen theme controls
-Filament's internal light/dark appearance and persists per panel in the browser.
+A Composer panel plugin that applies daisyUI themes to native Filament
+components and adds a topbar theme selector. Every built-in daisyUI 5.7.46
+theme can be enabled by name; the chosen theme controls Filament's internal
+light/dark appearance and persists per panel in the browser.
 
 ## Installation
 
@@ -59,6 +60,22 @@ it is browser-local, not an account setting. Filament's native light/dark/system
 switcher is hidden, and OS preference changes do not override the chosen theme.
 The native Filament `theme` preference remains untouched.
 
+## Themes
+
+Any of the 35 built-in daisyUI 5.7.46 themes can be enabled by name, for
+example `->themes(['business', 'abyss', 'wireframe'])->defaultTheme('business')`.
+`defaultTheme()` must belong to the list, and only allowlisted themes appear in
+the topbar selector. A panel inlines just the themes it allows, so enabling a
+few themes does not add every shipped stylesheet to its responses.
+
+All 35 themes passed the milestone 7 Chromium verification of native tables and
+forms on both Filament majors. The build clamps generated muted-text stops and
+the primary button pair to a contrast target above 4.5:1, using shared mappings
+rather than per-theme exceptions. Cupcake, Nord, and Dracula have deeper
+certification: they also pass the full release matrix in Chromium, Firefox, and
+WebKit with stock and custom Tailwind CSS, plus the state and first-paint
+suites. See the milestone 7 findings for the exact scope and remaining work.
+
 ## Compatibility and limits
 
 Composer accepts Filament `^4.14 || ^5.9`. Verified development versions are:
@@ -97,6 +114,8 @@ itself; strict-CSP operation is not certified.
 ## Development and verification
 
 ```sh
+composer verify        # workflow lint, lint, static analysis, tests, assets, archive
+composer verify -- --browser   # additionally run the local browser suites
 composer test
 composer test:lint
 composer analyse
@@ -105,13 +124,22 @@ npm run build
 npm run check:js
 npm run build:themes
 npm run check:themes
+node bin/audit-themes.mjs
 ```
 
+`composer verify` is the local equivalent of the automatic `tests` workflow.
+
 `npm` is needed to rebuild assets only. Commit `resources/dist/` with source
-changes. See [fixture instructions](tests/Compatibility/README.md) for clean
-Composer installs, browser tests, screenshots, and exact dependency pins.
+changes. `bin/audit-themes.mjs` statically checks daisyUI's own semantic colour
+pairs for every theme. See [fixture instructions](tests/Compatibility/README.md)
+for clean Composer installs, the manifest-driven
+[browser theme audit](tests/Compatibility/theme-audit.mjs), screenshots, and
+exact dependency pins. Browser suites run on pull requests and default-branch
+pushes; they can also be run locally against the disposable fixtures.
 [Compatibility findings](docs/compatibility/milestone6-findings.md) record the
-release matrix, observed failures, and gate status.
+release matrix and gate status; the
+[milestone 7 findings](docs/compatibility/milestone7-findings.md) record the
+expanded theme coverage and its verification scope.
 
 ## License and contributing
 

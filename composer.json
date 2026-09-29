@@ -55,7 +55,8 @@
         "refactor": "rector",
         "test": "pest",
         "test:lint": "pint --test",
-        "test:refactor": "rector --dry-run"
+        "test:refactor": "rector --dry-run",
+        "verify": "node bin/verify.mjs"
     },
     "extra": {
         "laravel": {
