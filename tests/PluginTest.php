@@ -53,7 +53,8 @@ it('renders panel-specific initialization and the allowed selector choices', fun
     $head = (string) FilamentView::renderHook(PanelsRenderHook::HEAD_START);
     $switcher = (string) FilamentView::renderHook(PanelsRenderHook::TOPBAR_END);
     $styles = (string) FilamentView::renderHook(PanelsRenderHook::STYLES_AFTER);
-    expect($styles)->toContain('data-daisy-theme-styles', file_get_contents(__DIR__ . '/../resources/dist/themes.css'), file_get_contents(__DIR__ . '/../resources/dist/adapter.css'));
+    expect($styles)->toContain('data-daisy-theme-styles', file_get_contents(__DIR__ . '/../resources/dist/themes/nord.css'), file_get_contents(__DIR__ . '/../resources/dist/adapter.css'))
+        ->not->toContain('[data-theme=cupcake]', '[data-theme=dracula]');
     expect($head)->toContain('"panel":"staff"', '"default":"nord"', 'data-daisy-theme-version')
         ->and($switcher)->toContain('Nord', 'Choose theme')->not->toContain('Cupcake', 'Dracula', '@js(');
 });
@@ -84,4 +85,25 @@ it('does not emit theme initialization for an unconfigured panel', function () {
     expect((string) FilamentView::renderHook(PanelsRenderHook::HEAD_START))->toBe('')
         ->and((string) FilamentView::renderHook(PanelsRenderHook::TOPBAR_END))->toBe('')
         ->and((string) FilamentView::renderHook(PanelsRenderHook::STYLES_AFTER))->toBe('');
+});
+
+it('advertises every shipped theme and keeps verified themes in the manifest', function () {
+    $manifest = json_decode(file_get_contents(__DIR__ . '/../resources/dist/theme-data.json'), true, flags: JSON_THROW_ON_ERROR);
+    expect($manifest['themes'])->toHaveKeys(['cupcake', 'nord', 'dracula', 'abyss', 'acid', 'business', 'wireframe'])
+        ->and($manifest['verified'])->toContain('cupcake', 'nord', 'dracula')
+        ->and($manifest['audited'])->toHaveCount(count($manifest['themes']))
+        ->and(array_diff($manifest['verified'], array_keys($manifest['themes'])))->toBe([])
+        ->and(array_diff($manifest['audited'], array_keys($manifest['themes'])))->toBe([]);
+});
+
+it('inlines only the allowlisted themes for a panel', function () {
+    $panel = Panel::make()->id('staff')->plugin(
+        FilamentDaisyUiThemesPlugin::make()->themes(['business', 'acid'])->defaultTheme('business')
+    );
+    Filament::setCurrentPanel($panel);
+    $panel->boot();
+    $styles = (string) FilamentView::renderHook(PanelsRenderHook::STYLES_AFTER);
+    expect($styles)
+        ->toContain(file_get_contents(__DIR__ . '/../resources/dist/themes/business.css'), file_get_contents(__DIR__ . '/../resources/dist/themes/acid.css'))
+        ->not->toContain('[data-theme=cupcake]', '[data-theme=dracula]');
 });

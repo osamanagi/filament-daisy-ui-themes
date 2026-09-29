@@ -1,4 +1,10 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import {
+    mkdirSync,
+    readFileSync,
+    readdirSync,
+    rmSync,
+    writeFileSync,
+} from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { execFileSync } from 'node:child_process'
@@ -27,16 +33,24 @@ if (filamentSupportVersion !== 'v5.9.0')
     throw new Error(
         `Palette generation is verified against filament/support v5.9.0, got ${filamentSupportVersion}`,
     )
+// Every built-in daisyUI theme ships; panels inline only what they allowlist.
+const allThemes = (
+    await import(pathToFileURL(`${root}/node_modules/daisyui/theme/object.js`))
+).default
+const themeNames = Object.keys(allThemes).sort()
+// Themes that passed the full three-engine release matrix (milestone 6).
+const verifiedThemes = ['cupcake', 'nord', 'dracula']
+// Themes that passed the milestone 7 Chromium acceptance audit (native tables
+// and forms, contrast, screenshots, both Filament majors). Re-earn this list
+// whenever the theme set or adapter changes; see milestone 7 findings.
+const auditedThemes = themeNames
 const palettes = {}
 const appearances = {}
-let tokens =
-    '/* daisyUI 5.7.46 theme definitions only: no resets or components. */\n'
+const themeCss = {}
 
-for (const name of ['cupcake', 'nord', 'dracula']) {
-    const { default: theme } = await import(
-        pathToFileURL(`${root}/node_modules/daisyui/theme/${name}/object.js`)
-    )
-    tokens += `:root[data-theme="${name}"] {\n${Object.entries(theme)
+for (const name of themeNames) {
+    const theme = allThemes[name]
+    let block = `:root[data-theme="${name}"] {\n${Object.entries(theme)
         .map(([key, value]) => `  ${key}: ${value};`)
         .join('\n')}\n}\n`
     appearances[name] = theme['color-scheme']
@@ -105,17 +119,21 @@ for (const name of ['cupcake', 'nord', 'dracula']) {
             950: content,
         })
     }
-    tokens += `:root[data-theme="${name}"] {\n${Object.entries(palettes[name])
+    block += `:root[data-theme="${name}"] {\n${Object.entries(palettes[name])
         .flatMap(([color, shades]) =>
             Object.entries(shades).map(
                 ([shade, value]) => `  --${color}-${shade}: ${value};`,
             ),
         )
         .join('\n')}\n}\n`
+    themeCss[name] = (await transform(block, { loader: 'css', minify: true }))
+        .code
 }
 const data = {
     daisyuiVersion,
     filamentSupportVersion,
+    verified: verifiedThemes,
+    audited: auditedThemes,
     themes: Object.fromEntries(
         Object.keys(palettes).map((name) => [
             name,
@@ -124,8 +142,9 @@ const data = {
     ),
 }
 const assets = {
-    'themes.css': (await transform(tokens, { loader: 'css', minify: true }))
-        .code,
+    // Published convenience bundle; panels inline only their allowlisted
+    // themes from the per-theme files below instead of loading this whole file.
+    'themes.css': themeNames.map((name) => themeCss[name]).join('\n') + '\n',
     'adapter.css': (
         await transform(
             readFileSync(`${root}/resources/css/adapter.css`, 'utf8'),
@@ -138,7 +157,15 @@ const assets = {
         'utf8',
     ),
 }
-if (!check) mkdirSync(output, { recursive: true })
+const themeDirectory = `${output}/themes`
+if (!check) {
+    mkdirSync(output, { recursive: true })
+    mkdirSync(themeDirectory, { recursive: true })
+    for (const file of readdirSync(themeDirectory)) {
+        if (file.endsWith('.css') && !themeNames.includes(file.slice(0, -4)))
+            rmSync(`${themeDirectory}/${file}`)
+    }
+}
 for (const [name, contents] of Object.entries(assets)) {
     const path = `${output}/${name}`
     if (check) {
@@ -146,6 +173,15 @@ for (const [name, contents] of Object.entries(assets)) {
             throw new Error(`${name} is stale; run npm run build:themes`)
     } else writeFileSync(path, contents)
 }
+for (const name of themeNames) {
+    const path = `${themeDirectory}/${name}.css`
+    if (check) {
+        if (readFileSync(path, 'utf8') !== themeCss[name])
+            throw new Error(
+                `themes/${name}.css is stale; run npm run build:themes`,
+            )
+    } else writeFileSync(path, themeCss[name])
+}
 console.log(
-    `${check ? 'Verified' : 'Generated'} adapter assets for ${Object.keys(data.themes).join(', ')}`,
+    `${check ? 'Verified' : 'Generated'} adapter assets for ${themeNames.length} themes (${verifiedThemes.length} verified)`,
 )

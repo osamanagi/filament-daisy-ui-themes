@@ -65,8 +65,13 @@ class FilamentDaisyUiThemesPlugin implements Plugin
         ];
         $json = json_encode($state, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR);
 
-        $styles = file_get_contents(__DIR__ . '/../resources/dist/themes.css') .
-            file_get_contents(__DIR__ . '/../resources/dist/adapter.css');
+        // Inline only the allowlisted themes so panel responses stay small even
+        // though the package ships every built-in daisyUI theme.
+        $styles = '';
+        foreach ($themes as $theme) {
+            $styles .= file_get_contents(__DIR__ . "/../resources/dist/themes/{$theme}.css");
+        }
+        $styles .= file_get_contents(__DIR__ . '/../resources/dist/adapter.css');
         $script = file_get_contents(__DIR__ . '/../resources/dist/filament-daisy-ui-themes.js');
 
         $panel->darkMode()->themeSwitcher(false)
