@@ -28,28 +28,79 @@ the other 32 are new in this milestone.
    plus the combined `resources/dist/themes.css`. The manifest
    (`resources/dist/theme-data.json`) records `appearance`, generated palettes,
    and the `verified` (full matrix) and `audited` (this milestone) lists.
-2. **Panels inline only what they allowlist.** `FilamentDaisyUiThemesPlugin`
-   concatenates the allowlisted themes' stylesheets plus the adapter, instead of
-   inlining every shipped theme. This matters: `themes.css` is about **168 KB**
-   for 35 themes, so inlining everything would add roughly that much to every
-   panel response. A panel that enables three themes inlines about 15 KB.
-3. **No regression for the original three.** Their generated palettes,
-   appearance, and per-theme CSS are byte-identical to the milestone 6 output.
-4. **Fixtures are manifest driven.** `FixtureProvider` reads the shipped
+2. **Panels inline only what they allowlist, lazily.** The plugin concatenates
+   the allowlisted themes' stylesheets plus the adapter, and builds that string
+   inside the `STYLES_AFTER` render hook. Reading it eagerly would run for every
+   registered panel on every request, so a fixture panel that allows all 35
+   themes would cost every other panel ~290 KB of file reads per request.
+   `themes.css` is about **168 KB** for 35 themes; a three-theme panel inlines
+   about 15 KB.
+3. **Fixtures are manifest driven.** `FixtureProvider` reads the shipped
    manifest and exposes an `/allthemes` panel listing every theme, so audits do
    not need per-theme fixture edits.
+4. **A build-time contrast clamp.** See below; it changes the emitted palettes
+   for most themes, including the original three, which is why this milestone
+   re-verifies them.
+
+## Measurement bug in the first audit
+
+The first audit run reported 70/70 clean, and **that result was invalid**: every
+measured contrast was `NaN`. Chromium returns computed colours as `oklch()`,
+which the harness parsed with a regex and read as three "RGB" numbers, leaving
+the alpha component `undefined`. Because `NaN < 4.5` is `false`, every theme
+passed silently — very nearly shipping 20 broken themes.
+
+Two fixes: colours are now resolved by painting them on a 1px canvas (the same
+technique the milestone 1–6 `measure.mjs` uses), and a non-finite ratio is
+recorded as `0` so it fails loudly. The corrected run reported **30/70 clean**,
+which is the real starting point for this milestone. Earlier drafts of this
+document and the branch's first commit state the false result.
+
+## Contrast clamp
+
+The corrected audit showed the failures came from two shared causes, not from
+individual themes:
+
+1. The generated **neutral ramp** was too low-contrast at muted stops:
+   `gray-500`/`600`/`700`/`900` on light themes and `gray-400`/`500`/`600` on
+   dark themes (breadcrumbs, helper text, sidebar labels).
+2. daisyUI's own **`primary`/`primary-content` pair** is below 4.5:1 for some
+   themes (corporate 4.14, dark 4.13, garden 3.84, valentine 3.67, winter 3.62).
+
+`bin/oklch.mjs` adds gamut-aware WCAG contrast maths and two clamps, applied by
+`bin/build-themes.mjs`:
+
+- **Muted stops** are moved in lightness until they meet the target against both
+  `base-100` and `base-300`, since muted text sits on either surface.
+- **The primary button pair** (`clampPair`) is clamped as a pair: either side may
+  move, and whichever needs the smaller lightness change wins. This is required
+  because some daisyUI primaries are mid-lightness and high-chroma (winter's is
+  `oklch(0.5686 0.255 257.57)`), so no foreground lightness reaches the target
+  and the background has to move instead. The result is emitted as
+  `--daisy-btn-primary-bg` / `--daisy-btn-primary-content`, which the adapter
+  uses for primary buttons.
+
+Clamping is a no-op where a theme already passes, and there are **no per-theme
+CSS exceptions**. The target is deliberately set above 4.5:1 (currently 5.4:1)
+because browsers gamut-map high-chroma `oklch` values and muted text composites
+over surfaces that are not `base-100`; offline maths alone under-predicts the
+rendered ratio by up to about 1.0. The margin absorbs that.
+
+Aspect worth noting: the clamp slightly changes the original three themes
+(their muted stops and, for Nord, the primary button) so they re-enter the audit
+rather than relying on the milestone 6 result.
 
 ## Shared palette mapping
 
-No new per-theme CSS exceptions were required. The adapter still derives:
+No per-theme CSS exceptions were added. The build still derives:
 
 - Filament 50–950 palettes from daisyUI's `primary`, `info`, `success`,
-  `warning`, and `error` tokens via `Filament\Support\Colors\Color::generatePalette()`.
-- A neutral `gray` ramp from `base-100`/`base-content`, with the light- and
-  dark-theme tuning already documented in milestone 3.
+  `warning`, and `error` tokens via
+  `Filament\Support\Colors\Color::generatePalette()`.
+- A neutral `gray` ramp from `base-100`/`base-content`.
 
-The only theme-specific adapter rule remains the documented Cupcake file-upload
-contrast adjustment, which is unchanged.
+Both feed the contrast clamp described above. The documented Cupcake file-upload
+adjustment in `adapter.css` remains as a separate, narrower mechanism.
 
 ## Static contrast audit
 
@@ -71,11 +122,14 @@ static audit remains useful as a fast triage tool.
 `tests/Compatibility/theme-audit.mjs` launches a real browser, forces the
 operating-system colour preference to the *opposite* of the theme's appearance,
 and checks that the explicit theme still wins. For each theme it renders the
-native products table and create form, then measures rendered text contrast
-across headings, cells, badges, buttons, navigation, labels, inputs, and
-helpers, capturing a screenshot per page.
+native products table and create form and measures rendered text contrast across
+headings, cells, badges, primary and other buttons, breadcrumbs, sidebar labels,
+labels, inputs, helper text, section headings, and stats. It measures **every
+variant** of each selector (for example each badge colour) and keeps the worst,
+capturing a screenshot per page.
 
-Result on Chromium 145.0.7632.6 (Playwright 1.58.2), Filament 4.14.0 and 5.9.0:
+Result on Chromium 145.0.7632.6 (Playwright 1.58.2), Filament 4.14.0 and 5.9.0,
+after the contrast clamp:
 
 | Check | Result |
 | --- | --- |
@@ -97,14 +151,27 @@ representative sample (the rest are large and stay local).
 
 ### Scope and remaining certification
 
-The milestone 7 audit covers Chromium only, table and form pages, and the node
-types listed above. It does **not** replace the milestone 6 matrix. The original
-three themes additionally pass the full three-engine matrix (Chromium, Firefox,
-WebKit × stock and custom Tailwind CSS × minimum and latest dependencies) and the
-state and first-paint suites. Running that full matrix for the 32 new themes is
-the remaining step before this milestone's gate closes; the `verified` list
-remains limited to the three full-matrix themes until then, while `audited`
-records all 35.
+The milestone 7 audit covers Chromium only, table and form pages, desktop width,
+and the node types listed above. It does **not** replace the milestone 6 matrix,
+and it is not a blanket claim about every Filament component or about
+consistent behaviour across browsers.
+
+Margins are tight in places: the 5.4:1 build target renders as low as **4.5:1**
+for Retro's badge, because the browser gamut-maps high-chroma values and muted
+text composites over surfaces other than `base-100`. Raising the target if a
+future failure appears is a one-line change; the alternative is to clamp
+narrower bands per stop.
+
+The original three themes are included in this audit rather than relying on the
+milestone 6 result, because the clamp changed their emitted palettes. Their
+milestone 6 contrast numbers therefore no longer describe the shipped values.
+
+The `theme-audit` job in `.github/workflows/compatibility.yml` runs this audit
+for Chromium across both Filament majors, so a regression in the shared mapping
+fails CI. Extending the full three-engine, three-CSS-mode matrix to all 35 themes
+is the remaining certification step before this milestone's gate closes; the
+manifest's `verified` list stays limited to the three full-matrix themes until
+then, while `audited` records all 35.
 
 ## Reproducing
 

@@ -98,3 +98,64 @@ jobs:
             /tmp/daisy-browser-tools/package-lock.json
             /tmp/filament*.log
           retention-days: 14
+  theme-audit:
+    # Every shipped theme is rendered and contrast-checked on both Filament
+    # majors. This is the milestone 7 gate; it is lighter than the 18-lane
+    # component matrix above.
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      COMPAT_FIXTURES: /tmp/daisy-release-apps
+      PLAYWRIGHT_DIR: /tmp/daisy-browser-tools
+      COMPAT_BROWSER: chromium
+      COMPAT_OUTPUT: docs/compatibility/ci-themes
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240
+        with:
+          php-version: '8.4'
+          extensions: intl, mbstring, pdo_sqlite, zip, gd
+          coverage: none
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Check shipped artifacts and build a distribution
+        run: |
+          composer install --no-interaction --prefer-dist
+          npm ci
+          npm run check:themes
+          mkdir -p /tmp/daisy-dist
+          composer archive --format=zip --dir=/tmp/daisy-dist --file=themes
+          python3 tests/Compatibility/check-archive.py /tmp/daisy-dist/themes.zip
+      - name: Install consumers and browser tooling
+        # zizmor: ignore[adhoc-packages] Resolves the current tooling with a read-only token.
+        run:
+          python3 tests/Compatibility/install.py "$COMPAT_FIXTURES" --archive /tmp/daisy-dist/themes.zip --latest
+          npm install --prefix "$PLAYWRIGHT_DIR" playwright@1.58.2
+          "$PLAYWRIGHT_DIR/node_modules/.bin/playwright" install --with-deps "$COMPAT_BROWSER"
+      - name: Audit every shipped theme
+        run: |
+          php "$COMPAT_FIXTURES/filament4/artisan" serve --host=127.0.0.1 --port=8104 > /tmp/filament4.log 2>&1 &
+          server4=$!
+          php "$COMPAT_FIXTURES/filament5/artisan" serve --host=127.0.0.1 --port=8105 > /tmp/filament5.log 2>&1 &
+          server5=$!
+          trap 'kill "$server4" "$server5" 2>/dev/null || true' EXIT
+          for port in 8104 8105; do
+            for attempt in {1..30}; do
+              if curl --fail --silent "http://127.0.0.1:$port/allthemes/login" > /dev/null; then break; fi
+              sleep 1
+            done
+            curl --fail --silent "http://127.0.0.1:$port/allthemes/login" > /dev/null
+          done
+          node tests/Compatibility/theme-audit.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: theme-audit
+          path: |
+            docs/compatibility/ci-themes
+            /tmp/filament*.log
+          retention-days: 14

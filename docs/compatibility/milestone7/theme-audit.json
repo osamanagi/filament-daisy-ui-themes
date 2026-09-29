@@ -38,6 +38,8 @@
     "winter",
     "wireframe"
   ],
+  "clean": 70,
+  "total": 70,
   "runs": [
     {
       "major": 4,
@@ -46,11 +48,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 20.31,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.11,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.95,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.11,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.19,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 8.8,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.1,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.25,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.25,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.18,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.11,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.19,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.25,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -60,11 +122,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 18.1,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 18.1,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.75,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.37,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.99,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 12.04,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 19.77,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 19.77,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 15.7,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.37,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 19.77,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -74,11 +196,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.57,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 9.42,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 5.18,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 9.42,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.04,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.77,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 8.49,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 10.8,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 10.8,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.22,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 9.42,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.04,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 10.8,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -88,11 +270,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 13.31,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 13.31,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.58,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.42,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.74,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.84,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.71,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 16.31,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 16.31,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.04,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.42,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.74,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 16.31,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -102,11 +344,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.22,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 19.44,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 10.69,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.01,
+          "sample": "Show notifications"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 11.37,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.49,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.4,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 21,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 21,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.58,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.01,
+          "sample": "Create & create another"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 11.37,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 21,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -116,11 +418,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.6,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 16.6,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.72,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.51,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.88,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 7.17,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.1,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.59,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.51,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -130,11 +492,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.76,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.09,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.51,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.09,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.06,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.96,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.85,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 16.29,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 16.29,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.37,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.09,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.06,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 16.29,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -144,11 +566,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 8.39,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 8.39,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.63,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 9.7,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 21,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.34,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.34,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 9.14,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 9.14,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.91,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 9.7,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 21,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 9.14,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -158,11 +640,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 15.6,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.6,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 5.52,
+          "sample": "draft"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 8.06,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.32,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.73,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.1,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.59,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 8.06,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -172,11 +714,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 19.49,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.39,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.55,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.39,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 7.77,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.43,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.35,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 16.59,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 16.59,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.4,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.39,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 7.77,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 16.59,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -186,11 +788,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 14.05,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.05,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.89,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 17.21,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.2,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.03,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.79,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.21,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.21,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 8.86,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 17.21,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.2,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.21,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -200,11 +862,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 14.21,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.21,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.73,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 16.98,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.35,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.56,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.02,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 15.92,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 15.92,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 8.14,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 16.98,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.35,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 15.92,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -214,11 +936,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.56,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 16.56,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 7.13,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.41,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 11.22,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.05,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.05,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 14.53,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 7.13,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.05,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -228,11 +1010,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.65,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 13.66,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.3,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 13.66,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.37,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.69,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.35,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 15.84,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 15.84,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.7,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 13.66,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.37,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 15.84,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -242,11 +1084,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 15.38,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 11.32,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 6.14,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 11.32,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 13,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.3,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.28,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 13.24,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 13.24,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 11.32,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 13,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 13.24,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -256,11 +1158,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.18,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 12.2,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 6.46,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 12.2,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 8.29,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.93,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.15,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 14.24,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 14.24,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 12.2,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 8.29,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 14.24,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -270,11 +1232,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 9.05,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 9.05,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 11.09,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.94,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.74,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.79,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 11.09,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 11.09,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 8.32,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 11.09,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.94,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 11.09,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -284,11 +1306,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 11.98,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 11.98,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.68,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 7.44,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.6,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.79,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 14.68,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 14.68,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 8.32,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.68,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 7.44,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 14.68,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -298,11 +1380,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 19.32,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.59,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 8.32,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.59,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 8.04,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.52,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.86,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.77,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.77,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.59,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 8.04,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.77,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -312,11 +1454,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 12.71,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 12.71,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 19.14,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 4.73,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.38,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.73,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 15.54,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 15.54,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.06,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 19.14,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 4.73,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 15.54,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -326,11 +1528,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 21,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.47,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 8.15,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.47,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 7.96,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 8.49,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.39,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.66,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.66,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.37,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.47,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 7.96,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.66,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -340,11 +1602,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 14.28,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.28,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.75,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.15,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.48,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.7,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.72,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.54,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.54,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.35,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.15,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.48,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.54,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -354,11 +1676,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.68,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 16.68,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.72,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 17.72,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.75,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.38,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 7.13,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.72,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.72,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.29,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 17.72,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.75,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.72,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -368,11 +1750,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 19.26,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 19.26,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.71,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 19.44,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.95,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 12.46,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 21,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 21,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 16.48,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 19.44,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 21,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -382,11 +1824,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.79,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 18.15,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 9.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.57,
+          "sample": "Show notifications"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 18.1,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 4.88,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.41,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 19.9,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 19.9,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.57,
+          "sample": "Create & create another"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 18.1,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 19.9,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -396,11 +1898,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 18.85,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.71,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 8.4,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.71,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 9.18,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.43,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.72,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.85,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.85,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.71,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 9.18,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.85,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -410,11 +1972,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 10.26,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 10.26,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 5.06,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 12.49,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.28,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.97,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 10.84,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 10.84,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.31,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 12.49,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 10.84,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -424,11 +2046,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.32,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 17.32,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.8,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.31,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.68,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 7.48,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.1,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.59,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.31,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -438,11 +2120,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 6.51,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 6.51,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.5,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 9.25,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.38,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.66,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.18,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 7.22,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 7.22,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.87,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 9.25,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.38,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 7.22,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -452,11 +2194,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 7.93,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 7.93,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.99,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 9.2,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 14.83,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.29,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.29,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 8.46,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 8.46,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.71,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 9.2,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 14.83,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 8.46,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -466,11 +2268,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 18.77,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.09,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.89,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.09,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 8.3,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.13,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.88,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.29,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.29,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.09,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 8.3,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.29,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -480,11 +2342,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.39,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 18.25,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 10.15,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.32,
+          "sample": "Show notifications"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.06,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.4,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 19.95,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 19.95,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.57,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.32,
+          "sample": "Create & create another"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 19.95,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -494,11 +2416,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 4.94,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 4.94,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.65,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 5.96,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.25,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.35,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.35,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 5.45,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 5.45,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 7.02,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 5.96,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.25,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 5.45,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -508,11 +2490,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 7.89,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 7.89,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.52,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 8.5,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.38,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.12,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.12,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 8.5,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 8.5,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.58,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 8.5,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.38,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 8.5,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -522,11 +2564,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.6,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 16.6,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.63,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 10.47,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.95,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 7.17,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.1,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.59,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 10.47,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -536,11 +2638,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 20.31,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.11,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.95,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.11,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.19,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 8.8,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.1,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.25,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.25,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.18,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.11,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.19,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.25,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -550,11 +2712,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 18.1,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 18.1,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.75,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.37,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.99,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 12.04,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 19.77,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 19.77,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 15.7,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.37,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 19.77,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -564,11 +2786,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.57,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 9.42,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 5.18,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 9.42,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.04,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.77,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 8.49,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 10.8,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 10.8,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.22,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 9.42,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.04,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 10.8,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -578,11 +2860,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 13.31,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 13.31,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.58,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.42,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.74,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.84,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.71,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 16.31,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 16.31,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.04,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.42,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.74,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 16.31,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -592,11 +2934,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.22,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 19.44,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 10.69,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.01,
+          "sample": "Show notifications"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 11.37,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.49,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.4,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 21,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 21,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.58,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.01,
+          "sample": "Create & create another"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 11.37,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 21,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -606,11 +3008,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.6,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 16.6,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.72,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.51,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.88,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 7.17,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.1,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.59,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.51,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -620,11 +3082,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.76,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.09,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.51,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.09,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.06,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.96,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.85,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 16.29,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 16.29,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.37,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.09,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.06,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 16.29,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -634,11 +3156,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 8.39,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 8.39,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.63,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 9.7,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 21,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.34,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.34,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 9.14,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 9.14,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.91,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 9.7,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 21,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 9.14,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -648,11 +3230,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 15.6,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.6,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 5.52,
+          "sample": "draft"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 8.06,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.32,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.73,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.1,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.59,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 8.06,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -662,11 +3304,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 19.49,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.39,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.55,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.39,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 7.77,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.43,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.35,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 16.59,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 16.59,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.4,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.39,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 7.77,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 16.59,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -676,11 +3378,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 14.05,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.05,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.89,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 17.21,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.2,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.03,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.79,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.21,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.21,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 8.86,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 17.21,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.2,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.21,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -690,11 +3452,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 14.21,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.21,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.73,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 16.98,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.35,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.56,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.02,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 15.92,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 15.92,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 8.14,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 16.98,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.35,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 15.92,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -704,11 +3526,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.56,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 16.56,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 7.13,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.41,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 11.22,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.05,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.05,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 14.53,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 7.13,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.05,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -718,11 +3600,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.65,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 13.66,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.3,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 13.66,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.37,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.69,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.35,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 15.84,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 15.84,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.7,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 13.66,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.37,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 15.84,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -732,11 +3674,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 15.38,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 11.32,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 6.14,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 11.32,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 13,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.3,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.28,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 13.24,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 13.24,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 11.32,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 13,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 13.24,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -746,11 +3748,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.18,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 12.2,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 6.46,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 12.2,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 8.29,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.93,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.15,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 14.24,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 14.24,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 12.2,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 8.29,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 14.24,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -760,11 +3822,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 9.05,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 9.05,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 11.09,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.94,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.74,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.79,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 11.09,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 11.09,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 8.32,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 11.09,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.94,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 11.09,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -774,11 +3896,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 11.98,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 11.98,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.68,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 7.44,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.6,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.79,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 14.68,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 14.68,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 8.32,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.68,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 7.44,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 14.68,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -788,11 +3970,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 19.32,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.59,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 8.32,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.59,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 8.04,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.52,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.86,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.77,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.77,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.59,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 8.04,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.77,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -802,11 +4044,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 12.71,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 12.71,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 19.14,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 4.73,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.38,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.73,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 15.54,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 15.54,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.06,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 19.14,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 4.73,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 15.54,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -816,11 +4118,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 21,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.47,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 8.15,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.47,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 7.96,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 8.49,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.39,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.66,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.66,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.37,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.47,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 7.96,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.66,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -830,11 +4192,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 14.28,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 14.28,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.75,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.15,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.48,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.7,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.72,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.54,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.54,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.35,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.15,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.48,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.54,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -844,11 +4266,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.68,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 16.68,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.72,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 17.72,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 6.75,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.38,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 7.13,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.72,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.72,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.29,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 17.72,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 6.75,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.72,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -858,11 +4340,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 19.26,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 19.26,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.71,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 19.44,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.95,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 12.46,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 21,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 21,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 16.48,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 21,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 19.44,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 21,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -872,11 +4414,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.79,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 18.15,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 9.74,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.57,
+          "sample": "Show notifications"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 18.1,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 4.88,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.41,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 19.9,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 19.9,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.57,
+          "sample": "Create & create another"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 18.1,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 19.9,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -886,11 +4488,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 18.85,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.71,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 8.4,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.71,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 9.18,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.43,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.72,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.85,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.85,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.71,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 9.18,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.85,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -900,11 +4562,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 10.26,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 10.26,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 5.06,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 12.49,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.28,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.97,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 10.84,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 10.84,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.31,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 12.49,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 10.84,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -914,11 +4636,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 17.32,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 17.32,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.8,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.31,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 7.68,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 7.48,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.1,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.59,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.31,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -928,11 +4710,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 6.51,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 6.51,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.5,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 9.25,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.38,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.66,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.18,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 7.22,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 7.22,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.87,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 9.25,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.38,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 7.22,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -942,11 +4784,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 7.93,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 7.93,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.99,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 9.2,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 14.83,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.29,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.29,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 8.46,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 8.46,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.71,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 9.2,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 14.83,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 8.46,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -956,11 +4858,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 18.77,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 15.09,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 7.89,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 15.09,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 8.3,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.13,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.88,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 17.29,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 17.29,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 5.41,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 15.09,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 8.3,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 17.29,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -970,11 +4932,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.39,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 18.25,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 10.15,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 14.32,
+          "sample": "Show notifications"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 5.06,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 5.4,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 19.95,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 19.95,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.57,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 14.32,
+          "sample": "Create & create another"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.39,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 19.95,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -984,11 +5006,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 4.94,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 4.94,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.65,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 5.96,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.25,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.35,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.35,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 5.45,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 5.45,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 7.02,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 5.96,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.25,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 5.45,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -998,11 +5080,71 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 7.89,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 7.89,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.52,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 8.5,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 5.38,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.12,
+          "sample": "Dashboard"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 6.12,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 8.5,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 8.5,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 6.58,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 8.5,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 5.38,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 8.5,
+          "sample": "Product details"
+        }
       }
     },
     {
@@ -1012,14 +5154,72 @@
       "failures": [],
       "errors": [],
       "contrasts": {
-        "table.heading": null,
-        "table.badge": null,
-        "table.button": null,
-        "table.navigation": null,
-        "form.button": null
+        "table.heading": {
+          "count": 1,
+          "worst": 16.6,
+          "sample": "Products"
+        },
+        "table.cell": {
+          "count": 30,
+          "worst": 16.6,
+          "sample": "Sample product 07"
+        },
+        "table.badge": {
+          "count": 11,
+          "worst": 4.63,
+          "sample": "active"
+        },
+        "table.button": {
+          "count": 3,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "table.primaryButton": {
+          "count": 1,
+          "worst": 10.47,
+          "sample": "New product"
+        },
+        "table.navigation": {
+          "count": 2,
+          "worst": 6.95,
+          "sample": "Products"
+        },
+        "table.breadcrumb": {
+          "count": 2,
+          "worst": 7.17,
+          "sample": "Products"
+        },
+        "form.label": {
+          "count": 10,
+          "worst": 18.1,
+          "sample": "Name*"
+        },
+        "form.input": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product name"
+        },
+        "form.helper": {
+          "count": 1,
+          "worst": 9.59,
+          "sample": "Attach a text file up to 64 KB."
+        },
+        "form.button": {
+          "count": 4,
+          "worst": 18.1,
+          "sample": "Overlay probe"
+        },
+        "form.primaryButton": {
+          "count": 1,
+          "worst": 10.47,
+          "sample": "Create"
+        },
+        "form.sectionHeading": {
+          "count": 2,
+          "worst": 18.1,
+          "sample": "Product details"
+        }
       }
     }
-  ],
-  "clean": 70,
-  "total": 70
+  ]
 }

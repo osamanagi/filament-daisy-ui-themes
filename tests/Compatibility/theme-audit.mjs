@@ -40,38 +40,54 @@ const credentials = {
     password: 'fixture-password',
 }
 
+// Class names mirror the verified milestone 1-6 selectors in measure.mjs.
 const tableSelectors = {
-    heading: '.fi-header-heading',
-    cell: '.fi-ta-text-item-label',
+    heading: 'h1',
+    cell: '.fi-ta-text-item',
     badge: '.fi-badge',
-    button: '.fi-btn',
+    button: '.fi-btn:not(.fi-color-primary)',
+    primaryButton: '.fi-btn.fi-color-primary',
     navigation: '.fi-sidebar-item-label',
+    breadcrumb: '.fi-breadcrumbs-item-label',
 }
 const formSelectors = {
-    label: '.fi-fo-field-wrp label',
+    label: '.fi-fo-field-label-content',
     input: '.fi-input',
-    helper: '.fi-fo-field-wrp-helper-text',
-    button: '.fi-btn',
+    helper: '.fi-sc-text',
+    button: '.fi-btn:not(.fi-color-primary)',
+    primaryButton: '.fi-btn.fi-color-primary',
+    sectionHeading: '.fi-section-header-heading',
+    stat: '.fi-wi-stats-overview-stat-value',
 }
 
 const measure = (page, selectors) =>
     page.evaluate((selectors) => {
-        const rgb = (value) => {
-            const parts = value.match(/[\d.]+/g)
-            return parts ? parts.map(Number) : [0, 0, 0, 0]
+        const canvas = document.createElement('canvas')
+        canvas.width = 1
+        canvas.height = 1
+        const context = canvas.getContext('2d', { willReadFrequently: true })
+        const cache = new Map()
+        // Filament resolves theme colours to oklch(), which regex parsing cannot
+        // read. Paint the value on a 1px canvas to get real sRGB bytes instead.
+        const toRgb = (value) => {
+            if (cache.has(value)) return cache.get(value)
+            context.globalCompositeOperation = 'copy'
+            context.fillStyle = value
+            context.fillRect(0, 0, 1, 1)
+            const data = context.getImageData(0, 0, 1, 1).data
+            const result = [data[0], data[1], data[2], data[3] / 255]
+            cache.set(value, result)
+            return result
         }
         const surface = (el) => {
             const layers = []
             for (let node = el; node; node = node.parentElement)
-                layers.unshift(rgb(getComputedStyle(node).backgroundColor))
+                layers.unshift(toRgb(getComputedStyle(node).backgroundColor))
             return layers.reduce(
                 (bg, fg) =>
                     fg
                         .slice(0, 3)
-                        .map(
-                            (c, i) =>
-                                (c * fg[3]) / 255 + bg[i] * (1 - fg[3] / 255),
-                        ),
+                        .map((c, i) => c * fg[3] + bg[i] * (1 - fg[3])),
                 [255, 255, 255],
             )
         }
@@ -85,36 +101,58 @@ const measure = (page, selectors) =>
                 .reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0)
         const nodes = {}
         for (const [name, selector] of Object.entries(selectors)) {
-            const el = [...document.querySelectorAll(selector)].find(
+            // Measure every variant (for example each badge colour), not just
+            // the first match, and keep the worst contrast.
+            const matches = [...document.querySelectorAll(selector)].filter(
                 (candidate) =>
                     candidate.getClientRects().length &&
                     getComputedStyle(candidate).visibility !== 'hidden' &&
-                    candidate.textContent.trim().length,
+                    // Disabled controls are recorded by the milestone 6 suite as
+                    // non-text; their reduced contrast is intentional.
+                    !candidate.matches(':disabled') &&
+                    candidate.getAttribute('aria-disabled') !== 'true' &&
+                    // Inputs carry colour but no text content.
+                    (candidate.textContent.trim().length ||
+                        candidate.matches('input, select, textarea')),
             )
-            if (!el) continue
-            const css = getComputedStyle(el)
-            const background = surface(el)
-            const foreground = rgb(css.color)
-            foreground[3] *= Number(css.opacity)
-            const fg = luminance(
-                foreground
-                    .slice(0, 3)
-                    .map(
-                        (c, i) =>
-                            (c * foreground[3]) / 255 +
-                            background[i] * (1 - foreground[3] / 255),
-                    ),
-            )
-            const bg = luminance(background)
-            nodes[name] = {
-                text: el.textContent.trim().slice(0, 48),
-                color: css.color,
-                background: css.backgroundColor,
-                contrast: +(
-                    (Math.max(fg, bg) + 0.05) /
-                    (Math.min(fg, bg) + 0.05)
-                ).toFixed(2),
+            if (!matches.length) continue
+            let worst
+            for (const el of matches) {
+                const css = getComputedStyle(el)
+                const background = surface(el)
+                const foreground = toRgb(css.color)
+                foreground[3] *= Number(css.opacity)
+                const fg = luminance(
+                    foreground
+                        .slice(0, 3)
+                        .map(
+                            (c, i) =>
+                                c * foreground[3] +
+                                background[i] * (1 - foreground[3]),
+                        ),
+                )
+                const bg = luminance(background)
+                const ratio =
+                    (Math.max(fg, bg) + 0.05) / (Math.min(fg, bg) + 0.05)
+                const entry = {
+                    text: (
+                        el.textContent.trim() ||
+                        el.getAttribute('placeholder') ||
+                        el.value ||
+                        el.getAttribute('aria-label') ||
+                        el.className
+                    ).slice(0, 48),
+                    color: css.color,
+                    background: css.backgroundColor,
+                    effectiveBackground: `rgb(${background
+                        .slice(0, 3)
+                        .map((channel) => Math.round(channel))
+                        .join(', ')})`,
+                    contrast: Number.isFinite(ratio) ? +ratio.toFixed(2) : 0,
+                }
+                if (!worst || entry.contrast < worst.contrast) worst = entry
             }
+            nodes[name] = { count: matches.length, worst }
         }
         return {
             theme: document.documentElement.dataset.theme,
@@ -184,9 +222,9 @@ for (const major of majors) {
                 if (data.scheme !== appearance)
                     run.failures.push(`${stage}: color-scheme ${data.scheme}`)
                 for (const [name, node] of Object.entries(data.nodes))
-                    if (node.contrast < threshold)
+                    if (node.worst.contrast < threshold)
                         run.failures.push(
-                            `${stage}: ${name} contrast ${node.contrast}`,
+                            `${stage}: ${name} (${node.count}×, worst "${node.worst.text}") contrast ${node.worst.contrast}`,
                         )
                 await page.screenshot({
                     path: `${output}/${major}-${theme}-${stage}.png`,

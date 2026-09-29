@@ -150,10 +150,12 @@ class and verifies correction before the next animation frame.
 ## Milestone 7: expanded theme coverage
 
 Every built-in daisyUI theme is now generated into
-`resources/dist/themes/<name>.css`, and `FixtureProvider` exposes an
-`/allthemes` panel that allowlists all of them (the theme list is read from the
-shipped `theme-data.json`). The milestone 1–6 suites still describe the original
-three themes; the milestone 7 audit is manifest driven instead:
+`resources/dist/themes/<name>.css`. `FixtureProvider` exposes an `/allthemes`
+panel that allowlists all of them (the theme list is read from the shipped
+`theme-data.json`), and the plugin assembles inline styles lazily, so this panel
+adds no per-request cost to the other panels. The milestone 1–6 suites still
+describe the original three themes; the milestone 7 audit is manifest driven
+instead:
 
 ```sh
 node bin/audit-themes.mjs                       # static semantic-pair contrast
@@ -163,6 +165,10 @@ COMPAT_OUTPUT=/tmp/daisy-audit \
 
 The rendered audit forces the OS colour preference to the opposite of each
 theme's appearance, proves the explicit theme still wins, and checks rendered
-text contrast (≥ 4.5:1) on native tables and forms. `COMPAT_BROWSER`,
-`COMPAT_MAJORS`, and `COMPAT_THEMES` narrow a diagnostic run. Only the previous
-milestone suites are wired into CI so far.
+text contrast (≥ 4.5:1) on native tables and forms, measuring every variant of
+each selector (for example each badge colour) and keeping the worst. It
+converts `oklch()` computed colours through a canvas, because regex parsing of
+computed colours yields `NaN` and would pass silently. `COMPAT_BROWSER`,
+`COMPAT_MAJORS`, and `COMPAT_THEMES` narrow a diagnostic run. The `theme-audit`
+job in `.github/workflows/compatibility.yml` gates on this for Chromium across
+both Filament majors; the milestone 1–6 suites remain the full component matrix.

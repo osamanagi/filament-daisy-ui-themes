@@ -1,4 +1,4 @@
-/* Shared adapter for the three verified daisyUI themes. No view overrides. */
+/* Shared adapter for the shipped daisyUI themes. No view overrides. */
 :root[data-theme] .fi-body {
     color: var(--color-base-content);
 }
@@ -23,18 +23,20 @@
     background-color: var(--color-base-100);
 }
 
-/* Keep the daisyUI semantic foreground/background pair for the main action. */
+/* Keep the daisyUI semantic pairing for the main action. The build clamps the
+   pair to the contrast target only where daisyUI's own pair falls short, so
+   these generated tokens replace --color-primary / --color-primary-content. */
 :root[data-theme] .fi-btn.fi-color-primary:not(.fi-outlined) {
-    background-color: var(--color-primary);
-    color: var(--color-primary-content);
+    background-color: var(--daisy-btn-primary-bg);
+    color: var(--daisy-btn-primary-content);
 }
 
 :root[data-theme]
     .fi-btn.fi-color-primary:not(.fi-outlined):hover:not(:disabled) {
     background-color: color-mix(
         in oklab,
-        var(--color-primary) 96%,
-        var(--color-primary-content)
+        var(--daisy-btn-primary-bg) 96%,
+        var(--daisy-btn-primary-content)
     );
 }
 

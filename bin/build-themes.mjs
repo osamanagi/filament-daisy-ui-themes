@@ -9,10 +9,15 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { execFileSync } from 'node:child_process'
 import { transform } from 'esbuild'
+import { clampContrast, clampPair } from './oklch.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const output = resolve(root, 'resources/dist')
 const check = process.argv.includes('--check')
+// Minimum WCAG contrast for text-bearing generated stops. The margin above 4.5
+// absorbs browser gamut mapping of high-chroma oklch values and the composited
+// surfaces muted text actually sits on (which are not always base-100).
+const contrastTarget = 5.4
 const daisyuiVersion = JSON.parse(
     readFileSync(`${root}/node_modules/daisyui/package.json`),
 ).version
@@ -119,13 +124,40 @@ for (const name of themeNames) {
             950: content,
         })
     }
-    block += `:root[data-theme="${name}"] {\n${Object.entries(palettes[name])
+    // Muted text (breadcrumbs, helper text, sidebar labels) uses these stops.
+    // It can sit on base-100 or a raised base-300 surface, so meet the target
+    // against both; clamping is a no-op where a stop already passes.
+    const surfaces = [base, normalize(theme['--color-base-300'])].filter(
+        Boolean,
+    )
+    for (const stop of dark ? [400, 500, 600] : [500, 600, 700, 800, 900]) {
+        let value = palettes[name].gray[stop]
+        for (const surface of surfaces) {
+            const clamped = clampContrast(value, surface, contrastTarget)
+            if (!clamped)
+                throw new Error(
+                    `Cannot reach ${contrastTarget}:1 for gray-${stop} in ${name}`,
+                )
+            value = clamped
+        }
+        palettes[name].gray[stop] = value
+    }
+    // The adapter paints primary buttons with daisyUI's own pair. Some built-in
+    // themes ship a pair below the contrast target, so clamp the pair, moving
+    // whichever side needs the smaller lightness change.
+    const button = clampPair(
+        normalize(theme['--color-primary']),
+        normalize(theme['--color-primary-content']),
+        contrastTarget,
+    )
+    const paletteTokens = Object.entries(palettes[name])
         .flatMap(([color, shades]) =>
             Object.entries(shades).map(
                 ([shade, value]) => `  --${color}-${shade}: ${value};`,
             ),
         )
-        .join('\n')}\n}\n`
+        .join('\n')
+    block += `:root[data-theme="${name}"] {\n${paletteTokens}\n  --daisy-btn-primary-bg: ${button.background};\n  --daisy-btn-primary-content: ${button.foreground};\n}\n`
     themeCss[name] = (await transform(block, { loader: 'css', minify: true }))
         .code
 }
