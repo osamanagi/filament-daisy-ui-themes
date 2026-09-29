@@ -178,3 +178,10 @@ computed colours yields `NaN` and would pass silently. `COMPAT_BROWSER`,
 `COMPAT_MAJORS`, and `COMPAT_THEMES` narrow a diagnostic run. The `theme-audit`
 job in `.github/workflows/compatibility.yml` gates on this for Chromium across
 both Filament majors; the milestone 1–6 suites remain the full component matrix.
+
+Every suite here launches one browser and must close it in a `finally` block.
+Playwright keeps Node's event loop alive while a browser is open, so a script
+that reaches its last line without `await browser.close()` prints its results and
+then hangs indefinitely — in CI that only ends when the job's `timeout-minutes`
+fires, which looks like a slow job rather than a broken one. `composer verify`
+runs each step under a timeout, so a hang is reported as `TIMEOUT`.

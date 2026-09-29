@@ -199,6 +199,31 @@ engine's own log.
 `bin/lint-workflows.mjs` now rejects both forms, and `composer verify` runs it as
 the `lint:workflows` check.
 
+## The gate hung instead of finishing
+
+With the YAML fixed, all **18 browser lanes passed** — including
+`webkit, 4.1.0, minimum`, the lane that had been failing — and the rendered
+audit reported **70/70 clean**. The `theme-audit` job still ended as `cancelled`,
+but not because the audit failed: it printed its summary and then sat idle for 27
+minutes until the job's `timeout-minutes: 30` fired.
+
+`tests/Compatibility/theme-audit.mjs` was the only suite here that launched a
+browser without closing it, so the browser kept Node's event loop alive and the
+process never exited. The job log gives it away: the last output line is the
+70/70 summary at `13:46:52`, and cleanup then terminates orphan `node` and
+`chrome-headless-shell` processes at `14:14:08`.
+
+A minimal reproduction confirms the mechanism: a script that launches Chromium
+and reaches its last line hangs indefinitely, while the same script with
+`await browser.close()` exits in about one second. The loop is now wrapped in
+`try { … } finally { await browser.close() }` like every other suite, and
+`composer verify` runs each step under a timeout so a hang reports `TIMEOUT`
+instead of blocking the run.
+
+The lesson mirrors the YAML one: a gate that never returns an exit code is
+indistinguishable from a passing gate, and only the platform's own log shows the
+difference.
+
 ## Reproducing
 
 ```sh

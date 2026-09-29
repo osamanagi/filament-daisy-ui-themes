@@ -164,90 +164,109 @@ const measure = (page, selectors) =>
 
 const results = { browser: browser.version(), threshold, runs: [] }
 
-for (const major of majors) {
-    const base = `http://127.0.0.1:810${major}`
-    const context = await browser.newContext({
-        viewport: { width: 1440, height: 1000 },
-        colorScheme: 'light',
-    })
-    const page = await context.newPage()
-    page.setDefaultTimeout(15000)
-    page.setDefaultNavigationTimeout(20000)
-    try {
-        await page.goto(`${base}/allthemes/login`)
-        await page.fill('input[type=email]', credentials.email)
-        await page.fill('input[type=password]', credentials.password)
-        await page.click('button[type=submit]')
-        await page.waitForURL(`${base}/allthemes`)
-    } catch (error) {
-        console.error(`filament${major}: login failed: ${error.message}`)
-        await context.close()
-        continue
-    }
-    for (const theme of selected) {
-        const appearance = manifest.themes[theme].appearance
-        const dark = appearance === 'dark'
-        const run = { major, theme, appearance, failures: [], errors: [], stages: [] }
-        results.runs.push(run)
-        const onError = (error) => run.errors.push(error.message)
-        const onResponse = (response) => {
-            if (response.status() >= 400)
-                run.errors.push(`${response.status()} ${response.url()}`)
-        }
-        page.on('pageerror', onError)
-        page.on('response', onResponse)
+try {
+    for (const major of majors) {
+        const base = `http://127.0.0.1:810${major}`
+        const context = await browser.newContext({
+            viewport: { width: 1440, height: 1000 },
+            colorScheme: 'light',
+        })
+        const page = await context.newPage()
+        page.setDefaultTimeout(15000)
+        page.setDefaultNavigationTimeout(20000)
         try {
-            // Force the OS preference to the opposite mode: the explicit theme
-            // must still win.
-            await page.emulateMedia({
-                colorScheme: dark ? 'light' : 'dark',
-            })
-            await page.evaluate(
-                (value) =>
-                    localStorage.setItem('filament-daisy-theme:allthemes', value),
-                theme,
-            )
-            for (const [stage, path, selectors] of [
-                ['table', '/products', tableSelectors],
-                ['form', '/products/create', formSelectors],
-            ]) {
-                await page.goto(`${base}/allthemes${path}`)
-                await page.waitForTimeout(500)
-                const data = await measure(page, selectors)
-                run.stages.push({ stage, ...data })
-                if (data.theme !== theme)
-                    run.failures.push(`${stage}: theme ${data.theme}`)
-                if (data.dark !== dark)
-                    run.failures.push(`${stage}: dark ${data.dark}`)
-                if (data.scheme !== appearance)
-                    run.failures.push(`${stage}: color-scheme ${data.scheme}`)
-                for (const [name, node] of Object.entries(data.nodes))
-                    if (node.worst.contrast < threshold)
-                        run.failures.push(
-                            `${stage}: ${name} (${node.count}×, worst "${node.worst.text}") contrast ${node.worst.contrast}`,
-                        )
-                await page.screenshot({
-                    path: `${output}/${major}-${theme}-${stage}.png`,
-                    fullPage: true,
-                    animations: 'disabled',
-                })
-            }
+            await page.goto(`${base}/allthemes/login`)
+            await page.fill('input[type=email]', credentials.email)
+            await page.fill('input[type=password]', credentials.password)
+            await page.click('button[type=submit]')
+            await page.waitForURL(`${base}/allthemes`)
         } catch (error) {
-            run.failures.push(`audit error: ${error.message}`)
-        } finally {
-            page.off('pageerror', onError)
-            page.off('response', onResponse)
+            console.error(`filament${major}: login failed: ${error.message}`)
+            await context.close()
+            continue
         }
-        const status =
-            run.failures.length || run.errors.length ? 'FAIL' : 'ok  '
-        console.log(
-            `${status} filament${major} ${theme.padEnd(14)} ${appearance.padEnd(5)} failures=${run.failures.length} errors=${run.errors.length}`,
-        )
-        for (const failure of run.failures) console.log(`       ↳ ${failure}`)
-        for (const error of run.errors.slice(0, 3))
-            console.log(`       ! ${error}`)
+        for (const theme of selected) {
+            const appearance = manifest.themes[theme].appearance
+            const dark = appearance === 'dark'
+            const run = {
+                major,
+                theme,
+                appearance,
+                failures: [],
+                errors: [],
+                stages: [],
+            }
+            results.runs.push(run)
+            const onError = (error) => run.errors.push(error.message)
+            const onResponse = (response) => {
+                if (response.status() >= 400)
+                    run.errors.push(`${response.status()} ${response.url()}`)
+            }
+            page.on('pageerror', onError)
+            page.on('response', onResponse)
+            try {
+                // Force the OS preference to the opposite mode: the explicit theme
+                // must still win.
+                await page.emulateMedia({
+                    colorScheme: dark ? 'light' : 'dark',
+                })
+                await page.evaluate(
+                    (value) =>
+                        localStorage.setItem(
+                            'filament-daisy-theme:allthemes',
+                            value,
+                        ),
+                    theme,
+                )
+                for (const [stage, path, selectors] of [
+                    ['table', '/products', tableSelectors],
+                    ['form', '/products/create', formSelectors],
+                ]) {
+                    await page.goto(`${base}/allthemes${path}`)
+                    await page.waitForTimeout(500)
+                    const data = await measure(page, selectors)
+                    run.stages.push({ stage, ...data })
+                    if (data.theme !== theme)
+                        run.failures.push(`${stage}: theme ${data.theme}`)
+                    if (data.dark !== dark)
+                        run.failures.push(`${stage}: dark ${data.dark}`)
+                    if (data.scheme !== appearance)
+                        run.failures.push(
+                            `${stage}: color-scheme ${data.scheme}`,
+                        )
+                    for (const [name, node] of Object.entries(data.nodes))
+                        if (node.worst.contrast < threshold)
+                            run.failures.push(
+                                `${stage}: ${name} (${node.count}×, worst "${node.worst.text}") contrast ${node.worst.contrast}`,
+                            )
+                    await page.screenshot({
+                        path: `${output}/${major}-${theme}-${stage}.png`,
+                        fullPage: true,
+                        animations: 'disabled',
+                    })
+                }
+            } catch (error) {
+                run.failures.push(`audit error: ${error.message}`)
+            } finally {
+                page.off('pageerror', onError)
+                page.off('response', onResponse)
+            }
+            const status =
+                run.failures.length || run.errors.length ? 'FAIL' : 'ok  '
+            console.log(
+                `${status} filament${major} ${theme.padEnd(14)} ${appearance.padEnd(5)} failures=${run.failures.length} errors=${run.errors.length}`,
+            )
+            for (const failure of run.failures)
+                console.log(`       ↳ ${failure}`)
+            for (const error of run.errors.slice(0, 3))
+                console.log(`       ! ${error}`)
+        }
+        await context.close()
     }
-    await context.close()
+} finally {
+    // Without this the browser keeps the event loop alive and the process hangs
+    // after the work is finished, which hides a passing audit behind a timeout.
+    await browser.close()
 }
 
 writeFileSync(`${output}/theme-audit.json`, JSON.stringify(results, null, 2))
