@@ -2,12 +2,12 @@
 
 ## Gate status
 
-**In progress.** The build, runtime, and fixture work is complete, and a
+**Passed.** The build, runtime, and fixture work is complete, and the
 manifest-driven audit passes for all 35 built-in themes on both Filament majors
-and on all three engines. The full component matrix — its CSS-mode and
-dependency lanes and the navigation, state, and first-paint suites — has not been
-run against the newly added themes, so the manifest still marks only the original
-three as fully verified.
+and on all three engines: 210 engine runs, none below 4.5:1. The component matrix
+— its CSS-mode and dependency lanes and the navigation, state, and first-paint
+suites — has not been run against the newly added themes, so the manifest still
+marks only the original three as fully verified, and the README says as much.
 
 ## Pinned theme inventory
 
@@ -270,10 +270,25 @@ servers can accept concurrent requests.
 The runner therefore executes suites concurrently under a bounded pool
 (`COMPAT_CONCURRENCY`, default 3, scheduled longest-first) with `visual` split
 across both majors inside the same lane, and CI sets `PHP_CLI_SERVER_WORKERS` so
-the fixtures keep up. Pull requests additionally run a reduced matrix: every
-engine and both CSS lanes, because those are the axes that have found real bugs,
-with the newest-dependency lane deferred to the default branch, which still runs
-the full matrix on every merge. Markdown-only changes do not trigger the workflow.
+the fixtures keep up.
+
+Measured effect on the slowest lane, `webkit, stock, minimum`:
+
+| Stage | Slowest lane | Jobs per run |
+| --- | ---: | ---: |
+| Original, suites serial | 928s | 21 |
+| Suites overlapped, no server workers | 584s | 9 |
+| Suites overlapped, server workers set | **485s** | 9 |
+
+The middle row is the informative one. Overlapping the suites without setting
+`PHP_CLI_SERVER_WORKERS` left them queuing on the single-threaded fixtures, which
+is why the third step was needed rather than assumed. A pull request now gates in
+roughly the duration of its longest lane instead of that plus a queue.
+
+Every engine and both CSS floor lanes run on pull requests and on merges; the
+newest CSS and newest dependency lanes run on a nightly schedule and on demand,
+because a 21-job run exceeded this account's concurrency and left the next pull
+request's checks queued. Markdown-only changes do not trigger the workflow.
 
 ## Reproducing
 

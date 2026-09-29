@@ -68,13 +68,23 @@ example `->themes(['business', 'abyss', 'wireframe'])->defaultTheme('business')`
 the topbar selector. A panel inlines just the themes it allows, so enabling a
 few themes does not add every shipped stylesheet to its responses.
 
-All 35 themes passed the milestone 7 Chromium verification of native tables and
-forms on both Filament majors. The build clamps generated muted-text stops and
-the primary button pair to a contrast target above 4.5:1, using shared mappings
-rather than per-theme exceptions. Cupcake, Nord, and Dracula have deeper
-certification: they also pass the full release matrix in Chromium, Firefox, and
-WebKit with stock and custom Tailwind CSS, plus the state and first-paint
-suites. See the milestone 7 findings for the exact scope and remaining work.
+All 35 shipped themes pass the milestone 7 audit: native tables and forms on
+both Filament majors in Chromium, Firefox, and WebKit — 210 engine runs, none
+below 4.5:1. The build clamps generated muted-text stops and the primary button
+pair to a contrast target above 4.5:1, using shared mappings rather than
+per-theme exceptions. Cupcake, Nord, and Dracula have deeper certification: they
+also pass the component matrix, which adds stock and custom Tailwind CSS, the
+state and first-paint suites, and the navigation and isolation checks. See the
+milestone 7 findings for the exact scope.
+
+daisyUI 5.7.46 ships these 35 themes. Classification comes from each theme's own
+`color-scheme` token, not from its name:
+
+- **Light (21):** acid, autumn, bumblebee, caramellatte, cmyk, corporate,
+  cupcake, cyberpunk, emerald, fantasy, garden, lemonade, light, lofi, nord,
+  pastel, retro, silk, valentine, winter, wireframe
+- **Dark (14):** abyss, aqua, black, business, coffee, dark, dim, dracula,
+  forest, halloween, luxury, night, sunset, synthwave
 
 ## Compatibility and limits
 
