@@ -29,6 +29,10 @@ First release.
   view copying, migration, or User model change is needed.
 - Clamps generated muted-text stops and the primary button pair to a contrast
   target above 4.5:1 using shared mappings, with no per-theme CSS exceptions.
+- Generates Filament's neutral `gray-100` one ladder rung below the page colour
+  instead of reusing it, so uncoloured chart areas, icon wells and active
+  sidebar items stay distinguishable from the background. Colour accents that
+  sit on those fills are clamped to the same target.
 - Inlines only the themes a panel allowlists, so a wide allowlist does not
   inflate other panels' responses.
 

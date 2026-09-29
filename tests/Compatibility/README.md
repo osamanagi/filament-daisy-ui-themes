@@ -178,14 +178,20 @@ waiting for CI.
 
 The rendered audit forces the OS colour preference to the opposite of each
 theme's appearance, proves the explicit theme still wins, and checks rendered
-text contrast (≥ 4.5:1) on native tables and forms, measuring every variant of
-each selector (for example each badge colour) and keeping the worst. It
-converts `oklch()` computed colours through a canvas, because regex parsing of
-computed colours yields `NaN` and would pass silently. `COMPAT_BROWSER`,
+text contrast (≥ 4.5:1) on native tables, forms and the dashboard, measuring
+every variant of each selector (for example each badge colour) and keeping the
+worst. It converts `oklch()` computed colours through a canvas, because regex
+parsing of computed colours yields `NaN` and would pass silently. `COMPAT_BROWSER`,
 `COMPAT_MAJORS`, and `COMPAT_THEMES` narrow a diagnostic run. The `theme-audit`
 job in `.github/workflows/compatibility.yml` gates on this across both Filament
 majors and every engine the component matrix uses (Chromium, Firefox, WebKit);
 the milestone 1–6 suites remain the full component matrix.
+
+The audit also guards two things contrast cannot see, because identical colours
+are perfectly legible: a surface that resolves to the page colour (`FLAT`), and
+an uncoloured chart fill that resolves to either the page or its own card
+(`FADED`). The dashboard stage exists for the latter — widgets only render
+there, so a table-and-form-only audit could not observe them.
 
 Every suite here launches one browser and must close it in a `finally` block.
 Playwright keeps Node's event loop alive while a browser is open, so a script

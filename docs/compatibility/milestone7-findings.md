@@ -124,11 +124,12 @@ static audit remains useful as a fast triage tool.
 `tests/Compatibility/theme-audit.mjs` launches a real browser, forces the
 operating-system colour preference to the *opposite* of the theme's appearance,
 and checks that the explicit theme still wins. For each theme it renders the
-native products table and create form and measures rendered text contrast across
-headings, cells, badges, primary and other buttons, breadcrumbs, sidebar labels,
-labels, inputs, helper text, section headings, and stats. It measures **every
-variant** of each selector (for example each badge colour) and keeps the worst,
-capturing a screenshot per page.
+native products table, the create form and the dashboard (where panel widgets
+render) and measures rendered text contrast across headings, cells, badges,
+primary and other buttons, breadcrumbs, sidebar labels, labels, inputs, helper
+text, section headings, and stats. It measures **every variant** of each
+selector (for example each badge colour) and keeps the worst, capturing a
+screenshot per page.
 
 Result per engine (Playwright 1.58.2; Chromium 145.0.7632.6), Filament 4.14.0 and
 5.9.0, after the contrast clamp. Each engine renders all 35 themes on both
@@ -158,11 +159,11 @@ large and stay local).
 
 ### Scope and remaining certification
 
-The milestone 7 audit covers table and form pages at desktop width, and the node
-types listed above, on all three engines. It does **not** replace the milestone 6
-matrix: the CSS-mode and dependency lanes, and the navigation, state, and
-first-paint suites, still run against the three deepest-tested themes rather than
-all 35. It is not a blanket claim about every Filament component.
+The milestone 7 audit covers table, form and dashboard pages at desktop width,
+and the node types listed above, on all three engines. It does **not** replace
+the milestone 6 matrix: the CSS-mode and dependency lanes, and the navigation,
+state, and first-paint suites, still run against the three deepest-tested themes
+rather than all 35. It is not a blanket claim about every Filament component.
 
 Margins are tight in places: the 5.4:1 build target renders as low as **4.5:1**
 for Retro's badge, because the browser gamut-maps high-chroma values and muted
@@ -181,6 +182,50 @@ the three themes that have passed the full component matrix, while `audited`
 records all 35: widening the audit does not promote the other 32, because the
 CSS-mode and dependency lanes and the navigation, state, and first-paint suites
 have not run against them.
+
+## Widget fills that painted the page colour
+
+Reported from a consuming app: with the plugin installed, a stat card's sparkline
+area looked like the page background showing through the card, where stock
+Filament shows a faint fill. Measured on the host page (Cupcake):
+
+| Value | Before | After |
+| --- | --- | --- |
+| Page (`--gray-50`) | `oklch(0.93982 0.007 61.449)` | unchanged |
+| Card (`base-100`) | `oklch(0.97788 0.004 56.375)` | unchanged |
+| Sparkline fill (`--gray-100`) | `oklch(0.93982 0.007 61.449)` | `oklch(0.90176 0.007 61.449)` |
+| Fill composited over the card | `rgb(239, 234, 230)` | `rgb(226, 222, 218)` |
+
+Cause: the light-theme branch of `bin/build-themes.mjs` assigned **both** `50`
+and `100` to `base-200`. `gray-50` is the page underlay, and `gray-100` is
+Filament's neutral fill — chart areas, icon wells and active sidebar items — so
+every uncoloured chart area painted the page colour onto the card. Stock
+Filament keeps those steps distinct (`gray-50: oklch(0.985 …)`,
+`gray-100: oklch(0.967 …)`).
+
+The fix steps `gray-100` down exactly one rung (as far as the page sits below
+`base-100`), so the gap scales with each theme's own surface separation: the step
+below the page is 0.015–0.070 across the 21 light themes, against 0.006–0.017
+for a `base-200 → base-300` mix, which measured as indistinguishable.
+
+Two consequences were handled with the change:
+
+- Darkening the fill lowered the contrast of coloured text that sits on it (the
+  active sidebar label is `-700`), which the audit caught as Garden at 4.33:1.
+  The build now clamps each palette's `-700` against the same surfaces as the
+  muted grays. Darker surfaces cover lighter ones, so a stop clamped this way
+  also holds on `base-100`. Only the `-700` stops move; the earlier attempt that
+  also clamped `-600` and `-800` compressed those stops to a similar lightness in
+  themes with a wide card/page gap, for contrast the audit did not need.
+- The audit previously rendered only the table and form pages, where no widgets
+  appear, so nothing could observe this. It now renders the dashboard too, and
+  fails on a neutral chart fill that resolves to either the page colour or its
+  own card's colour. Negative-tested by restoring `100: page`: both themes fail
+  with `FADED …: the chart fill is the page colour` and exit 1.
+
+Contrast measurement alone cannot catch this class of defect — identical colours
+are perfectly legible. It needs an explicit "these two surfaces must differ"
+check, which is what the flat-surface guard and this new fill guard provide.
 
 ## CI authoring bug found while adding the gate
 

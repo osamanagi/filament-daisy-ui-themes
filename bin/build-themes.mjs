@@ -117,19 +117,30 @@ for (const name of themeNames) {
             for (const shade of [600, 700, 800])
                 color[shade] = color[shade + 100]
         }
+        const page = normalize(theme['--color-base-200'])
+        const border = normalize(theme['--color-base-300'])
+        // gray-100 is Filament's neutral fill: chart areas, icon wells and
+        // active sidebar items. daisyUI ships only two neutrals below base-100,
+        // and reusing the page colour made every one of those fills disappear
+        // into the page, so step exactly one rung below it: as far as the page
+        // itself sits below base-100.
+        const rung = parse(base)[0] - parse(page)[0]
+        const [pageLightness, pageChroma, pageHue] = parse(page)
         Object.assign(palettes[name].gray, {
-            50: normalize(theme['--color-base-200']),
-            100: normalize(theme['--color-base-200']),
-            200: normalize(theme['--color-base-300']),
+            50: page,
+            100: `oklch(${pageLightness - rung} ${pageChroma} ${pageHue})`,
+            200: border,
             950: content,
         })
     }
-    // Muted text (breadcrumbs, helper text, sidebar labels) uses these stops.
-    // It can sit on base-100 or a raised base-300 surface, so meet the target
-    // against both; clamping is a no-op where a stop already passes.
-    const surfaces = [base, normalize(theme['--color-base-300'])].filter(
-        Boolean,
-    )
+
+    const surfaces = [
+        base,
+        normalize(theme['--color-base-300']),
+        // Active sidebar items, dropdown hovers and other neutral fills paint
+        // gray-100, and Filament puts text on that fill.
+        dark ? null : palettes[name].gray[100],
+    ].filter(Boolean)
     for (const stop of dark ? [400, 500, 600] : [500, 600, 700, 800, 900]) {
         let value = palettes[name].gray[stop]
         for (const surface of surfaces) {
@@ -141,6 +152,24 @@ for (const name of themeNames) {
             value = clamped
         }
         palettes[name].gray[stop] = value
+    }
+    if (!dark) {
+        // Filament paints coloured text on the same surfaces (the active
+        // sidebar label is -700), so that stop needs the clamp too. Darker
+        // surfaces cover the lighter ones, so this also holds on base-100.
+        for (const [key, shades] of Object.entries(palettes[name])) {
+            if (key === 'gray') continue
+            let value = shades[700]
+            for (const surface of surfaces) {
+                const clamped = clampContrast(value, surface, contrastTarget)
+                if (!clamped)
+                    throw new Error(
+                        `Cannot reach ${contrastTarget}:1 for ${key}-700 in ${name}`,
+                    )
+                value = clamped
+            }
+            shades[700] = value
+        }
     }
     // The adapter paints primary buttons with daisyUI's own pair. Some built-in
     // themes ship a pair below the contrast target, so clamp the pair, moving

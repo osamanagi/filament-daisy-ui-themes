@@ -59,6 +59,12 @@ const formSelectors = {
     sectionHeading: '.fi-section-header-heading',
     stat: '.fi-wi-stats-overview-stat-value',
 }
+// Widgets only render on the dashboard, so that is the page whose surfaces and
+// chart fills are measured. Keep the selector set minimal: chart fills are not
+// text and must not be put through the contrast check.
+const widgetSelectors = {
+    stat: '.fi-wi-stats-overview-stat-value',
+}
 
 const measure = (page, selectors) =>
     page.evaluate((selectors) => {
@@ -165,12 +171,32 @@ const measure = (page, selectors) =>
             // page with base-100 once flattened widgets, tables and forms into
             // the background, which no contrast measurement noticed.
             pageBackground: getComputedStyle(document.body).backgroundColor,
+            pageRgb: toRgb(getComputedStyle(document.body).backgroundColor),
             surfaceBackground: (() => {
                 const el = document.querySelector(
                     '.fi-wi-stats-overview-stat, .fi-section, .fi-ta-ctn',
                 )
 
                 return el ? getComputedStyle(el).backgroundColor : null
+            })(),
+            // The uncoloured chart fill is a dedicated neutral token. Collapsing
+            // that token onto the page colour made stat sparklines paint the
+            // background itself, so it must differ from the page and the card.
+            neutralChartFill: (() => {
+                const fill = document.querySelector(
+                    '.fi-wi-stats-overview-stat-chart:not(.fi-color) .fi-wi-stats-overview-stat-chart-bg-color',
+                )
+
+                if (!fill) return null
+
+                const card = fill.closest('.fi-wi-stats-overview-stat')
+
+                return {
+                    fillRgb: toRgb(getComputedStyle(fill).color),
+                    cardRgb: card
+                        ? toRgb(getComputedStyle(card).backgroundColor)
+                        : null,
+                }
             })(),
             nodes,
         }
@@ -235,6 +261,9 @@ try {
                 for (const [stage, path, selectors] of [
                     ['table', '/products', tableSelectors],
                     ['form', '/products/create', formSelectors],
+                    // Widgets live on the dashboard, and their surfaces and
+                    // chart fills are what this audit has to protect.
+                    ['dashboard', '', widgetSelectors],
                 ]) {
                     await page.goto(`${base}/allthemes${path}`)
                     await page.waitForTimeout(500)
@@ -312,11 +341,32 @@ for (const run of results.runs)
 for (const entry of flat)
     console.log(`FLAT ${entry}: the surface is the same colour as the page`)
 
+const sameRgb = (a, b) =>
+    Boolean(a) && Boolean(b) && a.slice(0, 3).every((c, i) => c === b[i])
+const fading = []
+for (const run of results.runs)
+    for (const stage of run.stages) {
+        const chart = stage.neutralChartFill
+        if (!chart) continue
+        const where = `filament${run.major} ${run.theme} ${stage.stage}`
+        if (sameRgb(chart.fillRgb, stage.pageRgb))
+            fading.push(`${where}: the chart fill is the page colour`)
+        else if (sameRgb(chart.fillRgb, chart.cardRgb))
+            fading.push(`${where}: the chart fill is the card colour`)
+    }
+for (const entry of fading)
+    console.log(`FADED ${entry}, so the fill disappears into the background`)
+
 const failed = results.runs.filter(
     (run) => run.failures.length || run.errors.length,
 )
 console.log(
-    `\n${results.runs.length - failed.length}/${results.runs.length} theme/version runs clean at ${threshold}:1 (${browserName}); ${unstable.length} shape mismatches, ${flat.length} flat surfaces`,
+    `\n${results.runs.length - failed.length}/${results.runs.length} theme/version runs clean at ${threshold}:1 (${browserName}); ${unstable.length} shape mismatches, ${flat.length} flat surfaces, ${fading.length} faded chart fills`,
 )
 process.exitCode =
-    failed.length > 0 || unstable.length > 0 || flat.length > 0 ? 1 : 0
+    failed.length > 0 ||
+    unstable.length > 0 ||
+    flat.length > 0 ||
+    fading.length > 0
+        ? 1
+        : 0
