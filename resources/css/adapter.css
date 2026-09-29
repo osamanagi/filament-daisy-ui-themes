@@ -3,6 +3,15 @@
     color: var(--color-base-content);
 }
 
+/* daisyUI's base-100 is the page surface. Filament paints the dark page with
+   --gray-950 while its widgets use --gray-900, which the generated ramp maps to
+   base-100; the page therefore rendered a step darker than the widgets and left
+   visible gutters between them. Painting the page with base-100 makes the panel
+   one surface. */
+:root[data-theme] :is(body, .fi-body) {
+    background-color: var(--color-base-100);
+}
+
 /* Filament compiles bg-white to a literal: palettes alone cannot replace it. */
 :root[data-theme]
     :is(
@@ -89,27 +98,4 @@
     .fi-fo-file-upload
     :is(.filepond--file-info-sub, .filepond--file-status-sub) {
     opacity: 1;
-}
-
-/* Radius roles follow daisyUI tokens without changing native component layout. */
-:root[data-theme] :is(.fi-input-wrp, .fi-btn) {
-    border-radius: var(--radius-field);
-}
-
-:root[data-theme]
-    :is(
-        .fi-section,
-        .fi-ta-ctn,
-        .fi-modal-window,
-        .fi-dropdown-panel,
-        .fi-simple-main,
-        .fi-fo-date-time-picker-panel,
-        .fi-no-notification,
-        .fi-fo-file-upload .filepond--root
-    ) {
-    border-radius: var(--radius-box);
-}
-
-:root[data-theme] :is(.fi-badge, .fi-checkbox-input) {
-    border-radius: var(--radius-selector);
 }

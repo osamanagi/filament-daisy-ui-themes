@@ -59,6 +59,26 @@ it('renders panel-specific initialization and the allowed selector choices', fun
         ->and($switcher)->toContain('Nord', 'Choose theme')->not->toContain('Cupcake', 'Dracula', '@js(');
 });
 
+it('defaults the switcher to the end of the topbar', function () {
+    expect(FilamentDaisyUiThemesPlugin::make()->getThemeSwitcherHook())
+        ->toBe(PanelsRenderHook::TOPBAR_END);
+});
+
+it('renders the switcher in the configured render hook', function () {
+    $panel = Panel::make()->id('staff')->plugin(
+        FilamentDaisyUiThemesPlugin::make()
+            ->themes(['nord'])
+            ->defaultTheme('nord')
+            ->themeSwitcherHook(PanelsRenderHook::SIDEBAR_FOOTER)
+    );
+    Filament::setCurrentPanel($panel);
+    $panel->boot();
+
+    expect((string) FilamentView::renderHook(PanelsRenderHook::SIDEBAR_FOOTER))
+        ->toContain('Nord', 'Choose theme')
+        ->and((string) FilamentView::renderHook(PanelsRenderHook::TOPBAR_END))->toBe('');
+});
+
 it('returns the current panel plugin instance', function () {
     $plugin = FilamentDaisyUiThemesPlugin::make();
     Filament::setCurrentPanel(Panel::make()->id('admin')->plugin($plugin));

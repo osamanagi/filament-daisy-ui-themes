@@ -14,6 +14,8 @@ class FilamentDaisyUiThemesPlugin implements Plugin
 
     protected string $defaultTheme = 'cupcake';
 
+    protected PanelsRenderHook | string $themeSwitcherHook = PanelsRenderHook::TOPBAR_END;
+
     public function getId(): string
     {
         return 'filament-daisy-ui-themes';
@@ -41,6 +43,22 @@ class FilamentDaisyUiThemesPlugin implements Plugin
     public function getDefaultTheme(): string
     {
         return $this->defaultTheme;
+    }
+
+    /**
+     * Choose where the switcher renders. Defaults to the end of the topbar,
+     * which is where Filament's own theme switcher would sit.
+     */
+    public function themeSwitcherHook(PanelsRenderHook | string $hook): static
+    {
+        $this->themeSwitcherHook = $hook;
+
+        return $this;
+    }
+
+    public function getThemeSwitcherHook(): PanelsRenderHook | string
+    {
+        return $this->themeSwitcherHook;
     }
 
     public function register(Panel $panel): void
@@ -83,7 +101,7 @@ class FilamentDaisyUiThemesPlugin implements Plugin
             ->renderHook(PanelsRenderHook::HEAD_END, fn () => view('filament-daisy-ui-themes::sync'))
             ->renderHook(PanelsRenderHook::BODY_START, fn () => view('filament-daisy-ui-themes::state', ['json' => $json]))
             ->renderHook(PanelsRenderHook::BODY_END, fn () => view('filament-daisy-ui-themes::activate'))
-            ->renderHook(PanelsRenderHook::TOPBAR_END, fn () => view('filament-daisy-ui-themes::switcher', ['themes' => $themes]));
+            ->renderHook($this->themeSwitcherHook, fn () => view('filament-daisy-ui-themes::switcher', ['themes' => $themes]));
     }
 
     public function boot(Panel $panel): void {}

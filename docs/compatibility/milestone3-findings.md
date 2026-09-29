@@ -47,6 +47,18 @@ existing visual hierarchy. Native border/ring widths and opacity rules remain;
 their shade variables derive from the theme. The adapter changes neither
 component spacing nor layout to mimic daisyUI markup.
 
+**Amendment for 1.0.0.** The table above records what milestone 3 shipped; two
+mappings changed afterwards, both narrowed rather than widened.
+
+- The `radius-field`, `radius-box`, and `radius-selector` rows no longer apply.
+  Themes are colour only: components keep Filament's own border radii, so a
+  theme switch cannot change component shape.
+- The page underlay uses `base-100` instead of `base-200`/`base-300`. The
+  secondary underlay was measured as darker than the widget surfaces, which left
+  visible gutters between stats widgets in a row — Filament paints widget cards
+  with `--gray-900` (which the generated ramp maps to `base-100`) but the dark
+  page with `--gray-950`. The panel is now one surface.
+
 The Filament palette helper generates 11 numeric 50–950 shades from each
 semantic color's hue, using its own ramp and achromatic detection. These are
 not exact daisyUI semantic colors, so primary buttons retain the exact semantic

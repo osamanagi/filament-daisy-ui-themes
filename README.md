@@ -48,7 +48,16 @@ names, and excluded defaults throw configuration errors. Configure a separate
 plugin instance on each panel. Place the plugin after conflicting panel color
 or appearance configuration; it owns the semantic palettes and appearance mode.
 
-The topbar palette icon opens a native Filament dropdown. Use Enter or Space
+The switcher renders at the end of the topbar by default, where Filament's own
+switcher would sit. Pass any render hook to move it:
+
+```php
+->themeSwitcherHook(PanelsRenderHook::SIDEBAR_FOOTER)
+```
+
+Any `Filament\View\PanelsRenderHook` case is accepted, as is a string hook name.
+
+The palette icon opens a native Filament dropdown. Use Enter or Space
 to open it, Tab to move through choices, Enter to select, and Escape to dismiss.
 The current choice has a check mark and an accessible pressed state. Login uses
 the saved choice or panel default; its simple layout has no topbar selector.
@@ -76,6 +85,13 @@ per-theme exceptions. Cupcake, Nord, and Dracula have deeper certification: they
 also pass the component matrix, which adds stock and custom Tailwind CSS, the
 state and first-paint suites, and the navigation and isolation checks. See the
 milestone 7 findings for the exact scope.
+
+A theme is colour only. Buttons, inputs, panels, badges, and checkboxes keep
+Filament's own border radii and do not follow each daisyUI theme's `--radius-*`
+tokens, so switching themes never changes component shape. The panel page is
+painted with the theme's `base-100` as well, so gutters between dashboard widgets
+match the widget surfaces instead of showing Filament's darker `--gray-950` page
+background.
 
 daisyUI 5.7.46 ships these 35 themes. Classification comes from each theme's own
 `color-scheme` token, not from its name:

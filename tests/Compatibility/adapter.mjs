@@ -144,14 +144,8 @@ try {
                                     `${color}-${shade}: ${actual} != ${expected}`,
                                 )
                         }
-                    const radii = Object.fromEntries(
-                        ['field', 'box', 'selector'].map((role) => [
-                            role,
-                            normalize('borderRadius', `var(--radius-${role})`),
-                        ]),
-                    )
                     probe.remove()
-                    return { mismatches, radii }
+                    return { mismatches }
                 }, manifest.themes[theme].palettes)
                 assert.equal(data.theme, theme)
                 assert.equal(
@@ -165,20 +159,6 @@ try {
                     [],
                     'CSS variables and server palettes must agree',
                 )
-                for (const [node, role] of [
-                    ['inputWrapper', 'field'],
-                    ['button', 'field'],
-                    ['table', 'box'],
-                    ['modal', 'box'],
-                    ['badge', 'selector'],
-                ]) {
-                    if (data.nodes[node])
-                        assert.equal(
-                            data.nodes[node].radius,
-                            data.contract.radii[role],
-                            `${theme}/${stage}/${node} radius`,
-                        )
-                }
                 for (const node of ['table', 'modal', 'inputWrapper']) {
                     if (data.nodes[node])
                         assert.deepEqual(

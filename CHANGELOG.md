@@ -9,8 +9,14 @@ First release.
 
 - Applies any of the 35 built-in daisyUI 5.7.46 themes to native Filament
   components, chosen per panel with `themes()` and `defaultTheme()`.
-- Adds a keyboard-accessible topbar theme selector and hides Filament's native
-  light/dark/system switcher for the panel.
+- Adds a keyboard-accessible theme selector and hides Filament's native
+  light/dark/system switcher for the panel. Its position is configurable with
+  `themeSwitcherHook()`, defaulting to the end of the topbar.
+- Keeps Filament's own border radii. daisyUI's per-theme `--radius-*` tokens are
+  not applied, so switching themes never changes component shape.
+- Paints the panel page with the theme's `base-100`, so gutters between
+  dashboard widgets match the widget surfaces rather than Filament's darker
+  `--gray-950` page background.
 - Treats the selected theme as the source of truth for Filament's internal
   light/dark styling, so the operating system preference cannot override it.
 - Stores the choice per panel under `filament-daisy-theme:<panel-id>`; unknown or

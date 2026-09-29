@@ -116,6 +116,9 @@ const measure = (page, selectors) =>
                         candidate.matches('input, select, textarea')),
             )
             if (!matches.length) continue
+            // Shape must not follow the theme: radii come from Filament, not from
+            // daisyUI's --radius-* tokens, so this has to agree across themes.
+            const radius = getComputedStyle(matches[0]).borderTopLeftRadius
             let worst
             for (const el of matches) {
                 const css = getComputedStyle(el)
@@ -152,7 +155,7 @@ const measure = (page, selectors) =>
                 }
                 if (!worst || entry.contrast < worst.contrast) worst = entry
             }
-            nodes[name] = { count: matches.length, worst }
+            nodes[name] = { count: matches.length, worst, radius }
         }
         return {
             theme: document.documentElement.dataset.theme,
@@ -270,10 +273,26 @@ try {
 }
 
 writeFileSync(`${output}/theme-audit.json`, JSON.stringify(results, null, 2))
+
+// A theme is colour only. Compare each node's radius across themes within the
+// same Filament major; a difference means a theme changed component shape.
+const shapes = new Map()
+for (const run of results.runs)
+    for (const stage of run.stages)
+        for (const [name, node] of Object.entries(stage.nodes)) {
+            if (!node.radius) continue
+            const key = `filament${run.major} ${stage.stage} ${name}`
+            if (!shapes.has(key)) shapes.set(key, new Set())
+            shapes.get(key).add(node.radius)
+        }
+const unstable = [...shapes].filter(([, radii]) => radii.size > 1)
+for (const [key, radii] of unstable)
+    console.log(`SHAPE ${key}: ${[...radii].join(' vs ')}`)
+
 const failed = results.runs.filter(
     (run) => run.failures.length || run.errors.length,
 )
 console.log(
-    `\n${results.runs.length - failed.length}/${results.runs.length} theme/version runs clean at ${threshold}:1 (${browserName})`,
+    `\n${results.runs.length - failed.length}/${results.runs.length} theme/version runs clean at ${threshold}:1 (${browserName}); ${unstable.length} shape mismatches`,
 )
-process.exitCode = failed.length > 0 ? 1 : 0
+process.exitCode = failed.length > 0 || unstable.length > 0 ? 1 : 0
