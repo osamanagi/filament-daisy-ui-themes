@@ -114,6 +114,8 @@ itself; strict-CSP operation is not certified.
 ## Development and verification
 
 ```sh
+composer verify        # lint, static analysis, tests, assets, archive
+composer verify -- --browser   # additionally run the local browser suites
 composer test
 composer test:lint
 composer analyse
@@ -124,6 +126,8 @@ npm run build:themes
 npm run check:themes
 node bin/audit-themes.mjs
 ```
+
+`composer verify` is the local equivalent of the automatic `tests` workflow.
 
 `npm` is needed to rebuild assets only. Commit `resources/dist/` with source
 changes. `bin/audit-themes.mjs` statically checks daisyUI's own semantic colour

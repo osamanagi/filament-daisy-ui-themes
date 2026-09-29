@@ -61,7 +61,7 @@ class FilamentDaisyUiThemesPlugin implements Plugin
         $state = [
             'panel' => $panel->getId(),
             'default' => $this->defaultTheme,
-            'themes' => array_combine($themes, array_map(fn($theme) => $manifest[$theme]['appearance'], $themes)),
+            'themes' => array_combine($themes, array_map(fn ($theme) => $manifest[$theme]['appearance'], $themes)),
         ];
         $json = json_encode($state, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR);
 
@@ -78,12 +78,12 @@ class FilamentDaisyUiThemesPlugin implements Plugin
         $panel->darkMode()->themeSwitcher(false)
             ->defaultThemeMode(ThemeMode::System)
             ->colors($manifest[$this->defaultTheme]['palettes'])
-            ->renderHook(PanelsRenderHook::HEAD_START, fn() => view('filament-daisy-ui-themes::head', ['json' => $json, 'script' => $script]))
-            ->renderHook(PanelsRenderHook::STYLES_AFTER, fn() => view('filament-daisy-ui-themes::styles', ['styles' => $inlineStyles()]))
-            ->renderHook(PanelsRenderHook::HEAD_END, fn() => view('filament-daisy-ui-themes::sync'))
-            ->renderHook(PanelsRenderHook::BODY_START, fn() => view('filament-daisy-ui-themes::state', ['json' => $json]))
-            ->renderHook(PanelsRenderHook::BODY_END, fn() => view('filament-daisy-ui-themes::activate'))
-            ->renderHook(PanelsRenderHook::TOPBAR_END, fn() => view('filament-daisy-ui-themes::switcher', ['themes' => $themes]));
+            ->renderHook(PanelsRenderHook::HEAD_START, fn () => view('filament-daisy-ui-themes::head', ['json' => $json, 'script' => $script]))
+            ->renderHook(PanelsRenderHook::STYLES_AFTER, fn () => view('filament-daisy-ui-themes::styles', ['styles' => $inlineStyles()]))
+            ->renderHook(PanelsRenderHook::HEAD_END, fn () => view('filament-daisy-ui-themes::sync'))
+            ->renderHook(PanelsRenderHook::BODY_START, fn () => view('filament-daisy-ui-themes::state', ['json' => $json]))
+            ->renderHook(PanelsRenderHook::BODY_END, fn () => view('filament-daisy-ui-themes::activate'))
+            ->renderHook(PanelsRenderHook::TOPBAR_END, fn () => view('filament-daisy-ui-themes::switcher', ['themes' => $themes]));
     }
 
     public function boot(Panel $panel): void {}
