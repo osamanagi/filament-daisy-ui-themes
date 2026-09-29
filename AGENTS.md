@@ -15,7 +15,7 @@ Install dependencies with `composer install` and `npm install`.
 
 - `composer test` — run the Pest suite.
 - `composer test -- --filter="can test"` — run a matching test.
-- `composer verify` — run every local check (lint, static analysis, tests, compiled assets, theme audit, distribution archive); `composer verify -- --browser` also runs the browser suites. This replaces the automatic `tests` workflow, which is the only one that runs on its own.
+- `composer verify` — run every local check (workflow YAML lint, lint, static analysis, tests, compiled assets, theme audit, distribution archive); `composer verify -- --browser` also runs the browser suites. This replaces the automatic `tests` workflow, which is the only one that runs on its own.
 - `composer analyse` — run PHPStan/Larastan at level 4.
 - `composer lint` / `composer test:lint` — apply Laravel Pint formatting or check it without edits.
 - `composer test:refactor` — preview Rector changes; `composer refactor` applies them.

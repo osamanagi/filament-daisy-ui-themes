@@ -21,6 +21,11 @@ const steps = [
         args: ['validate', '--strict'],
     },
     {
+        name: 'lint:workflows',
+        command: 'node',
+        args: ['bin/lint-workflows.mjs'],
+    },
+    {
         name: 'lint',
         command: './vendor/bin/pint',
         args: ['--test'],
@@ -72,7 +77,8 @@ const steps = [
 ]
 
 if (withBrowser) {
-    const fixtures = process.env.COMPAT_FIXTURES || '/tmp/daisy-filament-milestone7'
+    const fixtures =
+        process.env.COMPAT_FIXTURES || '/tmp/daisy-filament-milestone7'
     if (!existsSync(fixtures))
         console.error(
             `browser suites skipped: fixtures not found at ${fixtures}. See tests/Compatibility/README.md.`,

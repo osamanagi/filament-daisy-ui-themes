@@ -173,6 +173,32 @@ is the remaining certification step before this milestone's gate closes; the
 manifest's `verified` list stays limited to the three full-matrix themes until
 then, while `audited` records all 35.
 
+## CI authoring bug found while adding the gate
+
+The first run of the restored `theme-audit` job failed before reaching the audit,
+with `install.py: error: unrecognized arguments: npm install ...`. The step was
+written as a plain scalar spread over several lines:
+
+```yaml
+run:
+  python3 tests/Compatibility/install.py "$COMPAT_FIXTURES" --archive /tmp/daisy-dist/themes.zip --latest
+  npm install --prefix "$PLAYWRIGHT_DIR" playwright@1.58.2
+```
+
+YAML folds a multi-line plain scalar, so all three commands reached the shell as
+a single line and `install.py` received the `npm` command as arguments. A second
+step carried the related mistake — a comment after a block scalar indicator
+(`run: | # zizmor: ignore[...]`) — so that comment moved to its own line above
+`run:` in both jobs.
+
+What made this harder to catch than it should have been: `ruby -ryaml` parses
+the folded form without complaint, so a spec-compliant local parse is **not**
+evidence that GitHub runs what was written. The only reliable evidence is the
+engine's own log.
+
+`bin/lint-workflows.mjs` now rejects both forms, and `composer verify` runs it as
+the `lint:workflows` check.
+
 ## Reproducing
 
 ```sh

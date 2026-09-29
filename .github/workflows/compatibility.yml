@@ -67,8 +67,8 @@ jobs:
           python3 tests/Compatibility/check-archive.py /tmp/daisy-dist/themes.zip
       - name: Install consumers and browser tooling
         # Resolve the requested floor/latest tooling; retain generated locks in artifacts.
-        run:
-          | # zizmor: ignore[adhoc-packages] Compatibility matrix deliberately resolves versions with a read-only token.
+        # zizmor: ignore[adhoc-packages] Compatibility matrix deliberately resolves versions with a read-only token.
+        run: |
           flags=()
           if [ "$DEPENDENCIES" = latest ]; then flags+=(--latest); fi
           python3 tests/Compatibility/install.py "$COMPAT_FIXTURES" --archive /tmp/daisy-dist/themes.zip "${flags[@]}"
@@ -139,7 +139,7 @@ jobs:
           python3 tests/Compatibility/check-archive.py /tmp/daisy-dist/themes.zip
       - name: Install consumers and browser tooling
         # zizmor: ignore[adhoc-packages] Resolves the current tooling with a read-only token.
-        run:
+        run: |
           python3 tests/Compatibility/install.py "$COMPAT_FIXTURES" --archive /tmp/daisy-dist/themes.zip --latest
           npm install --prefix "$PLAYWRIGHT_DIR" playwright@1.58.2
           "$PLAYWRIGHT_DIR/node_modules/.bin/playwright" install --with-deps "$COMPAT_BROWSER"

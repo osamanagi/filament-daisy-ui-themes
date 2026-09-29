@@ -114,7 +114,7 @@ itself; strict-CSP operation is not certified.
 ## Development and verification
 
 ```sh
-composer verify        # lint, static analysis, tests, assets, archive
+composer verify        # workflow lint, lint, static analysis, tests, assets, archive
 composer verify -- --browser   # additionally run the local browser suites
 composer test
 composer test:lint
