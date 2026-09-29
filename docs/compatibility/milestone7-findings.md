@@ -3,9 +3,11 @@
 ## Gate status
 
 **In progress.** The build, runtime, and fixture work is complete, and a
-manifest-driven Chromium audit passed for all 35 built-in themes on both
-Filament majors. The full three-engine release matrix has not yet been run for
-the newly added themes, so this milestone is not closed.
+manifest-driven audit passes for all 35 built-in themes on both Filament majors
+and on all three engines. The full component matrix — its CSS-mode and
+dependency lanes and the navigation, state, and first-paint suites — has not been
+run against the newly added themes, so the manifest still marks only the original
+three as fully verified.
 
 ## Pinned theme inventory
 
@@ -128,19 +130,24 @@ labels, inputs, helper text, section headings, and stats. It measures **every
 variant** of each selector (for example each badge colour) and keeps the worst,
 capturing a screenshot per page.
 
-Result on Chromium 145.0.7632.6 (Playwright 1.58.2), Filament 4.14.0 and 5.9.0,
-after the contrast clamp:
+Result per engine (Playwright 1.58.2; Chromium 145.0.7632.6), Filament 4.14.0 and
+5.9.0, after the contrast clamp. Each engine renders all 35 themes on both
+majors:
 
-| Check | Result |
-| --- | --- |
-| Theme/version runs | **70/70 clean** (35 themes × 2 majors) |
-| `data-theme`, root `.dark`, `color-scheme` | correct for every run |
-| Rendered text contrast | ≥ 4.5:1 for every measured node |
-| Page/console errors, 4xx–5xx responses | none recorded |
+| Engine | Theme/version runs | `data-theme`, root `.dark`, `color-scheme` | Rendered text contrast | Page, console, HTTP errors |
+| --- | --- | --- | --- | --- |
+| Chromium | **70/70 clean** | correct for every run | ≥ 4.5:1 for every measured node | none recorded |
+| Firefox | **70/70 clean** | correct for every run | ≥ 4.5:1 for every measured node | none recorded |
+| WebKit | **70/70 clean** | correct for every run | ≥ 4.5:1 for every measured node | none recorded |
 
-The full result set is committed as
-[`theme-audit.json`](milestone7/theme-audit.json); screenshots below are a
-representative sample (the rest are large and stay local).
+That is **210 engine runs, none below 4.5:1**. The results were first
+established on Chromium; Firefox and WebKit were added afterwards and agreed
+with no change to the clamp target, including WebKit, which is the engine where
+the milestone 6 theme-wiring regression had appeared.
+
+The committed result set [`theme-audit.json`](milestone7/theme-audit.json) is the
+Chromium run; the screenshots below are a representative sample (the rest are
+large and stay local).
 
 - [Cupcake table / Filament 4](milestone7/4-cupcake-table.png)
 - [Night form / Filament 4](milestone7/4-night-form.png)
@@ -151,10 +158,11 @@ representative sample (the rest are large and stay local).
 
 ### Scope and remaining certification
 
-The milestone 7 audit covers Chromium only, table and form pages, desktop width,
-and the node types listed above. It does **not** replace the milestone 6 matrix,
-and it is not a blanket claim about every Filament component or about
-consistent behaviour across browsers.
+The milestone 7 audit covers table and form pages at desktop width, and the node
+types listed above, on all three engines. It does **not** replace the milestone 6
+matrix: the CSS-mode and dependency lanes, and the navigation, state, and
+first-paint suites, still run against the three deepest-tested themes rather than
+all 35. It is not a blanket claim about every Filament component.
 
 Margins are tight in places: the 5.4:1 build target renders as low as **4.5:1**
 for Retro's badge, because the browser gamut-maps high-chroma values and muted
@@ -166,12 +174,13 @@ The original three themes are included in this audit rather than relying on the
 milestone 6 result, because the clamp changed their emitted palettes. Their
 milestone 6 contrast numbers therefore no longer describe the shipped values.
 
-The `theme-audit` job in `.github/workflows/compatibility.yml` runs this audit
-for Chromium across both Filament majors, so a regression in the shared mapping
-fails CI. Extending the full three-engine, three-CSS-mode matrix to all 35 themes
-is the remaining certification step before this milestone's gate closes; the
-manifest's `verified` list stays limited to the three full-matrix themes until
-then, while `audited` records all 35.
+The `theme-audit` job in `.github/workflows/compatibility.yml` runs this audit on
+each engine across both Filament majors, so a regression in the shared mapping
+fails CI on any of them. The manifest's `verified` list still stays limited to
+the three themes that have passed the full component matrix, while `audited`
+records all 35: widening the audit does not promote the other 32, because the
+CSS-mode and dependency lanes and the navigation, state, and first-paint suites
+have not run against them.
 
 ## CI authoring bug found while adding the gate
 
