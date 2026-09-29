@@ -8,7 +8,7 @@
    into the background, so the underlay is deliberately left alone. */
 
 /* Filament compiles bg-white to a literal: palettes alone cannot replace it. */
-:root[data-theme]
+/* :root[data-theme]
     :is(
         .fi-topbar,
         .fi-ta-ctn,
@@ -25,7 +25,7 @@
         .fi-fo-file-upload .filepond--root:not([data-disabled])
     ) {
     background-color: var(--color-base-100);
-}
+} */
 
 :root[data-theme] .fi-input-wrp:not(.fi-disabled) {
     background-color: var(--color-base-100);
