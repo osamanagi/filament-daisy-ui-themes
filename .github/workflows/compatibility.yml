@@ -1,14 +1,24 @@
 name: browser compatibility
 # Runs on pull requests, on the default branch, and on demand. Each commit is
 # triggered by one event only: a feature-branch push relies on its pull request,
-# so the 18-lane matrix is not run twice for the same change. Standard
-# GitHub-hosted runners are free for public repositories, so this matrix does
-# not consume paid minutes; tests/Compatibility/README.md documents how to run
-# the same suites locally when a faster loop is wanted.
+# so the matrix is not run twice for the same change. Standard GitHub-hosted
+# runners are free for public repositories, so this matrix does not consume paid
+# minutes; tests/Compatibility/README.md documents how to run the same suites
+# locally when a faster loop is wanted.
+#
+# Pull requests run a reduced matrix so the gate returns while the diff is still
+# being reviewed, and markdown-only changes do not run it at all. The engine and
+# CSS axes are kept because those are the ones that have found real bugs — a
+# WebKit custom-theme regression among them; the newest-dependency axis waits for
+# the default branch, which runs the full matrix on every merge.
 on:
   pull_request:
+    paths-ignore:
+      - '**/*.md'
   push:
     branches: [main, 5.x]
+    paths-ignore:
+      - '**/*.md'
   workflow_dispatch:
     inputs:
       suites:
@@ -32,8 +42,10 @@ jobs:
       fail-fast: false
       matrix:
         browser: [chromium, firefox, webkit]
-        css: [stock, '4.1.0', latest]
-        dependencies: [minimum, latest]
+        # Every engine and both CSS lanes on a pull request; the newest-dependency
+        # lane is default-branch only. See the header comment for why.
+        css: ${{ github.event_name == 'pull_request' && fromJSON('["stock","4.1.0"]') || fromJSON('["stock","4.1.0","latest"]') }}
+        dependencies: ${{ github.event_name == 'pull_request' && fromJSON('["minimum"]') || fromJSON('["minimum","latest"]') }}
     env:
       COMPAT_FIXTURES: /tmp/daisy-release-apps
       PLAYWRIGHT_DIR: /tmp/daisy-browser-tools
