@@ -128,7 +128,7 @@ it('allows every shipped theme at once', function () {
 
 it('allows every light theme or every dark theme at once', function () {
     $manifest = json_decode(file_get_contents(__DIR__ . '/../resources/dist/theme-data.json'), true, flags: JSON_THROW_ON_ERROR)['themes'];
-    $appearances = fn(array $themes): array => array_values(array_unique(array_map(fn(string $theme): string => $manifest[$theme]['appearance'], $themes)));
+    $appearances = fn (array $themes): array => array_values(array_unique(array_map(fn (string $theme): string => $manifest[$theme]['appearance'], $themes)));
 
     $light = FilamentDaisyUiThemesPlugin::make()->allLightThemes();
     $dark = FilamentDaisyUiThemesPlugin::make()->allDarkThemes();
