@@ -11,7 +11,9 @@ First release.
   components, chosen per panel with `themes()` and `defaultTheme()`.
 - Adds a keyboard-accessible theme selector and hides Filament's native
   light/dark/system switcher for the panel. Its position is configurable with
-  `themeSwitcherHook()`, defaulting to the end of the topbar.
+  `themeSwitcherHook()`, defaulting to the end of the topbar. Each choice
+  previews its own colours, as daisyUI's picker does: `base-content`, `primary`,
+  `secondary` and `accent` on that theme's `base-100`.
 - Keeps Filament's own border radii. daisyUI's per-theme `--radius-*` tokens are
   not applied, so switching themes never changes component shape.
 - Paints only the off-canvas sidebar, and otherwise leaves Filament's own

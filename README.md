@@ -59,7 +59,10 @@ Any `Filament\View\PanelsRenderHook` case is accepted, as is a string hook name.
 
 The palette icon opens a native Filament dropdown. Use Enter or Space
 to open it, Tab to move through choices, Enter to select, and Escape to dismiss.
-The current choice has a check mark and an accessible pressed state. Login uses
+Each choice previews its own colours the way daisyUI's picker does — the theme's
+`base-content`, `primary`, `secondary` and `accent` on its own `base-100`, so
+the menu shows what every theme looks like before you pick it. The current choice
+has a check mark and an accessible pressed state. Login uses
 the saved choice or panel default; its simple layout has no topbar selector.
 Panels without a topbar likewise have no selector.
 

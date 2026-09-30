@@ -29,6 +29,43 @@
     }
 }
 
+/* Theme preview in the switcher: the same four colours daisyUI's own picker
+   shows, on the previewed theme's base-100 rather than the active theme's, so
+   the geometry mirrors daisyUI's markup (p-1, gap-0.5, size-1 dots). */
+[data-daisy-theme-swatch] {
+    display: inline-grid;
+    grid-template-columns: repeat(2, 0.25rem);
+    gap: 0.125rem;
+    padding: 0.25rem;
+    margin-inline-end: 0.5rem;
+    border-radius: 0.375rem;
+    background-color: var(--fdut-swatch-base);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.15);
+    vertical-align: middle;
+}
+
+[data-daisy-theme-swatch] > * {
+    inline-size: 0.25rem;
+    block-size: 0.25rem;
+    border-radius: 9999px;
+}
+
+[data-daisy-theme-swatch] > :nth-child(1) {
+    background-color: var(--fdut-swatch-content);
+}
+
+[data-daisy-theme-swatch] > :nth-child(2) {
+    background-color: var(--fdut-swatch-primary);
+}
+
+[data-daisy-theme-swatch] > :nth-child(3) {
+    background-color: var(--fdut-swatch-secondary);
+}
+
+[data-daisy-theme-swatch] > :nth-child(4) {
+    background-color: var(--fdut-swatch-accent);
+}
+
 /* FilePond's documented color hooks; layout and lifecycle stay native. */
 :root[data-theme] .fi-fo-file-upload .filepond--item {
     --compat-upload-bg: var(--color-base-200);

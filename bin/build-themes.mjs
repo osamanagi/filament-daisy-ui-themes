@@ -187,6 +187,9 @@ for (const name of themeNames) {
         )
         .join('\n')
     block += `:root[data-theme="${name}"] {\n${paletteTokens}\n  --daisy-btn-primary-bg: ${button.background};\n  --daisy-btn-primary-content: ${button.foreground};\n}\n`
+    // The switcher previews each theme with daisyUI's own picker colours. Theme
+    // variables only exist on the root, so every swatch carries its own copy.
+    block += `[data-daisy-theme-swatch="${name}"] {\n  --fdut-swatch-base: ${base};\n  --fdut-swatch-content: ${content};\n  --fdut-swatch-primary: ${normalize(theme['--color-primary'])};\n  --fdut-swatch-secondary: ${normalize(theme['--color-secondary'])};\n  --fdut-swatch-accent: ${normalize(theme['--color-accent'])};\n}\n`
     themeCss[name] = (await transform(block, { loader: 'css', minify: true }))
         .code
 }

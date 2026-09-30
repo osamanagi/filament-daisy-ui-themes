@@ -53,10 +53,11 @@ it('renders panel-specific initialization and the allowed selector choices', fun
     $head = (string) FilamentView::renderHook(PanelsRenderHook::HEAD_START);
     $switcher = (string) FilamentView::renderHook(PanelsRenderHook::TOPBAR_END);
     $styles = (string) FilamentView::renderHook(PanelsRenderHook::STYLES_AFTER);
-    expect($styles)->toContain('data-daisy-theme-styles', file_get_contents(__DIR__ . '/../resources/dist/themes/nord.css'), file_get_contents(__DIR__ . '/../resources/dist/adapter.css'))
-        ->not->toContain('[data-theme=cupcake]', '[data-theme=dracula]');
+    expect($styles)->toContain('data-daisy-theme-styles', file_get_contents(__DIR__ . '/../resources/dist/themes/nord.css'), file_get_contents(__DIR__ . '/../resources/dist/adapter.css'), '[data-daisy-theme-swatch=nord]', '--fdut-swatch-primary')
+        ->not->toContain('[data-theme=cupcake]', '[data-theme=dracula]', '[data-daisy-theme-swatch=cupcake]');
     expect($head)->toContain('"panel":"staff"', '"default":"nord"', 'data-daisy-theme-version')
-        ->and($switcher)->toContain('Nord', 'Choose theme')->not->toContain('Cupcake', 'Dracula', '@js(');
+        ->and($switcher)->toContain('Nord', 'Choose theme', 'data-daisy-theme-swatch="nord"')
+        ->not->toContain('Cupcake', 'Dracula', 'data-daisy-theme-swatch="cupcake"', '@js(');
 });
 
 it('defaults the switcher to the end of the topbar', function () {

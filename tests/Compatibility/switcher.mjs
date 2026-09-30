@@ -8,7 +8,7 @@ const engines = await import(
     )
 )
 const fixtures = process.env.COMPAT_FIXTURES || '/tmp/daisy-filament-milestone5'
-import { measure, settleStyles } from './measure.mjs'
+import { measure, normalizeColor, settleStyles } from './measure.mjs'
 const output = process.env.COMPAT_OUTPUT || 'docs/compatibility/milestone5'
 mkdirSync(output, { recursive: true })
 const browserName = process.env.COMPAT_BROWSER || 'chromium'
@@ -171,6 +171,33 @@ try {
                     assert.equal(
                         await selected.getAttribute('aria-pressed'),
                         'true',
+                    )
+                    // Every option previews its own colours (daisyUI's picker),
+                    // so the selected one must show the surface in use.
+                    const preview = await selected.evaluate((node) => {
+                        const swatch = node.querySelector(
+                            '[data-daisy-theme-swatch]',
+                        )
+                        return swatch
+                            ? {
+                                  theme: swatch.dataset.daisyThemeSwatch,
+                                  dots: swatch.children.length,
+                                  background:
+                                      getComputedStyle(swatch).backgroundColor,
+                              }
+                            : null
+                    })
+                    assert.deepEqual(
+                        preview,
+                        {
+                            theme,
+                            dots: 4,
+                            background: await normalizeColor(
+                                page,
+                                'var(--color-base-100)',
+                            ),
+                        },
+                        `${theme}: option preview`,
                     )
                     const box = await selected
                         .locator(

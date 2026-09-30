@@ -16,6 +16,14 @@
                     data-dropdown-escape
                     :data-dropdown-autofocus="$loop->first ? true : null"
                 >
+                    {{-- daisyUI's theme preview: base-content, primary, secondary
+                         and accent on that theme's own base-100. --}}
+                    <span data-daisy-theme-swatch="{{ $theme }}" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
                     {{ ucfirst($theme) }}
                     <span aria-hidden="true" x-show="selectedTheme === '{{ $theme }}'">✓</span>
                 </x-filament::dropdown.list.item>
