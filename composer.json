@@ -39,8 +39,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Nagi\\FilamentDaisyUiThemes\\": "src/",
-            "Nagi\\FilamentDaisyUiThemes\\Database\\Factories\\": "database/factories/"
+            "Nagi\\FilamentDaisyUiThemes\\": "src/"
         }
     },
     "autoload-dev": {

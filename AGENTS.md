@@ -4,8 +4,7 @@
 
 This Laravel package integrates daisyUI themes with Filament 4 and 5 and declares PHP `^8.2` support.
 
-- `src/` contains the plugin, service provider, commands, facade, and testing helpers under `Nagi\FilamentDaisyUiThemes`.
-- `config/` holds package configuration; `database/` contains factories and migration stubs.
+- `src/` contains the plugin, service provider, and facade under `Nagi\FilamentDaisyUiThemes`.
 - `resources/` contains CSS, JavaScript, translations, and a views directory. JavaScript builds go into `resources/dist/`.
 - `tests/` contains Pest tests and the Orchestra Testbench setup; `tests/Compatibility/` supplies disposable host fixtures. `.github/workflows/` defines CI checks.
 
@@ -14,7 +13,7 @@ This Laravel package integrates daisyUI themes with Filament 4 and 5 and declare
 Install dependencies with `composer install` and `npm install`.
 
 - `composer test` — run the Pest suite.
-- `composer test -- --filter="can test"` — run a matching test.
+- `composer test -- --filter="registers publishable assets"` — run a matching test.
 - `composer verify` — run every local check (workflow YAML lint, lint, static analysis, tests, compiled assets, theme audit, distribution archive); `composer verify -- --browser` also runs the browser suites. This replaces the automatic `tests` workflow, which is the only one that runs on its own.
 - `composer analyse` — run PHPStan/Larastan at level 4.
 - `composer lint` / `composer test:lint` — apply Laravel Pint formatting or check it without edits.
