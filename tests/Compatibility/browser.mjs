@@ -62,7 +62,9 @@ try {
                     assert.equal(result.scheme, theme === 'dracula' ? 'dark' : 'light', stage)
                     assert.equal(result.themeSwitchers, 0, stage)
                     if (probe === 'host') assert.equal(result.topbarHeight, '4.5rem', 'Host custom theme must actually load')
-                    for (const key of ['topbar', 'table', 'inputWrapper', 'modalInputWrapper', 'modal', 'login', 'dropdown']) {
+                    // Input wrappers are Filament's own fill, not a theme
+                    // surface: dark themes render them as a 5% white wash.
+                    for (const key of ['topbar', 'table', 'modal', 'login', 'dropdown']) {
                         if (result.nodes[key]) assert.deepEqual(result.nodes[key].backgroundRgb, result.expectedSurfaceRgb, `${major}/${theme}/${stage}/${key}: must use daisyUI surface`)
                     }
                     for (const key of ['cell', 'heading', 'input', 'label', 'modalHeading', 'modalInput', 'modalButton', 'button', 'navigation', 'badge']) {

@@ -3,39 +3,6 @@
     color: var(--color-base-content);
 }
 
-/* The page keeps Filament's own hierarchy: a secondary underlay behind the
-   cards. Painting it with base-100 instead flattens widgets, tables and forms
-   into the background, so the underlay is deliberately left alone. */
-
-/* Filament compiles its surfaces to a literal white. Light themes keep it, and
-   the tinted page underlay is what separates a card from the background, which
-   is how stock Filament reads. Dark themes are painted from the theme instead,
-   because several of these surfaces have no dark rule of their own: the FilePond
-   root and input wrappers fall back to a 5% white wash, which reads as a hole in
-   a dark panel. */
-:root[data-theme].dark
-    :is(
-        .fi-topbar,
-        .fi-ta-ctn,
-        .fi-section,
-        .fi-section-content-ctn,
-        .fi-wi-stats-overview-stat,
-        .fi-modal-header,
-        .fi-modal-footer,
-        .fi-modal-window,
-        .fi-dropdown-panel,
-        .fi-simple-main,
-        .fi-fo-date-time-picker-panel,
-        .fi-no-notification,
-        .fi-fo-file-upload .filepond--root:not([data-disabled]),
-        .fi-input-wrp:not(.fi-disabled)
-    ) {
-    background-color: var(--color-base-100);
-}
-
-/* Keep the daisyUI semantic pairing for the main action. The build clamps the
-   pair to the contrast target only where daisyUI's own pair falls short, so
-   these generated tokens replace --color-primary / --color-primary-content. */
 :root[data-theme] .fi-btn.fi-color-primary:not(.fi-outlined) {
     background-color: var(--daisy-btn-primary-bg);
     color: var(--daisy-btn-primary-content);

@@ -58,12 +58,9 @@ try {
                     data.alpineTheme,
                     theme === 'dracula' ? 'dark' : 'light',
                 )
-                for (const node of [
-                    'inputWrapper',
-                    'table',
-                    'modal',
-                    'dropdown',
-                ])
+                // The plugin paints no surfaces, so Filament's own input
+                // wrapper fill is not a theme surface to assert here.
+                for (const node of ['table', 'modal', 'dropdown'])
                     if (data.nodes[node])
                         assert.deepEqual(
                             data.nodes[node].backgroundRgb,

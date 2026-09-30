@@ -159,7 +159,8 @@ try {
                     [],
                     'CSS variables and server palettes must agree',
                 )
-                for (const node of ['table', 'modal', 'inputWrapper']) {
+                // Input wrappers are Filament's own fill, not a theme surface.
+                for (const node of ['table', 'modal']) {
                     if (data.nodes[node])
                         assert.deepEqual(
                             data.nodes[node].backgroundRgb,

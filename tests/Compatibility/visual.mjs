@@ -154,11 +154,9 @@ try {
                             run.failures.push(
                                 `${stage}: native theme switcher visible`,
                             )
-                        for (const name of [
-                            'datePanel',
-                            'fileUpload',
-                            'notification',
-                        ]) {
+                        // The FilePond root is Filament's own fill: white in
+                        // light themes, a 5% white wash in dark ones.
+                        for (const name of ['datePanel', 'notification']) {
                             if (
                                 data.nodes[name] &&
                                 JSON.stringify(

@@ -135,8 +135,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(0, 30, 41)",
-                "contrast": 17.25
+                "effectiveBackground": "rgb(13, 41, 52)",
+                "contrast": 15.11
               },
               "radius": "0px"
             },
@@ -198,7 +198,7 @@
             17,
             1
           ],
-          "surfaceBackground": "oklch(0.2 0.08 209)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               0,
@@ -589,8 +589,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(26, 54, 139)",
-                "contrast": 10.8
+                "effectiveBackground": "rgb(38, 64, 145)",
+                "contrast": 9.42
               },
               "radius": "0px"
             },
@@ -652,7 +652,7 @@
             68,
             1
           ],
-          "surfaceBackground": "oklch(0.37 0.146 265.522)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               52,
@@ -1043,8 +1043,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(0, 0, 0)",
-                "contrast": 21
+                "effectiveBackground": "rgb(13, 13, 13)",
+                "contrast": 19.44
               },
               "radius": "0px"
             },
@@ -1106,7 +1106,7 @@
             27,
             1
           ],
-          "surfaceBackground": "oklch(0 0 0)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               16,
@@ -1497,8 +1497,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(32, 32, 32)",
-                "contrast": 16.29
+                "effectiveBackground": "rgb(43, 43, 43)",
+                "contrast": 14.09
               },
               "radius": "0px"
             },
@@ -1560,7 +1560,7 @@
             24,
             1
           ],
-          "surfaceBackground": "oklch(0.24353 0 0)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               62,
@@ -2178,8 +2178,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(38, 27, 37)",
-                "contrast": 16.59
+                "effectiveBackground": "rgb(49, 39, 48)",
+                "contrast": 14.39
               },
               "radius": "0px"
             },
@@ -2241,7 +2241,7 @@
             17,
             1
           ],
-          "surfaceBackground": "oklch(0.24 0.023 329.708)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               62,
@@ -3086,8 +3086,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(29, 35, 42)",
-                "contrast": 15.84
+                "effectiveBackground": "rgb(41, 46, 53)",
+                "contrast": 13.66
               },
               "radius": "0px"
             },
@@ -3149,7 +3149,7 @@
             30,
             1
           ],
-          "surfaceBackground": "oklch(0.2533 0.016 252.42)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               65,
@@ -3313,8 +3313,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(42, 48, 60)",
-                "contrast": 13.24
+                "effectiveBackground": "rgb(53, 59, 70)",
+                "contrast": 11.32
               },
               "radius": "0px"
             },
@@ -3376,7 +3376,7 @@
             46,
             1
           ],
-          "surfaceBackground": "oklch(0.30857 0.023 264.149)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               69,
@@ -3540,8 +3540,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(40, 42, 54)",
-                "contrast": 14.24
+                "effectiveBackground": "rgb(51, 53, 64)",
+                "contrast": 12.2
               },
               "radius": "0px"
             },
@@ -3603,7 +3603,7 @@
             42,
             1
           ],
-          "surfaceBackground": "oklch(0.28822 0.022 277.508)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               75,
@@ -4221,8 +4221,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(27, 23, 23)",
-                "contrast": 17.77
+                "effectiveBackground": "rgb(39, 35, 35)",
+                "contrast": 15.59
               },
               "radius": "0px"
             },
@@ -4284,7 +4284,7 @@
             13,
             1
           ],
-          "surfaceBackground": "oklch(0.2084 0.008 17.911)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               58,
@@ -4675,8 +4675,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(27, 24, 22)",
-                "contrast": 17.66
+                "effectiveBackground": "rgb(39, 36, 34)",
+                "contrast": 15.47
               },
               "radius": "0px"
             },
@@ -4738,7 +4738,7 @@
             0,
             1
           ],
-          "surfaceBackground": "oklch(0.21 0.006 56.043)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               58,
@@ -5583,8 +5583,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(9, 9, 11)",
-                "contrast": 19.9
+                "effectiveBackground": "rgb(22, 22, 23)",
+                "contrast": 18.15
               },
               "radius": "0px"
             },
@@ -5646,7 +5646,7 @@
             31,
             1
           ],
-          "surfaceBackground": "oklch(0.14076 0.004 285.822)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               37,
@@ -5810,8 +5810,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(15, 23, 42)",
-                "contrast": 17.85
+                "effectiveBackground": "rgb(27, 35, 53)",
+                "contrast": 15.71
               },
               "radius": "0px"
             },
@@ -5873,7 +5873,7 @@
             32,
             1
           ],
-          "surfaceBackground": "oklch(0.20768 0.039 265.754)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               45,
@@ -6945,8 +6945,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(18, 28, 34)",
-                "contrast": 17.29
+                "effectiveBackground": "rgb(30, 40, 45)",
+                "contrast": 15.09
               },
               "radius": "0px"
             },
@@ -7008,7 +7008,7 @@
             25,
             1
           ],
-          "surfaceBackground": "oklch(0.22 0.019 237.69)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               45,
@@ -7172,8 +7172,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(9, 0, 47)",
-                "contrast": 19.95
+                "effectiveBackground": "rgb(22, 13, 58)",
+                "contrast": 18.25
               },
               "radius": "0px"
             },
@@ -7235,7 +7235,7 @@
             75,
             1
           ],
-          "surfaceBackground": "oklch(0.15 0.09 281.288)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               34,
@@ -8080,8 +8080,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(0, 30, 41)",
-                "contrast": 17.25
+                "effectiveBackground": "rgb(13, 41, 52)",
+                "contrast": 15.11
               },
               "radius": "0px"
             },
@@ -8143,7 +8143,7 @@
             17,
             1
           ],
-          "surfaceBackground": "oklch(0.2 0.08 209)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               0,
@@ -8534,8 +8534,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(26, 54, 139)",
-                "contrast": 10.8
+                "effectiveBackground": "rgb(38, 64, 145)",
+                "contrast": 9.42
               },
               "radius": "0px"
             },
@@ -8597,7 +8597,7 @@
             68,
             1
           ],
-          "surfaceBackground": "oklch(0.37 0.146 265.522)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               52,
@@ -8988,8 +8988,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(0, 0, 0)",
-                "contrast": 21
+                "effectiveBackground": "rgb(13, 13, 13)",
+                "contrast": 19.44
               },
               "radius": "0px"
             },
@@ -9051,7 +9051,7 @@
             27,
             1
           ],
-          "surfaceBackground": "oklch(0 0 0)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               16,
@@ -9442,8 +9442,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(32, 32, 32)",
-                "contrast": 16.29
+                "effectiveBackground": "rgb(43, 43, 43)",
+                "contrast": 14.09
               },
               "radius": "0px"
             },
@@ -9505,7 +9505,7 @@
             24,
             1
           ],
-          "surfaceBackground": "oklch(0.24353 0 0)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               62,
@@ -10123,8 +10123,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(38, 27, 37)",
-                "contrast": 16.59
+                "effectiveBackground": "rgb(49, 39, 48)",
+                "contrast": 14.39
               },
               "radius": "0px"
             },
@@ -10186,7 +10186,7 @@
             17,
             1
           ],
-          "surfaceBackground": "oklch(0.24 0.023 329.708)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               62,
@@ -11031,8 +11031,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(29, 35, 42)",
-                "contrast": 15.84
+                "effectiveBackground": "rgb(41, 46, 53)",
+                "contrast": 13.66
               },
               "radius": "0px"
             },
@@ -11094,7 +11094,7 @@
             30,
             1
           ],
-          "surfaceBackground": "oklch(0.2533 0.016 252.42)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               65,
@@ -11258,8 +11258,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(42, 48, 60)",
-                "contrast": 13.24
+                "effectiveBackground": "rgb(53, 59, 70)",
+                "contrast": 11.32
               },
               "radius": "0px"
             },
@@ -11321,7 +11321,7 @@
             46,
             1
           ],
-          "surfaceBackground": "oklch(0.30857 0.023 264.149)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               69,
@@ -11485,8 +11485,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(40, 42, 54)",
-                "contrast": 14.24
+                "effectiveBackground": "rgb(51, 53, 64)",
+                "contrast": 12.2
               },
               "radius": "0px"
             },
@@ -11548,7 +11548,7 @@
             42,
             1
           ],
-          "surfaceBackground": "oklch(0.28822 0.022 277.508)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               75,
@@ -12166,8 +12166,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(27, 23, 23)",
-                "contrast": 17.77
+                "effectiveBackground": "rgb(39, 35, 35)",
+                "contrast": 15.59
               },
               "radius": "0px"
             },
@@ -12229,7 +12229,7 @@
             13,
             1
           ],
-          "surfaceBackground": "oklch(0.2084 0.008 17.911)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               58,
@@ -12620,8 +12620,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(27, 24, 22)",
-                "contrast": 17.66
+                "effectiveBackground": "rgb(39, 36, 34)",
+                "contrast": 15.47
               },
               "radius": "0px"
             },
@@ -12683,7 +12683,7 @@
             0,
             1
           ],
-          "surfaceBackground": "oklch(0.21 0.006 56.043)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               58,
@@ -13528,8 +13528,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(9, 9, 11)",
-                "contrast": 19.9
+                "effectiveBackground": "rgb(22, 22, 23)",
+                "contrast": 18.15
               },
               "radius": "0px"
             },
@@ -13591,7 +13591,7 @@
             31,
             1
           ],
-          "surfaceBackground": "oklch(0.14076 0.004 285.822)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               37,
@@ -13755,8 +13755,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(15, 23, 42)",
-                "contrast": 17.85
+                "effectiveBackground": "rgb(27, 35, 53)",
+                "contrast": 15.71
               },
               "radius": "0px"
             },
@@ -13818,7 +13818,7 @@
             32,
             1
           ],
-          "surfaceBackground": "oklch(0.20768 0.039 265.754)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               45,
@@ -14890,8 +14890,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(18, 28, 34)",
-                "contrast": 17.29
+                "effectiveBackground": "rgb(30, 40, 45)",
+                "contrast": 15.09
               },
               "radius": "0px"
             },
@@ -14953,7 +14953,7 @@
             25,
             1
           ],
-          "surfaceBackground": "oklch(0.22 0.019 237.69)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               45,
@@ -15117,8 +15117,8 @@
                 "text": "Product name",
                 "color": "rgb(255, 255, 255)",
                 "background": "rgba(0, 0, 0, 0)",
-                "effectiveBackground": "rgb(9, 0, 47)",
-                "contrast": 19.95
+                "effectiveBackground": "rgb(22, 13, 58)",
+                "contrast": 18.25
               },
               "radius": "0px"
             },
@@ -15180,7 +15180,7 @@
             75,
             1
           ],
-          "surfaceBackground": "oklch(0.15 0.09 281.288)",
+          "surfaceBackground": "rgba(0, 0, 0, 0)",
           "neutralChartFill": {
             "fillRgb": [
               34,

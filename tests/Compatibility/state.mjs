@@ -48,8 +48,11 @@ try {
                 window.__frames = []
                 window.__mismatches = []
                 function frame() {
+                    // Only surfaces the theme drives in both appearances. The
+                    // plugin no longer paints input wrappers, and Filament's
+                    // dark rule for those is a translucent 5% white.
                     const node = document.querySelector(
-                        '.fi-simple-main, .fi-ta-ctn, .fi-input-wrp',
+                        '.fi-simple-main, .fi-ta-ctn, .fi-section',
                     )
                     if (node?.getClientRects().length)
                         window.__frames.push({
@@ -133,7 +136,10 @@ try {
                     'system',
                     'Native preference must remain untouched',
                 )
-                for (const node of ['table', 'inputWrapper', 'modal', 'login'])
+                // Input wrappers are Filament's own fill, so they are not
+                // asserted as theme surfaces; their legibility is covered by
+                // the contrast checks below.
+                for (const node of ['table', 'modal', 'login'])
                     if (data.nodes[node])
                         assert.deepEqual(
                             data.nodes[node].backgroundRgb,
