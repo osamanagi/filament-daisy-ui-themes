@@ -5,6 +5,14 @@ file.
 
 ## Unreleased
 
+- **Breaking:** the Composer package moved from the `nagi/` vendor to
+  `osamanagi/filament-daisy-ui-themes`, because the `nagi` vendor is owned by
+  another Packagist account. The PHP namespace is unchanged
+  (`Nagi\FilamentDaisyUiThemes`), so `use` statements in your panel provider need
+  no edit — update `composer require` and any `FilamentAsset` package id, and
+  re-run `php artisan filament:assets`, because published assets move to the new
+  package id directory. The plugin id, the `filament-daisy-theme:<panel-id>`
+  storage key and the panel API are unchanged.
 - Adds `themeSwitcher(false)` to hide the theme selector, for panels that allow a
   single theme. The theme still applies and persists, and the switcher render
   hook stays empty.

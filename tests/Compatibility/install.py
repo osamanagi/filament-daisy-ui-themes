@@ -28,7 +28,7 @@ for major, livewire in [(4,'3.8.9'),(5,'4.4.6')]:
     run(composer + ['create-project','laravel/laravel',str(app),'12.12.2','--no-install','--no-scripts','--no-interaction'],apps)
     manifest = {
         'name': f'compatibility/clean-filament{major}', 'type':'project',
-        'require': {'php':'^8.2','laravel/framework':args.laravel,'filament/filament':'4.14.0' if major == 4 else '5.9.0','livewire/livewire':livewire,'nagi/filament-daisy-ui-themes':'@dev'},
+        'require': {'php':'^8.2','laravel/framework':args.laravel,'filament/filament':'4.14.0' if major == 4 else '5.9.0','livewire/livewire':livewire,'osamanagi/filament-daisy-ui-themes':'@dev'},
         'repositories':[{'type':'path','url':str(root),'options':{'symlink':True}}],
         'autoload':{'psr-4':{'App\\':'app/','Compatibility\\':str(root/'tests/Compatibility')+'/'}},
         'scripts':{'post-autoload-dump':['Illuminate\\Foundation\\ComposerScripts::postAutoloadDump','@php artisan package:discover --ansi']},

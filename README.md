@@ -1,10 +1,10 @@
 # daisyUI Themes for Filament
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/nagi/filament-daisy-ui-themes.svg?style=flat-square)](https://packagist.org/packages/nagi/filament-daisy-ui-themes)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/osamanagi/filament-daisy-ui-themes.svg?style=flat-square)](https://packagist.org/packages/osamanagi/filament-daisy-ui-themes)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/tests.yml?branch=5.x&label=tests&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3Atests+branch%3A5.x)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/fix-code-style.yml?branch=5.x&label=code%20style&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3Afix-code-style)
 [![Browser Compatibility Matrix](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/compatibility.yml?branch=5.x&label=browser%20matrix&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3A%22browser+compatibility%22)
-[![Total Downloads](https://img.shields.io/packagist/dt/nagi/filament-daisy-ui-themes.svg?style=flat-square)](https://packagist.org/packages/nagi/filament-daisy-ui-themes)
+[![Total Downloads](https://img.shields.io/packagist/dt/osamanagi/filament-daisy-ui-themes.svg?style=flat-square)](https://packagist.org/packages/osamanagi/filament-daisy-ui-themes)
 
 Apply any of the 35 built-in [daisyUI](https://daisyui.com) themes to a Filament
 panel, with a topbar switcher for your users. No npm build, no Tailwind config,
@@ -21,7 +21,7 @@ when upgrading an existing app.
 You can install the package via composer:
 
 ```bash
-composer require nagi/filament-daisy-ui-themes
+composer require osamanagi/filament-daisy-ui-themes
 ```
 
 Register the plugin on your panel (e.g. `/app/Providers/Filament/AdminPanelProvider.php`):

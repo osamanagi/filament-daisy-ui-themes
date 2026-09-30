@@ -378,7 +378,7 @@ try {
                 )
                 assert.equal(
                     await page
-                        .locator('link[href*="nagi/filament-daisy-ui-themes"], style[data-daisy-theme-styles]')
+                        .locator('link[href*="osamanagi/filament-daisy-ui-themes"], style[data-daisy-theme-styles]')
                         .count(),
                     0,
                 )

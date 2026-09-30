@@ -4,7 +4,7 @@
 
 This Laravel package integrates daisyUI themes with Filament 4 and 5 and declares PHP `^8.2` support.
 
-- `src/` contains the plugin, service provider, and facade under `Nagi\FilamentDaisyUiThemes`.
+- `src/` contains the plugin, service provider, and facade under `Nagi\FilamentDaisyUiThemes`. The Composer package is `osamanagi/filament-daisy-ui-themes`.
 - `resources/` contains CSS, JavaScript, translations, and a views directory. JavaScript builds go into `resources/dist/`.
 - `tests/` contains Pest tests and the Orchestra Testbench setup; `tests/Compatibility/` supplies disposable host fixtures. `.github/workflows/` defines CI checks.
 

@@ -128,7 +128,7 @@ try {
                             data.theme ||
                             data.inlineThemeStyles ||
                             data.stylesheets.some((url) =>
-                                url.includes('/nagi/filament-daisy-ui-themes/'),
+                                url.includes('/osamanagi/filament-daisy-ui-themes/'),
                             )
                         )
                             run.failures.push(

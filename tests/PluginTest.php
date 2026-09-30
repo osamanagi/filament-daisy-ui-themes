@@ -34,8 +34,8 @@ it('rejects invalid panel theme configuration', function (array $themes, string 
 
 it('registers publishable assets without loading them globally', function () {
     $assets = [
-        ...FilamentAsset::getStyles(['nagi/filament-daisy-ui-themes']),
-        ...FilamentAsset::getScripts(['nagi/filament-daisy-ui-themes'], withCore: false),
+        ...FilamentAsset::getStyles(['osamanagi/filament-daisy-ui-themes']),
+        ...FilamentAsset::getScripts(['osamanagi/filament-daisy-ui-themes'], withCore: false),
     ];
     expect($assets)->toHaveCount(3);
     foreach ($assets as $asset) {

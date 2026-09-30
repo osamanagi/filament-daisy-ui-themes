@@ -46,7 +46,7 @@ for major, filament, livewire in [(4, "4.14.0", "3.8.9"), (5, "5.9.0", "4.4.6")]
     manifest = {
         "name": f"compatibility/filament{major}", "type": "project",
         "require": {"php": "^8.2", "laravel/framework": "12.69.2", "filament/filament": filament,
-                    "livewire/livewire": livewire, "nagi/filament-daisy-ui-themes": "@dev"},
+                    "livewire/livewire": livewire, "osamanagi/filament-daisy-ui-themes": "@dev"},
         "repositories": repositories,
         "autoload": {"psr-4": {"App\\": "app/", "Compatibility\\": str(root / "tests/Compatibility") + "/"}},
         "scripts": {"post-autoload-dump": ["Illuminate\\Foundation\\ComposerScripts::postAutoloadDump", "@php artisan package:discover --ansi"]},

@@ -1,18 +1,18 @@
 {
-    "name": "nagi/filament-daisy-ui-themes",
+    "name": "osamanagi/filament-daisy-ui-themes",
     "description": "Integrating Daisy Ui themes into Filament apps",
     "keywords": [
-        "Nagi",
+        "osamanagi",
         "laravel",
         "filamentphp",
         "filament",
         "filament-plugin",
         "filament-daisy-ui-themes"
     ],
-    "homepage": "https://github.com/nagi/filament-daisy-ui-themes",
+    "homepage": "https://github.com/osamanagi/filament-daisy-ui-themes",
     "support": {
-        "issues": "https://github.com/nagi/filament-daisy-ui-themes/issues",
-        "source": "https://github.com/nagi/filament-daisy-ui-themes"
+        "issues": "https://github.com/osamanagi/filament-daisy-ui-themes/issues",
+        "source": "https://github.com/osamanagi/filament-daisy-ui-themes"
     },
     "license": "MIT",
     "authors": [
