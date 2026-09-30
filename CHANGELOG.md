@@ -13,6 +13,12 @@ file.
   new list resets to its first entry, so `allDarkThemes()` works on its own.
 - Caps the switcher dropdown at `min(24rem, 60vh)` with its own scrollbar, so a
   wide allowlist no longer runs past the bottom of the screen.
+- Paints Filament's light-mode surfaces with the theme's `base-100` instead of
+  Filament's literal white, so cards, stat widgets, tables, forms, modals,
+  dropdowns and the topbar match the theme. The theme previously reached only the
+  page underlay, so those surfaces read as untinted white — 0.084 lightness adrift
+  on Retro, and enough to make Caramellatte look subtly wrong. Input wrappers use
+  `base-200` to stay distinguishable. Dark themes were already correct.
 
 ## 1.0.0 - 2026-09-29
 

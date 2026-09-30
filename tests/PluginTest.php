@@ -178,6 +178,21 @@ it('caps the switcher dropdown height so a wide allowlist scrolls', function () 
         ->toContain('max-height: min(24rem, 60vh)', 'fi-scrollable');
 });
 
+it('paints Filament light surfaces with the theme surface colour', function () {
+    $panel = Panel::make()->id('staff')->plugin(
+        FilamentDaisyUiThemesPlugin::make()->themes(['retro'])->defaultTheme('retro')
+    );
+    Filament::setCurrentPanel($panel);
+    $panel->boot();
+
+    expect((string) FilamentView::renderHook(PanelsRenderHook::STYLES_AFTER))
+        ->toContain(
+            ':root[data-theme]:not(.dark) :is(.fi-topbar,.fi-ta-ctn',
+            '.fi-simple-main',
+            '.fi-input-wrp:not(.fi-disabled),:root[data-theme]:not(.dark) .fi-fo-file-upload .filepond--root{background-color:var(--color-base-200)}',
+        );
+});
+
 it('returns the current panel plugin instance', function () {
     $plugin = FilamentDaisyUiThemesPlugin::make();
     Filament::setCurrentPanel(Panel::make()->id('admin')->plugin($plugin));

@@ -122,10 +122,19 @@ milestone 7 findings for the exact scope.
 
 A theme is colour only. Buttons, inputs, panels, badges, and checkboxes keep
 Filament's own border radii and do not follow each daisyUI theme's `--radius-*`
-tokens, so switching themes never changes component shape. Filament's surface
-hierarchy is preserved as well: the page keeps its secondary underlay behind
-`base-100` panels, so widgets, tables, and forms stay clearly separated from the
-background instead of fading into it.
+tokens, so switching themes never changes component shape.
+
+Surfaces follow daisyUI's own elevation. The page uses `base-200`; cards,
+tables, forms, modals, dropdowns and the topbar use `base-100`, so a panel is
+always one step above the background instead of Filament's untinted white. That
+matters most on the tinted themes — Retro's `base-100` sits 0.084 lightness below
+white, so a white card reads as a different theme entirely. Ten light themes
+(Bumblebee, CMYK, Corporate, Emerald, Fantasy, Light, LoFi, Pastel, Winter and
+Wireframe) have a `base-100` that is already pure white and look unchanged.
+Input wrappers sit on `base-200` so they stay distinguishable from the card
+beneath them. Dark themes need no adapter rules at all, because Filament's own
+dark styles already resolve through the generated ramp, where `--gray-900` is
+`base-100`.
 
 daisyUI 5.7.46 ships these 35 themes. Classification comes from each theme's own
 `color-scheme` token, not from its name:

@@ -233,6 +233,11 @@ check, which is what the flat-surface guard and this new fill guard provide.
 
 ## Surfaces are Filament's own
 
+> Superseded — see "Follow-up: light surfaces are themed again" at the end of this
+> document. The reversal was safe because the regression described below was
+> caused by the `gray-100` fill bug, not by painting `base-100` itself, and that
+> bug was fixed separately.
+
 Filament compiles its card surfaces to a literal white, so a palette alone cannot
 reach them, and an earlier revision of the adapter painted them with `base-100` in
 every theme. That left light cards sitting between white and the tinted page, which
@@ -381,3 +386,53 @@ node bin/audit-themes.mjs
 ```
 
 `COMPAT_THEMES` and `COMPAT_MAJORS` narrow the run for diagnostics.
+
+## Follow-up: light surfaces are themed again
+
+The "Surfaces are Filament's own" decision above was reversed. Light themes now
+paint Filament's elevated surfaces with the theme's `base-100`, and input
+wrappers with `base-200`.
+
+Why the earlier attempt failed: it coincided with the `gray-100` bug in "Widget
+fills that painted the page colour". At that time `gray-100` was `base-200`, so a
+card painted `base-100` carried a chart fill the colour of the page, and widgets
+read as background. `gray-100` is now stepped one rung below the page, so the
+ordering is `card (base-100) > page (base-200) > fill (gray-100)` — the same
+three-step ordering stock Filament has (`card #fff > page gray-50 > fill
+gray-100`). Scope was the second cause: the first attempt painted cards only,
+leaving tables, modals, dropdowns and the topbar white beside a tinted card.
+
+Measured `1 - base-100` lightness per light theme, which is how far the old white
+surfaces sat from the theme:
+
+| dL | themes |
+| --- | --- |
+| 0.084 | retro |
+| 0.070 | garden |
+| 0.055 | cyberpunk |
+| 0.049 | nord |
+| 0.042 | autumn |
+| 0.030 | silk, valentine |
+| 0.022 | cupcake |
+| 0.020 | acid, caramellatte |
+| 0.013 | lemonade |
+| 0.000 | bumblebee, cmyk, corporate, emerald, fantasy, light, lofi, pastel, winter, wireframe |
+
+Ten of the 21 light themes have a `base-100` that is already pure white, so they
+are visually unchanged. Caramellatte is the case that was reported: its `base-100`
+is `oklch(98% 0.016 73.684)`, and `#fff` was 0.020 lightness adrift.
+
+Every daisyUI variable in the generated themes was already byte-identical to
+`node_modules/daisyui/theme/object.js` — zero mismatches across all 35 themes —
+and no theme's primary button pair needed clamping, so the colour difference was
+never in the palette.
+
+Contrast is unaffected: the build already clamps every generated stop against
+`base-100`, `base-300` and `gray-100`, and `base-100` is the lightest of the three
+for every light theme, so a stop clamped there also holds on the darker
+`base-200`.
+
+Surface nodes the suites assert follow the same change: `expectedSurfaceRgb` in
+`measure.mjs` is `base-100` in both appearances rather than white in a light one.
+The adapter covers `table`, `modal`, `login` (`fi-simple-main`), `dropdown`,
+`topbar`, `datePanel` and `notification`.
