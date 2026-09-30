@@ -192,9 +192,13 @@ Filament shows a faint fill. Measured on the host page (Cupcake):
 | Value | Before | After |
 | --- | --- | --- |
 | Page (`--gray-50`) | `oklch(0.93982 0.007 61.449)` | unchanged |
-| Card (`base-100`) | `oklch(0.97788 0.004 56.375)` | unchanged |
+| Card | `oklch(0.97788 0.004 56.375)` | `rgb(255, 255, 255)` in light themes |
 | Sparkline fill (`--gray-100`) | `oklch(0.93982 0.007 61.449)` | `oklch(0.90176 0.007 61.449)` |
 | Fill composited over the card | `rgb(239, 234, 230)` | `rgb(226, 222, 218)` |
+
+Light surfaces are Filament's own literal white rather than `base-100` (see the
+surface note below), so the fill now sits below both the card and the page, the
+same ordering stock Filament's neutral chart fill has.
 
 Cause: the light-theme branch of `bin/build-themes.mjs` assigned **both** `50`
 and `100` to `base-200`. `gray-50` is the page underlay, and `gray-100` is
@@ -226,6 +230,32 @@ Two consequences were handled with the change:
 Contrast measurement alone cannot catch this class of defect — identical colours
 are perfectly legible. It needs an explicit "these two surfaces must differ"
 check, which is what the flat-surface guard and this new fill guard provide.
+
+## Surfaces are painted per appearance
+
+Filament compiles its card surfaces to a literal white, so a palette alone cannot
+reach them. Painting them with `base-100` in every theme left light cards sitting
+between white and the tinted page, which is what made widgets read as part of the
+background, and `state` and `visual` both assert that these surfaces carry the
+theme colour, so the override and the assertions have to agree.
+
+The adapter now scopes its surface override to dark themes, with
+`:root[data-theme].dark`:
+
+- **Light themes** keep Filament's white. The tinted page underlay is what
+  separates a card from the background, exactly as stock Filament reads, so a
+  light theme tints the page, accents and charts.
+- **Dark themes** paint cards, tables, forms, modals, the topbar, dropdowns, input
+  wrappers and file uploads from `base-100`. Several of them (the FilePond root
+  and the input wrappers) have no dark rule of their own and fall back to a 5%
+  white wash, which reads as a hole in a dark panel.
+
+That leaves one rule the suites can assert: the expected surface is white in a
+light theme and `base-100` in a dark one, which is what `expectedSurfaceRgb` in
+`measure.mjs` now computes, and what the hardcoded first-paint maps in `state.mjs`,
+`state-paint.mjs` and `investigate.mjs` use for their three verified themes. The
+off-canvas sidebar is the remaining single-appearance exception, because Filament
+gives it no dark rule.
 
 ## CI authoring bug found while adding the gate
 

@@ -170,11 +170,13 @@ try {
                         .map((p) => ({ name: p.name, time: p.startTime })),
                 }))
                 assert.ok(frames.frames.length && frames.paints.length)
+                // Light themes keep Filament's literal white surfaces; dark
+                // themes follow base-100 through Filament's --gray-900 rules.
                 const surface = await normalizeColor(
                     page,
                     {
-                        cupcake: 'oklch(0.97788 0.004 56.375)',
-                        nord: 'oklch(0.95127 0.007 260.731)',
+                        cupcake: 'white',
+                        nord: 'white',
                         dracula: 'oklch(0.28822 0.022 277.508)',
                     }[theme],
                 )

@@ -145,8 +145,15 @@ export async function measure(page, stage) {
             dark: root.classList.contains('dark'),
             scheme: getComputedStyle(root).colorScheme,
             storedMode: localStorage.getItem('theme'),
+            // Filament paints its card surfaces with a literal white that the
+            // palettes cannot reach directly; dark themes do follow the ramp,
+            // because Filament's dark rules resolve through --gray-900.
             expectedSurfaceRgb: rgb(
-                getComputedStyle(root).getPropertyValue('--color-base-100'),
+                getComputedStyle(root).getPropertyValue(
+                    root.classList.contains('dark')
+                        ? '--color-base-100'
+                        : '--color-white',
+                ),
             ),
             expectedUploadRgb: rgb(
                 getComputedStyle(root).getPropertyValue(

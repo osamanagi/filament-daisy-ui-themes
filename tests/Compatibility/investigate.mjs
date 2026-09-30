@@ -58,7 +58,7 @@ try {
                 assert.equal(frame.theme, theme)
                 assert.equal(frame.dark, theme === 'dracula')
                 assert.equal(frame.scheme, theme === 'dracula' ? 'dark' : 'light')
-                assert.equal(frame.surface, theme === 'dracula' ? 'oklch(0.28822 0.022 277.508)' : 'oklch(0.97788 0.004 56.375)')
+                assert.equal(frame.surface, theme === 'dracula' ? 'oklch(0.28822 0.022 277.508)' : 'rgb(255, 255, 255)')
             }
             evidence.firstPaint.push({ major, theme, stored, cssDelayMs: 200, ...timing })
             await context.close()

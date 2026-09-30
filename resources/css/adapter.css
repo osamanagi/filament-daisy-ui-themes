@@ -3,12 +3,17 @@
     color: var(--color-base-content);
 }
 
-/* The page keeps Filament's own hierarchy: a secondary underlay behind base-100
-   surfaces. Painting it with base-100 instead flattens widgets, tables and forms
+/* The page keeps Filament's own hierarchy: a secondary underlay behind the
+   cards. Painting it with base-100 instead flattens widgets, tables and forms
    into the background, so the underlay is deliberately left alone. */
 
-/* Filament compiles bg-white to a literal: palettes alone cannot replace it. */
-/* :root[data-theme]
+/* Filament compiles its surfaces to a literal white. Light themes keep it, and
+   the tinted page underlay is what separates a card from the background, which
+   is how stock Filament reads. Dark themes are painted from the theme instead,
+   because several of these surfaces have no dark rule of their own: the FilePond
+   root and input wrappers fall back to a 5% white wash, which reads as a hole in
+   a dark panel. */
+:root[data-theme].dark
     :is(
         .fi-topbar,
         .fi-ta-ctn,
@@ -22,12 +27,9 @@
         .fi-simple-main,
         .fi-fo-date-time-picker-panel,
         .fi-no-notification,
-        .fi-fo-file-upload .filepond--root:not([data-disabled])
+        .fi-fo-file-upload .filepond--root:not([data-disabled]),
+        .fi-input-wrp:not(.fi-disabled)
     ) {
-    background-color: var(--color-base-100);
-} */
-
-:root[data-theme] .fi-input-wrp:not(.fi-disabled) {
     background-color: var(--color-base-100);
 }
 
@@ -52,6 +54,8 @@
     color: inherit;
 }
 
+/* The off-canvas sidebar is the one surface Filament leaves without an
+   equivalent dark rule, so it is painted from the theme in both appearances. */
 @media (max-width: 1023px) {
     :root[data-theme] .fi-sidebar {
         background-color: var(--color-base-100);
