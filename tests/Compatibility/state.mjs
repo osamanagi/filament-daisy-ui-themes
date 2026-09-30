@@ -177,12 +177,17 @@ try {
                 }))
                 assert.ok(frames.frames.length && frames.paints.length)
                 // Light themes paint these surfaces with the theme's own
-                // base-100 (adapter.css). Filament's dark rule for the same
-                // containers lands on the base-100 page too, so one token
-                // covers both appearances instead of a per-theme list.
+                // base-100 (adapter.css). Dark themes keep Filament's ramp,
+                // where gray-900 is the surface one step above the base-100
+                // page. Read the token so any theme is covered, instead of a
+                // per-theme list that goes stale when the ramp moves.
                 const surface = await normalizeColor(
                     page,
-                    'var(--color-base-100)',
+                    await page.evaluate(() =>
+                        document.documentElement.classList.contains('dark')
+                            ? 'var(--gray-900)'
+                            : 'var(--color-base-100)',
+                    ),
                 )
                 for (const f of frames.frames) {
                     assert.equal(f.theme, theme)

@@ -185,6 +185,26 @@ for (const name of themeNames) {
             }
             shades[700] = value
         }
+    } else {
+        // A dark theme paints coloured text with -300, and a coloured badge lays
+        // a 10% tint of its own -400 over the surface first. That tint lifts the
+        // background above the plain surface, so this stop carries a larger
+        // margin than the light branch: aqua's success badge measured 3.69:1
+        // against its own tint unclamped, and 4.26:1 at the shared target.
+        const tintedTarget = 6
+        for (const [key, shades] of Object.entries(palettes[name])) {
+            if (key === 'gray') continue
+            let value = shades[300]
+            for (const surface of surfaces) {
+                const clamped = clampContrast(value, surface, tintedTarget)
+                if (!clamped)
+                    throw new Error(
+                        `Cannot reach ${tintedTarget}:1 for ${key}-300 in ${name}`,
+                    )
+                value = clamped
+            }
+            shades[300] = value
+        }
     }
     // The adapter paints primary buttons with daisyUI's own pair. Some built-in
     // themes ship a pair below the contrast target, so clamp the pair, moving
