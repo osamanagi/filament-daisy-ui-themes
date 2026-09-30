@@ -3,7 +3,13 @@
     x-on:filament-daisy-theme-changed.window="selectedTheme = $event.detail"
     data-daisy-theme-switcher
 >
-    <x-filament::dropdown placement="bottom-end" :teleport="true">
+    {{-- Capped so a wide allowlist scrolls instead of filling the viewport.
+         Filament puts max-height on the panel and adds fi-scrollable. --}}
+    <x-filament::dropdown
+        placement="bottom-end"
+        :teleport="true"
+        max-height="min(24rem, 60vh)"
+    >
         <x-slot name="trigger">
             <x-filament::icon-button x-ref="themeTrigger" icon="heroicon-o-swatch" :label="__('filament-daisy-ui-themes::themes.choose')" />
         </x-slot>

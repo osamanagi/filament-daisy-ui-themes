@@ -3,6 +3,17 @@
 All notable changes to `filament-daisy-ui-themes` will be documented in this
 file.
 
+## Unreleased
+
+- Adds `themeSwitcher(false)` to hide the theme selector, for panels that allow a
+  single theme. The theme still applies and persists, and the switcher render
+  hook stays empty.
+- Adds `allThemes()`, `allLightThemes()`, and `allDarkThemes()` to allow a whole
+  group of shipped themes without listing names. A default theme excluded by the
+  new list resets to its first entry, so `allDarkThemes()` works on its own.
+- Caps the switcher dropdown at `min(24rem, 60vh)` with its own scrollbar, so a
+  wide allowlist no longer runs past the bottom of the screen.
+
 ## 1.0.0 - 2026-09-29
 
 First release.

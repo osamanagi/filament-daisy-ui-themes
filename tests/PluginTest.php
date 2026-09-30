@@ -80,6 +80,104 @@ it('renders the switcher in the configured render hook', function () {
         ->and((string) FilamentView::renderHook(PanelsRenderHook::TOPBAR_END))->toBe('');
 });
 
+it('shows the switcher by default and can hide it', function () {
+    expect(FilamentDaisyUiThemesPlugin::make()->hasThemeSwitcher())->toBeTrue()
+        ->and(FilamentDaisyUiThemesPlugin::make()->themeSwitcher(false)->hasThemeSwitcher())->toBeFalse();
+});
+
+it('applies the theme without rendering a switcher when it is hidden', function () {
+    $panel = Panel::make()->id('staff')->plugin(
+        FilamentDaisyUiThemesPlugin::make()
+            ->themes(['nord'])
+            ->defaultTheme('nord')
+            ->themeSwitcher(false)
+    );
+    Filament::setCurrentPanel($panel);
+    $panel->boot();
+
+    expect((string) FilamentView::renderHook(PanelsRenderHook::TOPBAR_END))->toBe('')
+        ->and((string) FilamentView::renderHook(PanelsRenderHook::HEAD_START))->toContain('"default":"nord"')
+        ->and((string) FilamentView::renderHook(PanelsRenderHook::STYLES_AFTER))->toContain(file_get_contents(__DIR__ . '/../resources/dist/themes/nord.css'))
+        ->and((string) FilamentView::renderHook(PanelsRenderHook::BODY_END))->not->toBe('');
+});
+
+it('leaves a custom switcher hook empty when the switcher is hidden', function () {
+    $panel = Panel::make()->id('staff')->plugin(
+        FilamentDaisyUiThemesPlugin::make()
+            ->themes(['nord'])
+            ->defaultTheme('nord')
+            ->themeSwitcherHook(PanelsRenderHook::SIDEBAR_FOOTER)
+            ->themeSwitcher(false)
+    );
+    Filament::setCurrentPanel($panel);
+    $panel->boot();
+
+    expect((string) FilamentView::renderHook(PanelsRenderHook::TOPBAR_END))->toBe('')
+        ->and((string) FilamentView::renderHook(PanelsRenderHook::SIDEBAR_FOOTER))->toBe('');
+});
+
+it('allows every shipped theme at once', function () {
+    $manifest = json_decode(file_get_contents(__DIR__ . '/../resources/dist/theme-data.json'), true, flags: JSON_THROW_ON_ERROR)['themes'];
+    $plugin = FilamentDaisyUiThemesPlugin::make()->allThemes();
+
+    expect($plugin->getThemes())->toHaveCount(count($manifest))
+        ->and(array_diff(array_keys($manifest), $plugin->getThemes()))->toBe([])
+        ->and(array_diff($plugin->getThemes(), array_keys($manifest)))->toBe([])
+        ->and($plugin->getDefaultTheme())->toBe('cupcake');
+});
+
+it('allows every light theme or every dark theme at once', function () {
+    $manifest = json_decode(file_get_contents(__DIR__ . '/../resources/dist/theme-data.json'), true, flags: JSON_THROW_ON_ERROR)['themes'];
+    $appearances = fn(array $themes): array => array_values(array_unique(array_map(fn(string $theme): string => $manifest[$theme]['appearance'], $themes)));
+
+    $light = FilamentDaisyUiThemesPlugin::make()->allLightThemes();
+    $dark = FilamentDaisyUiThemesPlugin::make()->allDarkThemes();
+
+    expect($light->getThemes())->not->toBeEmpty()
+        ->and($appearances($light->getThemes()))->toBe(['light'])
+        ->and($dark->getThemes())->not->toBeEmpty()
+        ->and($appearances($dark->getThemes()))->toBe(['dark'])
+        ->and(array_intersect($light->getThemes(), $dark->getThemes()))->toBe([])
+        ->and(count($light->getThemes()) + count($dark->getThemes()))->toBe(count($manifest));
+});
+
+it('resets an excluded default theme to the first entry of a bulk list', function () {
+    $plugin = FilamentDaisyUiThemesPlugin::make()->allDarkThemes();
+
+    expect($plugin->getThemes())->toContain($plugin->getDefaultTheme())
+        ->and($plugin->getDefaultTheme())->toBe($plugin->getThemes()[0]);
+});
+
+it('keeps the default theme when a bulk list includes it', function () {
+    expect(FilamentDaisyUiThemesPlugin::make()->allThemes()->getDefaultTheme())->toBe('cupcake')
+        ->and(FilamentDaisyUiThemesPlugin::make()->allLightThemes()->getDefaultTheme())->toBe('cupcake');
+});
+
+it('inlines only the themes a bulk list allows', function () {
+    $panel = Panel::make()->id('gallery')->plugin(FilamentDaisyUiThemesPlugin::make()->allDarkThemes());
+    Filament::setCurrentPanel($panel);
+    $panel->boot();
+
+    expect((string) FilamentView::renderHook(PanelsRenderHook::STYLES_AFTER))
+        ->toContain('[data-theme=abyss]', '[data-theme=dracula]')
+        ->not->toContain('[data-theme=cupcake]', '[data-theme=nord]');
+});
+
+it('still rejects a default theme chosen outside a bulk list', function () {
+    Panel::make()->id('admin')->plugin(
+        FilamentDaisyUiThemesPlugin::make()->allDarkThemes()->defaultTheme('cupcake')
+    );
+})->throws(InvalidArgumentException::class);
+
+it('caps the switcher dropdown height so a wide allowlist scrolls', function () {
+    $panel = Panel::make()->id('gallery')->plugin(FilamentDaisyUiThemesPlugin::make()->allThemes());
+    Filament::setCurrentPanel($panel);
+    $panel->boot();
+
+    expect((string) FilamentView::renderHook(PanelsRenderHook::TOPBAR_END))
+        ->toContain('max-height: min(24rem, 60vh)', 'fi-scrollable');
+});
+
 it('returns the current panel plugin instance', function () {
     $plugin = FilamentDaisyUiThemesPlugin::make();
     Filament::setCurrentPanel(Panel::make()->id('admin')->plugin($plugin));

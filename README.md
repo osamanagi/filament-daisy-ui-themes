@@ -57,12 +57,24 @@ switcher would sit. Pass any render hook to move it:
 
 Any `Filament\View\PanelsRenderHook` case is accepted, as is a string hook name.
 
+A panel that allows a single theme does not need the selector. Hide it with
+`themeSwitcher(false)`; the theme still applies and persists:
+
+```php
+->themeSwitcher(false)
+```
+
+Hiding the switcher also makes `themeSwitcherHook()` irrelevant, so the hook
+renders nothing.
+
 The palette icon opens a native Filament dropdown. Use Enter or Space
 to open it, Tab to move through choices, Enter to select, and Escape to dismiss.
 Each choice previews its own colours the way daisyUI's picker does — the theme's
 `base-content`, `primary`, `secondary` and `accent` on its own `base-100`, so
 the menu shows what every theme looks like before you pick it. The current choice
-has a check mark and an accessible pressed state. Login uses
+has a check mark and an accessible pressed state. The list is capped at
+`min(24rem, 60vh)` and scrolls, so a wide allowlist such as `allThemes()` stays
+inside the viewport instead of running past the bottom of the screen. Login uses
 the saved choice or panel default; its simple layout has no topbar selector.
 Panels without a topbar likewise have no selector.
 
@@ -79,6 +91,25 @@ example `->themes(['business', 'abyss', 'wireframe'])->defaultTheme('business')`
 `defaultTheme()` must belong to the list, and only allowlisted themes appear in
 the topbar selector. A panel inlines just the themes it allows, so enabling a
 few themes does not add every shipped stylesheet to its responses.
+
+Three helpers allow whole groups at once instead of listing names:
+
+```php
+->allThemes()       // all 35 shipped themes
+->allLightThemes()  // the 21 light themes
+->allDarkThemes()   // the 14 dark themes
+```
+
+They replace the list set by `themes()`. If the current default is not in the
+resulting list it resets to that list's first entry, so `allDarkThemes()` works
+without also calling `defaultTheme()`. `cupcake` is included by `allThemes()` and
+`allLightThemes()`, so the default stays; `allDarkThemes()` moves it to `abyss`.
+A default you set afterwards that the list excludes still throws.
+
+Allowing many themes inlines a stylesheet for each. The default three cost about
+3 KB gzipped, while all 35 cost about 20 KB on every full page load. That is fine
+for a theme gallery and noticeable on a slow connection, so allowlist what a
+normal panel actually needs.
 
 All 35 shipped themes pass the milestone 7 audit: native tables and forms on
 both Filament majors in Chromium, Firefox, and WebKit — 210 engine runs, none
