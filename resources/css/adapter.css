@@ -139,11 +139,11 @@
     background-color: var(--color-base-100);
 }
 
-/* Filament paints input wrappers opaque white in light themes where dark themes
-   use a translucent wash, so they vanish into a white card. A recessed base-200
-   well keeps the separation the wash provides, and matches daisyUI's own use of
-   base-200 for inner surfaces. The FilePond dropzone is the same case. */
-:root[data-theme]:not(.dark) .fi-input-wrp:not(.fi-disabled),
-:root[data-theme]:not(.dark) .fi-fo-file-upload .filepond--root {
+/* Filament paints input wrappers opaque white in light themes and a translucent
+   white wash in dark ones, so in neither appearance do they carry a colour from
+   the theme. A base-200 well does, and matches daisyUI's own use of base-200 for
+   inner surfaces. The FilePond dropzone is the same case. */
+:root[data-theme] .fi-input-wrp:not(.fi-disabled),
+:root[data-theme] .fi-fo-file-upload .filepond--root {
     background-color: var(--color-base-200);
 }

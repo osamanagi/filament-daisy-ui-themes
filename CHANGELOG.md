@@ -17,8 +17,19 @@ file.
   Filament's literal white, so cards, stat widgets, tables, forms, modals,
   dropdowns and the topbar match the theme. The theme previously reached only the
   page underlay, so those surfaces read as untinted white — 0.084 lightness adrift
-  on Retro, and enough to make Caramellatte look subtly wrong. Input wrappers use
-  `base-200` to stay distinguishable. Dark themes were already correct.
+  on Retro, and enough to make Caramellatte look subtly wrong. Dark themes were
+  already correct for those surfaces, because Filament's own dark rules resolve
+  through the generated ramp where `--gray-900` is `base-100`.
+- Points input wrappers and the file upload dropzone at `base-200` in both
+  appearances. Filament paints them opaque white in a light theme and a neutral
+  `white/5` wash in a dark one, so in neither case did they carry a colour from
+  the theme; they now read as a well cut into the surface behind them.
+- Fixes dark themes using `base-300` as the page. It is nearly black in Abyss and
+  Halloween and *lighter* than the cards in Black, Luxury and Synthwave, so no
+  dark panel read as its theme. The page is now `base-100`, as daisyUI paints it,
+  and the cards, tables, forms and topbar sit one surface step above it — using
+  `base-200` where that is already the lighter of the two, and otherwise mirroring
+  the theme's own `base-100`/`base-200` separation upwards.
 
 ## 1.0.0 - 2026-09-29
 

@@ -128,7 +128,7 @@ it('allows every shipped theme at once', function () {
 
 it('allows every light theme or every dark theme at once', function () {
     $manifest = json_decode(file_get_contents(__DIR__ . '/../resources/dist/theme-data.json'), true, flags: JSON_THROW_ON_ERROR)['themes'];
-    $appearances = fn (array $themes): array => array_values(array_unique(array_map(fn (string $theme): string => $manifest[$theme]['appearance'], $themes)));
+    $appearances = fn(array $themes): array => array_values(array_unique(array_map(fn(string $theme): string => $manifest[$theme]['appearance'], $themes)));
 
     $light = FilamentDaisyUiThemesPlugin::make()->allLightThemes();
     $dark = FilamentDaisyUiThemesPlugin::make()->allDarkThemes();
@@ -178,7 +178,7 @@ it('caps the switcher dropdown height so a wide allowlist scrolls', function () 
         ->toContain('max-height: min(24rem, 60vh)', 'fi-scrollable');
 });
 
-it('paints Filament light surfaces with the theme surface colour', function () {
+it('themes Filament surfaces with the daisyUI surface tokens', function () {
     $panel = Panel::make()->id('staff')->plugin(
         FilamentDaisyUiThemesPlugin::make()->themes(['retro'])->defaultTheme('retro')
     );
@@ -187,10 +187,43 @@ it('paints Filament light surfaces with the theme surface colour', function () {
 
     expect((string) FilamentView::renderHook(PanelsRenderHook::STYLES_AFTER))
         ->toContain(
+            // Elevated surfaces are painted in a light theme only; a dark theme
+            // already resolves them through the ramp, where --gray-900 is
+            // base-100.
             ':root[data-theme]:not(.dark) :is(.fi-topbar,.fi-ta-ctn',
             '.fi-simple-main',
-            '.fi-input-wrp:not(.fi-disabled),:root[data-theme]:not(.dark) .fi-fo-file-upload .filepond--root{background-color:var(--color-base-200)}',
+            // Inset surfaces are a neutral white or white wash in both
+            // appearances, so this rule is deliberately unscoped.
+            ':root[data-theme] .fi-input-wrp:not(.fi-disabled),:root[data-theme] .fi-fo-file-upload .filepond--root{background-color:var(--color-base-200)}',
         );
+});
+
+it('keeps every dark theme page on base-100 with the surfaces above it', function () {
+    $manifest = json_decode(file_get_contents(__DIR__ . '/../resources/dist/theme-data.json'), true, flags: JSON_THROW_ON_ERROR)['themes'];
+    $lightness = function (string $value): float {
+        preg_match('/[\d.]+/', $value, $match);
+        $number = (float) $match[0];
+
+        return $number > 1.5 ? $number / 100 : $number;
+    };
+    $dark = array_filter($manifest, fn(array $theme): bool => $theme['appearance'] === 'dark');
+
+    expect($dark)->toHaveCount(14);
+
+    foreach ($dark as $name => $theme) {
+        preg_match(
+            '/--color-base-100:\s*([^;}]+)/',
+            file_get_contents(__DIR__ . "/../resources/dist/themes/{$name}.css"),
+            $match,
+        );
+        $page = $lightness($theme['palettes']['gray']['950']);
+
+        // A dark theme page must be daisyUI's own base-100, not base-300.
+        expect($page)->toEqualWithDelta($lightness($match[1]), 1e-6, "{$name}: the page must be base-100")
+            // And the cards, tables and forms must sit above it.
+            ->and($lightness($theme['palettes']['gray']['900']))
+            ->toBeGreaterThan($page, "{$name}: the surfaces must sit above the page");
+    }
 });
 
 it('returns the current panel plugin instance', function () {

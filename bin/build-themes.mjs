@@ -103,11 +103,24 @@ for (const name of themeNames) {
             ),
         ]),
     )
+    // daisyUI paints a page with base-100, and Filament's dark page is gray-950
+    // while its cards, tables and forms are gray-900. Mapping 950 to base-300 put
+    // the page nearly black in Abyss and Halloween, and lighter than the cards in
+    // Black, Luxury and Synthwave, so a dark panel did not read as its theme. The
+    // page is base-100 now, and the surfaces sit one surface step above it. Using
+    // `base100 + |base100 - base200|` reproduces base-200 exactly for the themes
+    // whose base-200 is already the lighter of the two, and mirrors the step for
+    // the rest, so the ordering is the same in every dark theme.
+    const [baseLightness, baseChroma, baseHue] = parse(base)
+    const surfaceStep = Math.abs(
+        baseLightness - parse(normalize(theme['--color-base-200']))[0],
+    )
+    const raised = `oklch(${Math.min(1, baseLightness + surfaceStep)} ${baseChroma} ${baseHue})`
     if (dark) {
         Object.assign(palettes[name].gray, {
             50: content,
-            900: base,
-            950: normalize(theme['--color-base-300']),
+            900: raised,
+            950: base,
         })
     } else {
         // Light surfaces need darker text stops than generatePalette's defaults.
@@ -137,9 +150,11 @@ for (const name of themeNames) {
     const surfaces = [
         base,
         normalize(theme['--color-base-300']),
-        // Active sidebar items, dropdown hovers and other neutral fills paint
-        // gray-100, and Filament puts text on that fill.
-        dark ? null : palettes[name].gray[100],
+        // Filament puts text on the neutral fill in a light theme (active sidebar
+        // items, dropdown hovers) and on the raised surface in a dark one, so both
+        // are clamped against: each is the lightest of its theme's three, which is
+        // the worst case for text.
+        dark ? raised : palettes[name].gray[100],
     ].filter(Boolean)
     for (const stop of dark ? [400, 500, 600] : [500, 600, 700, 800, 900]) {
         let value = palettes[name].gray[stop]

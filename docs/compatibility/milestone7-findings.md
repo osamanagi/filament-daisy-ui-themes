@@ -436,3 +436,55 @@ Surface nodes the suites assert follow the same change: `expectedSurfaceRgb` in
 `measure.mjs` is `base-100` in both appearances rather than white in a light one.
 The adapter covers `table`, `modal`, `login` (`fi-simple-main`), `dropdown`,
 `topbar`, `datePanel` and `notification`.
+
+### Dark themes: the page was base-300, not base-100
+
+Elevated surfaces were correct from the start, because Filament's dark rules go
+through the generated ramp. The *page* was not. Filament's dark page is
+`gray-950`, which the ramp mapped to `base-300`, and daisyUI paints a page with
+`base-100`, so no dark panel read as its theme:
+
+- Abyss (`base-300` = 0.10) and Halloween (`base-300` = 0.00) had a nearly black
+  page, losing the theme's colour entirely.
+- Black, Luxury and Synthwave have a `base-300` *lighter* than their `base-100`,
+  so their page read lighter than their cards — the elevation was inverted.
+
+Measured on the running panel, before and after:
+
+| theme | `base-100` | page before | page after | card after |
+| --- | --- | --- | --- | --- |
+| dracula | 0.28822 | 0.24787 | 0.28822 | 0.30839 |
+| abyss | 0.2 | 0.1 | 0.2 | 0.25 |
+| halloween | 0.21 | 0.0 | 0.21 | 0.28 |
+| black | 0.0 | 0.22 | 0.0 | 0.19 |
+| synthwave | 0.15 | 0.25 | 0.15 | 0.2 |
+| coffee | 0.24 | 0.16 | 0.24 | 0.27 |
+
+The dark branch of the ramp now maps `950` (the page) to `base` and `900` (the
+cards, tables and forms) one surface step above it. Deriving that step as
+`base100 + |base100 - base200|` reproduces `base-200` exactly for the three themes
+whose `base-200` is already the lighter of the two, and mirrors the theme's own
+separation for the rest, so `page < surface` holds in all 14 dark themes.
+Scaling the step to each theme is what keeps the lift slight: a fixed lift would
+leave Black, whose two surfaces are 0.19 apart, nearly flat.
+
+The raised surface joins the contrast clamp's surface list. It is the lightest of
+a dark theme's three, so it is the worst case for light text, and clamping against
+it therefore also covers the page and `base-300`.
+
+The inset family is a separate matter: `input-wrp`, the FilePond root, table
+summary rows, pagination, active tabs, active sidebar items and the default button
+all paint a neutral `white/5` wash — a Tailwind neutral, not a colour from the
+theme. Only the wells (`input-wrp`, FilePond root) are re-pointed, at `base-200`;
+the interactive states keep their wash, because it is the only affordance the
+default button has in a dark theme (it carries no ring), so pointing it at the
+surface colour would erase the button into the card. In a light theme that rule is
+safe, because the default button and the card were already the same colour there.
+
+Two consequences worth knowing:
+
+- In Black, Luxury and Synthwave, `base-200` *is* the raised surface, so an input
+  well takes the same colour as the card behind it and is delineated by its ring
+  alone — the same relationship stock Filament has in a light theme.
+- `expectedSurfaceRgb` in `measure.mjs` is `--gray-900` in a dark theme (the
+  raised surface) and `--color-base-100` in a light one.

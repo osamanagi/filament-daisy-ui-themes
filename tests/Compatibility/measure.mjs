@@ -145,10 +145,15 @@ export async function measure(page, stage) {
             dark: root.classList.contains('dark'),
             scheme: getComputedStyle(root).colorScheme,
             storedMode: localStorage.getItem('theme'),
-            // The adapter paints Filament's light surfaces with base-100 too,
-            // so a theme surface is base-100 in both appearances.
+            // A light theme's surfaces are painted base-100. A dark theme's come
+            // from the ramp, where gray-900 is the surface one step above the
+            // base-100 page.
             expectedSurfaceRgb: rgb(
-                getComputedStyle(root).getPropertyValue('--color-base-100'),
+                getComputedStyle(root).getPropertyValue(
+                    root.classList.contains('dark')
+                        ? '--gray-900'
+                        : '--color-base-100',
+                ),
             ),
             expectedUploadRgb: rgb(
                 getComputedStyle(root).getPropertyValue(

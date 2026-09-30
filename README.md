@@ -124,17 +124,21 @@ A theme is colour only. Buttons, inputs, panels, badges, and checkboxes keep
 Filament's own border radii and do not follow each daisyUI theme's `--radius-*`
 tokens, so switching themes never changes component shape.
 
-Surfaces follow daisyUI's own elevation. The page uses `base-200`; cards,
-tables, forms, modals, dropdowns and the topbar use `base-100`, so a panel is
-always one step above the background instead of Filament's untinted white. That
-matters most on the tinted themes — Retro's `base-100` sits 0.084 lightness below
-white, so a white card reads as a different theme entirely. Ten light themes
-(Bumblebee, CMYK, Corporate, Emerald, Fantasy, Light, LoFi, Pastel, Winter and
-Wireframe) have a `base-100` that is already pure white and look unchanged.
-Input wrappers sit on `base-200` so they stay distinguishable from the card
-beneath them. Dark themes need no adapter rules at all, because Filament's own
-dark styles already resolve through the generated ramp, where `--gray-900` is
-`base-100`.
+Surfaces come from the theme in both appearances. The page uses `base-200` in a
+light theme and `base-100` in a dark one, and the cards, tables, forms, modals,
+dropdowns and topbar sit one step above it: `base-100` in a light theme, and one
+surface step above `base-100` in a dark one, because a dark theme's `base-200` and
+`base-300` are usually *darker* than `base-100` rather than lighter. Input
+wrappers and the file upload dropzone use `base-200`, so they read as wells rather
+than vanishing into the surface behind them.
+
+That matters most on the tinted light themes — Retro's `base-100` sits 0.084
+lightness below white, so a white card reads as a different theme entirely. Ten
+light themes (Bumblebee, CMYK, Corporate, Emerald, Fantasy, Light, LoFi, Pastel,
+Winter and Wireframe) have a `base-100` that is already pure white and look
+unchanged. On a dark theme the page used to take `base-300`, which is nearly black
+in Abyss and Halloween and *lighter* than the cards in Black, Luxury and
+Synthwave, so no dark panel read as its theme.
 
 daisyUI 5.7.46 ships these 35 themes. Classification comes from each theme's own
 `color-scheme` token, not from its name:
