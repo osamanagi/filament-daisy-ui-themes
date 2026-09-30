@@ -14,7 +14,7 @@ Supports Filament 4 and 5 (PHP 8.2+), including Laravel 11, 12 and 13. Filament 
 requires Livewire 4; follow the [Filament upgrade guide](https://filamentphp.com/docs/5.x/upgrade-guide)
 when upgrading an existing app.
 
-![Shop dashboard in the Abyss theme](art/themes/abyss.jpg)
+![Shop dashboard in the Abyss theme](art/daisyui-themes-thumbnail-v2.png)
 
 ## Installation
 
