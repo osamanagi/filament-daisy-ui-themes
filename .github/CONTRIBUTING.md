@@ -40,7 +40,9 @@ Before submitting a pull request:
 
 If the project maintainer has any additional requirements, you will find them listed here.
 
-- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - The easiest way to apply the conventions is to install [PHP Code Sniffer](https://pear.php.net/package/PHP_CodeSniffer).
+- **Formatting is [Laravel Pint](https://laravel.com/docs/pint)**, using the preset and rules in `pint.json`. Run `composer lint` before committing; `composer test:lint` checks it without editing, and `composer verify` runs that along with static analysis and the tests.
+
+  Configure **one** PHP formatter on save. A second one — Intelephense's built-in formatter, PHP CS Fixer, phpfmt — will silently undo Pint and leave `composer test:lint` failing. Pint's Laravel preset requires a space after `fn`, `fn ($x) => $x` and not `fn($x) => $x`, and PSR-12-based formatters strip that space, which is the usual cause of an unexplained style failure.
 
 - **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 
