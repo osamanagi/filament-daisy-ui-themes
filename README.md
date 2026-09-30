@@ -1,9 +1,16 @@
 # daisyUI themes for Filament
 
-A Composer panel plugin that applies daisyUI themes to native Filament
-components and adds a topbar theme selector. Every built-in daisyUI 5.7.46
-theme can be enabled by name; the chosen theme controls Filament's internal
-light/dark appearance and persists per panel in the browser.
+Apply any of the 35 built-in [daisyUI](https://daisyui.com) themes to a Filament
+panel, and let your users switch between them from the topbar. It ships as a
+Composer package - no npm build, no Tailwind config, no published views.
+
+![Filament shop dashboard in the abyss theme](art/themes/abyss.jpg)
+
+## Requirements
+
+- PHP 8.2+
+- Filament `^4.14 || ^5.9`
+- Tailwind 4.1+ only if you add your own custom Filament CSS
 
 ## Installation
 
@@ -27,196 +34,112 @@ return $panel
     );
 ```
 
-Publish assets after installing or upgrading:
+Publish the assets once per deploy:
 
 ```sh
 php artisan filament:assets
 ```
 
-Run that command in your deployment workflow after Composer installation.
-No npm installation, custom Tailwind theme, view copying, migration, or User
-model changes are required for the included themes. The package ships compiled
-CSS and JavaScript. During development before a published release, use a
-Composer path repository pointing to this checkout and require the package
-with `@dev`; the remaining installation steps are identical.
+The plugin owns the panel's palette and its light/dark mode, so register it
+after any conflicting `->colors()` or appearance settings, and give each panel
+its own instance.
 
-## Configuration and behavior
+## Methods
 
-`themes()` sets the panel's available choices; `defaultTheme()` must belong to
-that list. Defaults are all three themes and Cupcake. Empty lists, unsupported
-names, and excluded defaults throw configuration errors. Configure a separate
-plugin instance on each panel. Place the plugin after conflicting panel color
-or appearance configuration; it owns the semantic palettes and appearance mode.
+| Method | What it does |
+| --- | --- |
+| `themes(['cupcake', 'nord'])` | Sets the themes this panel may use. Default: `cupcake`, `nord`, `dracula`. |
+| `defaultTheme('nord')` | Sets the starting theme. Must be in the list. |
+| `allThemes()` | Allows all 35 shipped themes. |
+| `allLightThemes()` | Allows the 21 light themes. |
+| `allDarkThemes()` | Allows the 14 dark themes. |
+| `themeSwitcher(false)` | Hides the selector; the theme still applies and persists. |
+| `themeSwitcherHook($hook)` | Moves the selector. Defaults to the end of the topbar. |
+| `FilamentDaisyUiThemesPlugin::get()` | The plugin instance for the current panel. |
 
-The switcher renders at the end of the topbar by default, where Filament's own
-switcher would sit. Pass any render hook to move it:
+### Bulk helpers
+
+```php
+->allThemes()       // all 35
+->allLightThemes()  // 21 light
+->allDarkThemes()   // 14 dark
+```
+
+They replace whatever `themes()` set. When the current default is not in the new
+list it resets to the first entry - so `allDarkThemes()` alone works and lands on
+`abyss`.
+
+### Moving or hiding the selector
 
 ```php
 ->themeSwitcherHook(PanelsRenderHook::SIDEBAR_FOOTER)
-```
-
-Any `Filament\View\PanelsRenderHook` case is accepted, as is a string hook name.
-
-A panel that allows a single theme does not need the selector. Hide it with
-`themeSwitcher(false)`; the theme still applies and persists:
-
-```php
 ->themeSwitcher(false)
 ```
 
-Hiding the switcher also makes `themeSwitcherHook()` irrelevant, so the hook
-renders nothing.
-
-The palette icon opens a native Filament dropdown. Use Enter or Space
-to open it, Tab to move through choices, Enter to select, and Escape to dismiss.
-Each choice previews its own colours the way daisyUI's picker does — the theme's
-`base-content`, `primary`, `secondary` and `accent` on its own `base-100`, so
-the menu shows what every theme looks like before you pick it. The current choice
-has a check mark and an accessible pressed state. The list is capped at
-`min(24rem, 60vh)` and scrolls, so a wide allowlist such as `allThemes()` stays
-inside the viewport instead of running past the bottom of the screen. Login uses
-the saved choice or panel default; its simple layout has no topbar selector.
-Panels without a topbar likewise have no selector.
-
-Preferences use `filament-daisy-theme:<panel-id>` in localStorage. Unknown or
-removed choices fall back to the panel default. Logout preserves the preference;
-it is browser-local, not an account setting. Filament's native light/dark/system
-switcher is hidden, and OS preference changes do not override the chosen theme.
-The native Filament `theme` preference remains untouched.
+Any `Filament\View\PanelsRenderHook` case, or a string hook name, is accepted. A
+single-theme panel can hide the selector, and `themeSwitcherHook()` then renders
+nothing. Panels without a topbar, and the simple login layout, have no selector
+at all.
 
 ## Themes
 
-Any of the 35 built-in daisyUI 5.7.46 themes can be enabled by name, for
-example `->themes(['business', 'abyss', 'wireframe'])->defaultTheme('business')`.
-`defaultTheme()` must belong to the list, and only allowlisted themes appear in
-the topbar selector. A panel inlines just the themes it allows, so enabling a
-few themes does not add every shipped stylesheet to its responses.
+Any of the 35 built-in daisyUI 5.7.46 themes can be enabled by name, for example
+`->themes(['business', 'abyss', 'wireframe'])`. `defaultTheme()` must belong to
+that list, and only allowlisted themes appear in the selector.
 
-Three helpers allow whole groups at once instead of listing names:
+**21 light, 14 dark.** The split comes from each theme's own `color-scheme`
+token, not from its name:
 
-```php
-->allThemes()       // all 35 shipped themes
-->allLightThemes()  // the 21 light themes
-->allDarkThemes()   // the 14 dark themes
-```
+| Light (21) | Dark (14) |
+| --- | --- |
+| acid, autumn, bumblebee, caramellatte, cmyk, corporate, cupcake, cyberpunk, emerald, fantasy, garden, lemonade, light, lofi, nord, pastel, retro, silk, valentine, winter, wireframe | abyss, aqua, black, business, coffee, dark, dim, dracula, forest, halloween, luxury, night, sunset, synthwave |
 
-They replace the list set by `themes()`. If the current default is not in the
-resulting list it resets to that list's first entry, so `allDarkThemes()` works
-without also calling `defaultTheme()`. `cupcake` is included by `allThemes()` and
-`allLightThemes()`, so the default stays; `allDarkThemes()` moves it to `abyss`.
-A default you set afterwards that the list excludes still throws.
+### Cost of allowing many themes
 
-Allowing many themes inlines a stylesheet for each. The default three cost about
-3 KB gzipped, while all 35 cost about 20 KB on every full page load. That is fine
-for a theme gallery and noticeable on a slow connection, so allowlist what a
-normal panel actually needs.
+A panel inlines a stylesheet for each theme it allows: roughly **1 KB gzipped
+per theme**. The default three cost about 3 KB per page load, all 35 about
+20 KB. Allowlist what a panel actually needs.
 
-All 35 shipped themes pass the milestone 7 audit: native tables and forms on
-both Filament majors in Chromium, Firefox, and WebKit — 210 engine runs, none
-below 4.5:1. The build clamps generated muted-text stops and the primary button
-pair to a contrast target above 4.5:1, using shared mappings rather than
-per-theme exceptions. Cupcake, Nord, and Dracula have deeper certification: they
-also pass the component matrix, which adds stock and custom Tailwind CSS, the
-state and first-paint suites, and the navigation and isolation checks. See the
-milestone 7 findings for the exact scope.
+### Light themes (21)
 
-A theme is colour only. Buttons, inputs, panels, badges, and checkboxes keep
-Filament's own border radii and do not follow each daisyUI theme's `--radius-*`
-tokens, so switching themes never changes component shape.
+|  |  |
+| --- | --- |
+| <img src="art/themes/acid.jpg" alt="acid theme" width="480"><br>**acid** | <img src="art/themes/autumn.jpg" alt="autumn theme" width="480"><br>**autumn** |
+| <img src="art/themes/bumblebee.jpg" alt="bumblebee theme" width="480"><br>**bumblebee** | <img src="art/themes/caramellatte.jpg" alt="caramellatte theme" width="480"><br>**caramellatte** |
+| <img src="art/themes/cmyk.jpg" alt="cmyk theme" width="480"><br>**cmyk** | <img src="art/themes/corporate.jpg" alt="corporate theme" width="480"><br>**corporate** |
+| <img src="art/themes/cupcake.jpg" alt="cupcake theme" width="480"><br>**cupcake** | <img src="art/themes/cyberpunk.jpg" alt="cyberpunk theme" width="480"><br>**cyberpunk** |
+| <img src="art/themes/emerald.jpg" alt="emerald theme" width="480"><br>**emerald** | <img src="art/themes/fantasy.jpg" alt="fantasy theme" width="480"><br>**fantasy** |
+| <img src="art/themes/garden.jpg" alt="garden theme" width="480"><br>**garden** | <img src="art/themes/lemonade.jpg" alt="lemonade theme" width="480"><br>**lemonade** |
+| <img src="art/themes/light.jpg" alt="light theme" width="480"><br>**light** | <img src="art/themes/lofi.jpg" alt="lofi theme" width="480"><br>**lofi** |
+| <img src="art/themes/nord.jpg" alt="nord theme" width="480"><br>**nord** | <img src="art/themes/pastel.jpg" alt="pastel theme" width="480"><br>**pastel** |
+| <img src="art/themes/retro.jpg" alt="retro theme" width="480"><br>**retro** | <img src="art/themes/silk.jpg" alt="silk theme" width="480"><br>**silk** |
+| <img src="art/themes/valentine.jpg" alt="valentine theme" width="480"><br>**valentine** | <img src="art/themes/winter.jpg" alt="winter theme" width="480"><br>**winter** |
+| <img src="art/themes/wireframe.jpg" alt="wireframe theme" width="480"><br>**wireframe** | |
 
-Surfaces come from the theme in both appearances. The page uses `base-200` in a
-light theme and `base-100` in a dark one, and the cards, tables, forms, modals,
-dropdowns and topbar sit one step above it: `base-100` in a light theme, and one
-surface step above `base-100` in a dark one, because a dark theme's `base-200` and
-`base-300` are usually *darker* than `base-100` rather than lighter. Input
-wrappers and the file upload dropzone use `base-200`, so they read as wells rather
-than vanishing into the surface behind them.
+### Dark themes (14)
 
-That matters most on the tinted light themes — Retro's `base-100` sits 0.084
-lightness below white, so a white card reads as a different theme entirely. Ten
-light themes (Bumblebee, CMYK, Corporate, Emerald, Fantasy, Light, LoFi, Pastel,
-Winter and Wireframe) have a `base-100` that is already pure white and look
-unchanged. On a dark theme the page used to take `base-300`, which is nearly black
-in Abyss and Halloween and *lighter* than the cards in Black, Luxury and
-Synthwave, so no dark panel read as its theme.
+|  |  |
+| --- | --- |
+| <img src="art/themes/abyss.jpg" alt="abyss theme" width="480"><br>**abyss** | <img src="art/themes/aqua.jpg" alt="aqua theme" width="480"><br>**aqua** |
+| <img src="art/themes/black.jpg" alt="black theme" width="480"><br>**black** | <img src="art/themes/business.jpg" alt="business theme" width="480"><br>**business** |
+| <img src="art/themes/coffee.jpg" alt="coffee theme" width="480"><br>**coffee** | <img src="art/themes/dark.jpg" alt="dark theme" width="480"><br>**dark** |
+| <img src="art/themes/dim.jpg" alt="dim theme" width="480"><br>**dim** | <img src="art/themes/dracula.jpg" alt="dracula theme" width="480"><br>**dracula** |
+| <img src="art/themes/forest.jpg" alt="forest theme" width="480"><br>**forest** | <img src="art/themes/halloween.jpg" alt="halloween theme" width="480"><br>**halloween** |
+| <img src="art/themes/luxury.jpg" alt="luxury theme" width="480"><br>**luxury** | <img src="art/themes/night.jpg" alt="night theme" width="480"><br>**night** |
+| <img src="art/themes/sunset.jpg" alt="sunset theme" width="480"><br>**sunset** | <img src="art/themes/synthwave.jpg" alt="synthwave theme" width="480"><br>**synthwave** |
 
-daisyUI 5.7.46 ships these 35 themes. Classification comes from each theme's own
-`color-scheme` token, not from its name:
+## Compatibility
 
-- **Light (21):** acid, autumn, bumblebee, caramellatte, cmyk, corporate,
-  cupcake, cyberpunk, emerald, fantasy, garden, lemonade, light, lofi, nord,
-  pastel, retro, silk, valentine, winter, wireframe
-- **Dark (14):** abyss, aqua, black, business, coffee, dark, dim, dracula,
-  forest, halloween, luxury, night, sunset, synthwave
-
-## Compatibility and limits
-
-Composer accepts Filament `^4.14 || ^5.9`. Verified development versions are:
+PHP 8.2+ and Filament `^4.14 || ^5.9`. Verified development versions:
 
 | Filament | Livewire | Laravel |
 | --- | --- | --- |
 | 4.14.0 | 3.8.9 | 12.69.2 |
 | 5.9.0 | 4.4.6 | 12.69.2 |
 
-The shared assets use daisyUI 5.7.46. Custom Filament CSS should use Tailwind
-4.1+; optional custom CSS can override the adapter, so verify your own changes.
-The release workflow tests both dependency lanes in Chromium, Firefox, and
-WebKit with stock CSS and custom Tailwind themes. See the milestone 6 findings
-for executed checks and remaining certification work.
-
-Core assets contain theme tokens and the native Filament adapter, not daisyUI
-component styles or resets. Adding `btn` or other daisyUI classes to custom
-markup requires your own separate component CSS.
-
-The plugin uses an isolated bridge to Filament's Alpine `theme` store. A small
-observer corrects native bootstrap changes to the root `.dark` class before
-paint while a plugin panel is active. All
-plugin panels share the native system default so their SPA head scripts match;
-the selected daisyUI theme sets the actual mode. Use full page navigation across
-unrelated layouts or panels with different native initialization. Enabled panels
-load the styles; public pages and other panels do not receive global asset tags.
-
-Compiled CSS and the small JavaScript bootstrap are rendered inline through
-panel hooks. This prevents first-entry Livewire navigation from displaying a
-new panel before external assets arrive. CSS follows the host Filament theme;
-the adapter controls semantic palettes while unrelated host customizations
-remain effective. This adds the compiled asset bytes to each panel response.
-Strict CSP policies must accommodate inline styles/scripts and Filament/Alpine
-itself; strict-CSP operation is not certified.
-
-## Development and verification
-
-```sh
-composer verify        # workflow lint, lint, static analysis, tests, assets, archive
-composer verify -- --browser   # additionally run the local browser suites
-composer test
-composer test:lint
-composer analyse
-npm ci
-npm run build
-npm run check:js
-npm run build:themes
-npm run check:themes
-node bin/audit-themes.mjs
-```
-
-`composer verify` is the local equivalent of the automatic `tests` workflow.
-
-`npm` is needed to rebuild assets only. Commit `resources/dist/` with source
-changes. `bin/audit-themes.mjs` statically checks daisyUI's own semantic colour
-pairs for every theme. See [fixture instructions](tests/Compatibility/README.md)
-for clean Composer installs, the manifest-driven
-[browser theme audit](tests/Compatibility/theme-audit.mjs), screenshots, and
-exact dependency pins. Browser suites run on pull requests and default-branch
-pushes; they can also be run locally against the disposable fixtures.
-[Compatibility findings](docs/compatibility/milestone6-findings.md) record the
-release matrix and gate status; the
-[milestone 7 findings](docs/compatibility/milestone7-findings.md) record the
-expanded theme coverage and its verification scope.
-
 ## License and contributing
 
-MIT; see [LICENSE.md](LICENSE.md). The distributed daisyUI theme data includes
-its [MIT attribution](resources/dist/DAISYUI-LICENSE.txt).
-See [contributing guidelines](.github/CONTRIBUTING.md) and the
+MIT; see [LICENSE.md](LICENSE.md). The distributed daisyUI theme data carries its
+[MIT attribution](resources/dist/DAISYUI-LICENSE.txt). See the
+[contributing guidelines](.github/CONTRIBUTING.md) and the
 [security policy](.github/SECURITY.md).
