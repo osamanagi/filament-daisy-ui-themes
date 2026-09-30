@@ -176,15 +176,13 @@ try {
                         .map((p) => ({ name: p.name, time: p.startTime })),
                 }))
                 assert.ok(frames.frames.length && frames.paints.length)
-                // Light themes keep Filament's literal white surfaces; dark
-                // themes follow base-100 through Filament's --gray-900 rules.
+                // Light themes paint these surfaces with the theme's own
+                // base-100 (adapter.css). Filament's dark rule for the same
+                // containers lands on the base-100 page too, so one token
+                // covers both appearances instead of a per-theme list.
                 const surface = await normalizeColor(
                     page,
-                    {
-                        cupcake: 'white',
-                        nord: 'white',
-                        dracula: 'oklch(0.28822 0.022 277.508)',
-                    }[theme],
+                    'var(--color-base-100)',
                 )
                 for (const f of frames.frames) {
                     assert.equal(f.theme, theme)

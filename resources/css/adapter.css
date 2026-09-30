@@ -123,7 +123,7 @@
         .fi-simple-main,
         .fi-fo-rich-editor-toolbar,
         .fi-fo-date-time-picker-panel,
-        .fi-notification:not(.fi-inline)
+        .fi-no-notification
     ) {
     background-color: var(--color-base-100);
 }
