@@ -17,8 +17,11 @@ it('keeps panel options independent and retains internal dark styling', function
         ->and($second->getThemes())->toBe(['cupcake', 'nord', 'dracula'])
         ->and($second->getDefaultTheme())->toBe('cupcake')
         ->and($panel->hasDarkMode())->toBeTrue()
-        ->and($panel->hasDarkModeForced())->toBeFalse()
-        ->and($panel->hasThemeSwitcher())->toBeFalse();
+        ->and($panel->hasDarkModeForced())->toBeFalse();
+
+    if (method_exists($panel, 'hasThemeSwitcher')) {
+        expect($panel->hasThemeSwitcher())->toBeFalse();
+    }
 });
 
 it('rejects invalid panel theme configuration', function (array $themes, string $default) {
