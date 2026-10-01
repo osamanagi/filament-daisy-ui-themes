@@ -5,7 +5,7 @@ name: tests
 on:
   pull_request:
   push:
-    branches: [main, 5.x]
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,46 +19,48 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # Pinned floors: the oldest Filament 4 and 5 releases the package allows.
           - {
               php: '8.2',
               laravel: '11.*',
               testbench: '9.*',
-              filament: '4.14.0',
+              filament: '4.0.0',
               livewire: '3.8.9',
             }
           - {
               php: '8.2',
               laravel: '11.*',
               testbench: '9.*',
-              filament: '5.9.0',
+              filament: '5.0.0',
               livewire: '4.4.6',
             }
+          # Floating lanes: the newest release of each major.
           - {
               php: '8.3',
               laravel: '12.*',
               testbench: '10.*',
-              filament: '^4.14',
+              filament: '^4.0',
               livewire: '^3.8.9',
             }
           - {
               php: '8.3',
               laravel: '12.*',
               testbench: '10.*',
-              filament: '^5.9',
+              filament: '^5.0',
               livewire: '^4.4.6',
             }
           - {
               php: '8.4',
               laravel: '13.*',
               testbench: '11.*',
-              filament: '^4.14',
+              filament: '^4.0',
               livewire: '^3.8.9',
             }
           - {
               php: '8.4',
               laravel: '13.*',
               testbench: '11.*',
-              filament: '^5.9',
+              filament: '^5.0',
               livewire: '^4.4.6',
             }
     name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }} / Filament ${{ matrix.filament }}
@@ -78,6 +80,12 @@ jobs:
           FILAMENT: ${{ matrix.filament }}
           LIVEWIRE: ${{ matrix.livewire }}
         run: |
+          # The pinned floor lanes install the oldest supported Filament
+          # releases (4.0.0 / 5.0.0) to prove the plugin's API guard. Composer
+          # 2.10 refuses those upstream versions by default because of Filament
+          # security advisories this package is not affected by, so the block is
+          # lifted for this disposable resolution only.
+          composer config policy.advisories.block false --no-interaction
           composer require "laravel/framework:$LARAVEL" "orchestra/testbench:$TESTBENCH" "filament/filament:$FILAMENT" "livewire/livewire:$LIVEWIRE" --no-update --no-interaction
           composer update --prefer-dist --no-interaction
       - run: vendor/bin/pest --ci

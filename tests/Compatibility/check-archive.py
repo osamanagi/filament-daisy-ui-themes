@@ -24,5 +24,5 @@ with zipfile.ZipFile(sys.argv[1]) as archive:
     # Only themes that passed the acceptance matrix may be advertised as verified.
     assert set(manifest.get('verified', [])) <= set(manifest['themes']), 'verified list is not a subset of themes'
     assert set(manifest.get('audited', [])) <= set(manifest['themes']), 'audited list is not a subset of themes'
-    assert json.loads(archive.read('composer.json'))['require']['filament/filament'] == '^4.14 || ^5.9'
+    assert json.loads(archive.read('composer.json'))['require']['filament/filament'] == '^4.0 || ^5.0'
 print(f'Distribution verified: {len(names)} files')

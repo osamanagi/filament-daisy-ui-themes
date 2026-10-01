@@ -5,6 +5,12 @@ file.
 
 ## Unreleased
 
+- Widens Filament support from `^4.14 || ^5.9` to `^4.0 || ^5.0`, so the plugin
+  installs on every Filament 4 and 5 release instead of only the newest of each
+  major. A project locked to an older release (for example Filament 5.7.1) now
+  resolves. Filament only gained its own `Panel::themeSwitcher()` in 4.12 / 5.8,
+  so that call is guarded and skipped on earlier releases, which have no built-in
+  switcher to disable.
 - **Breaking:** the Composer package moved from the `nagi/` vendor to
   `osamanagi/filament-daisy-ui-themes`, because the `nagi` vendor is owned by
   another Packagist account. The PHP namespace is unchanged

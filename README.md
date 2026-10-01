@@ -1,17 +1,18 @@
 # daisyUI Themes for Filament
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/osamanagi/filament-daisy-ui-themes.svg?style=flat-square)](https://packagist.org/packages/osamanagi/filament-daisy-ui-themes)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/tests.yml?branch=5.x&label=tests&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3Atests+branch%3A5.x)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/fix-code-style.yml?branch=5.x&label=code%20style&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3Afix-code-style)
-[![Browser Compatibility Matrix](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/compatibility.yml?branch=5.x&label=browser%20matrix&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3A%22browser+compatibility%22)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3Atests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/fix-code-style.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3Afix-code-style)
+[![Browser Compatibility Matrix](https://img.shields.io/github/actions/workflow/status/osamanagi/filament-daisy-ui-themes/compatibility.yml?branch=main&label=browser%20matrix&style=flat-square)](https://github.com/osamanagi/filament-daisy-ui-themes/actions?query=workflow%3A%22browser+compatibility%22)
 [![Total Downloads](https://img.shields.io/packagist/dt/osamanagi/filament-daisy-ui-themes.svg?style=flat-square)](https://packagist.org/packages/osamanagi/filament-daisy-ui-themes)
 
 Apply any of the 35 built-in [daisyUI](https://daisyui.com) themes to a Filament
 panel, with a topbar switcher for your users. No npm build, no Tailwind config,
 no published views.
 
-Supports Filament 4 and 5 (PHP 8.2+), including Laravel 11, 12 and 13. Filament 5
-requires Livewire 4; follow the [Filament upgrade guide](https://filamentphp.com/docs/5.x/upgrade-guide)
+Supports every Filament 4 and 5 release — from `4.0.0` and `5.0.0` up to the
+latest — on PHP 8.2+, including Laravel 11, 12 and 13. Filament 5 requires
+Livewire 4; follow the [Filament upgrade guide](https://filamentphp.com/docs/5.x/upgrade-guide)
 when upgrading an existing app.
 
 ![Shop dashboard in the Abyss theme](art/daisyui-themes-thumbnail-v2.png)
@@ -303,12 +304,23 @@ The same page in each dark theme.
 
 ## Compatibility
 
-PHP 8.2+ and Filament `^4.14 || ^5.9`. Verified development versions:
+PHP 8.2+ and Filament `^4.0 || ^5.0` — every Filament 4 and 5 release from the
+first of each major to the latest. The test matrix pins the floors (`4.0.0`,
+`5.0.0`) alongside the newest release of each major; the browser matrix renders
+against these pinned reference versions:
 
 | Filament | Livewire | Laravel |
 | --- | --- | --- |
 | 4.14.0 | 3.8.9 | 12.69.2 |
 | 5.9.0 | 4.4.6 | 12.69.2 |
+
+> **Composer 2.10 and older Filament releases.** Composer now refuses to install
+> dependency versions that carry a security advisory. Filament releases below
+> `4.12.6` and `5.7.6` are affected by upstream Filament advisories, so Composer
+> blocks them no matter what this package requires. If your lock file is older
+> than that, upgrade Filament (`composer update "filament/*" --with-all-dependencies`)
+> before installing this plugin — or lift the block explicitly with
+> `composer config policy.advisories.block false` if you accept the risk.
 
 ## Changelog
 

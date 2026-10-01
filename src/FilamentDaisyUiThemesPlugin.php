@@ -172,7 +172,7 @@ class FilamentDaisyUiThemesPlugin implements Plugin
         };
         $script = file_get_contents(__DIR__ . '/../resources/dist/filament-daisy-ui-themes.js');
 
-        $panel->darkMode()->themeSwitcher(false)
+        $panel->darkMode()
             ->defaultThemeMode(ThemeMode::System)
             ->colors($manifest[$this->defaultTheme]['palettes'])
             ->renderHook(PanelsRenderHook::HEAD_START, fn () => view('filament-daisy-ui-themes::head', ['json' => $json, 'script' => $script]))
@@ -181,12 +181,21 @@ class FilamentDaisyUiThemesPlugin implements Plugin
             ->renderHook(PanelsRenderHook::BODY_START, fn () => view('filament-daisy-ui-themes::state', ['json' => $json]))
             ->renderHook(PanelsRenderHook::BODY_END, fn () => view('filament-daisy-ui-themes::activate'));
 
+        self::callMethodIfAvailable($panel, 'themeSwitcher', false);
+
         if ($this->themeSwitcher) {
             $panel->renderHook($this->themeSwitcherHook, fn () => view('filament-daisy-ui-themes::switcher', ['themes' => $themes]));
         }
     }
 
     public function boot(Panel $panel): void {}
+
+    protected static function callMethodIfAvailable(Panel $panel, string $method, mixed ...$arguments): void
+    {
+        if (method_exists($panel, $method)) {
+            $panel->{$method}(...$arguments);
+        }
+    }
 
     public static function make(): static
     {

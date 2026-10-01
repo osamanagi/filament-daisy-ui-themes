@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This Laravel package integrates daisyUI themes with Filament 4 and 5 and declares PHP `^8.2` support.
+This Laravel package integrates daisyUI themes with Filament 4 and 5 — every release from `4.0.0` / `5.0.0` up to the latest, per the `^4.0 || ^5.0` constraint — and declares PHP `^8.2` support.
 
 - `src/` contains the plugin, service provider, and facade under `Nagi\FilamentDaisyUiThemes`. The Composer package is `osamanagi/filament-daisy-ui-themes`.
 - `resources/` contains CSS, JavaScript, translations, and a views directory. JavaScript builds go into `resources/dist/`.
