@@ -110,209 +110,114 @@ per theme**. The default three cost about 3 KB per page load, all 35 about
 
 The demo's Shop Dashboard in each light theme.
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col" width="1000px">Acid</th>
-      <th scope="col" width="1000px">Autumn</th>
-    </tr>
-  </thead>
+<table width="100%">
   <tbody>
     <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Acid</strong><br>
         <img src="art/themes/acid.jpg" width="100%" alt="Shop dashboard in the Acid theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Autumn</strong><br>
         <img src="art/themes/autumn.jpg" width="100%" alt="Shop dashboard in the Autumn theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Bumblebee</th>
-      <th scope="col" width="1000px">Caramellatte</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Bumblebee</strong><br>
         <img src="art/themes/bumblebee.jpg" width="100%" alt="Shop dashboard in the Bumblebee theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Caramellatte</strong><br>
         <img src="art/themes/caramellatte.jpg" width="100%" alt="Shop dashboard in the Caramellatte theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">CMYK</th>
-      <th scope="col" width="1000px">Corporate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>CMYK</strong><br>
         <img src="art/themes/cmyk.jpg" width="100%" alt="Shop dashboard in the CMYK theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Corporate</strong><br>
         <img src="art/themes/corporate.jpg" width="100%" alt="Shop dashboard in the Corporate theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Cupcake</th>
-      <th scope="col" width="1000px">Cyberpunk</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Cupcake</strong><br>
         <img src="art/themes/cupcake.jpg" width="100%" alt="Shop dashboard in the Cupcake theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Cyberpunk</strong><br>
         <img src="art/themes/cyberpunk.jpg" width="100%" alt="Shop dashboard in the Cyberpunk theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Emerald</th>
-      <th scope="col" width="1000px">Fantasy</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Emerald</strong><br>
         <img src="art/themes/emerald.jpg" width="100%" alt="Shop dashboard in the Emerald theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Fantasy</strong><br>
         <img src="art/themes/fantasy.jpg" width="100%" alt="Shop dashboard in the Fantasy theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Garden</th>
-      <th scope="col" width="1000px">Lemonade</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Garden</strong><br>
         <img src="art/themes/garden.jpg" width="100%" alt="Shop dashboard in the Garden theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Lemonade</strong><br>
         <img src="art/themes/lemonade.jpg" width="100%" alt="Shop dashboard in the Lemonade theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Light</th>
-      <th scope="col" width="1000px">LoFi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Light</strong><br>
         <img src="art/themes/light.jpg" width="100%" alt="Shop dashboard in the Light theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>LoFi</strong><br>
         <img src="art/themes/lofi.jpg" width="100%" alt="Shop dashboard in the LoFi theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Nord</th>
-      <th scope="col" width="1000px">Pastel</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Nord</strong><br>
         <img src="art/themes/nord.jpg" width="100%" alt="Shop dashboard in the Nord theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Pastel</strong><br>
         <img src="art/themes/pastel.jpg" width="100%" alt="Shop dashboard in the Pastel theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Retro</th>
-      <th scope="col" width="1000px">Silk</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Retro</strong><br>
         <img src="art/themes/retro.jpg" width="100%" alt="Shop dashboard in the Retro theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Silk</strong><br>
         <img src="art/themes/silk.jpg" width="100%" alt="Shop dashboard in the Silk theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Valentine</th>
-      <th scope="col" width="1000px">Winter</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Valentine</strong><br>
         <img src="art/themes/valentine.jpg" width="100%" alt="Shop dashboard in the Valentine theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Winter</strong><br>
         <img src="art/themes/winter.jpg" width="100%" alt="Shop dashboard in the Winter theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Wireframe</th>
-      <th scope="col" width="1000px"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Wireframe</strong><br>
         <img src="art/themes/wireframe.jpg" width="100%" alt="Shop dashboard in the Wireframe theme">
       </td>
-      <td></td>
+      <td width="50%"></td>
     </tr>
   </tbody>
 </table>
@@ -321,133 +226,75 @@ The demo's Shop Dashboard in each light theme.
 
 The same page in each dark theme.
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col" width="1000px">Abyss</th>
-      <th scope="col" width="1000px">Aqua</th>
-    </tr>
-  </thead>
+<table width="100%">
   <tbody>
     <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Abyss</strong><br>
         <img src="art/themes/abyss.jpg" width="100%" alt="Shop dashboard in the Abyss theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Aqua</strong><br>
         <img src="art/themes/aqua.jpg" width="100%" alt="Shop dashboard in the Aqua theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Black</th>
-      <th scope="col" width="1000px">Business</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Black</strong><br>
         <img src="art/themes/black.jpg" width="100%" alt="Shop dashboard in the Black theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Business</strong><br>
         <img src="art/themes/business.jpg" width="100%" alt="Shop dashboard in the Business theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Coffee</th>
-      <th scope="col" width="1000px">Dark</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Coffee</strong><br>
         <img src="art/themes/coffee.jpg" width="100%" alt="Shop dashboard in the Coffee theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Dark</strong><br>
         <img src="art/themes/dark.jpg" width="100%" alt="Shop dashboard in the Dark theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Dim</th>
-      <th scope="col" width="1000px">Dracula</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Dim</strong><br>
         <img src="art/themes/dim.jpg" width="100%" alt="Shop dashboard in the Dim theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Dracula</strong><br>
         <img src="art/themes/dracula.jpg" width="100%" alt="Shop dashboard in the Dracula theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Forest</th>
-      <th scope="col" width="1000px">Halloween</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Forest</strong><br>
         <img src="art/themes/forest.jpg" width="100%" alt="Shop dashboard in the Forest theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Halloween</strong><br>
         <img src="art/themes/halloween.jpg" width="100%" alt="Shop dashboard in the Halloween theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Luxury</th>
-      <th scope="col" width="1000px">Night</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Luxury</strong><br>
         <img src="art/themes/luxury.jpg" width="100%" alt="Shop dashboard in the Luxury theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Night</strong><br>
         <img src="art/themes/night.jpg" width="100%" alt="Shop dashboard in the Night theme">
       </td>
     </tr>
-  </tbody>
-</table>
-
-<table class="table">
-  <thead>
     <tr>
-      <th scope="col" width="1000px">Sunset</th>
-      <th scope="col" width="1000px">Synthwave</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Sunset</strong><br>
         <img src="art/themes/sunset.jpg" width="100%" alt="Shop dashboard in the Sunset theme">
       </td>
-      <td>
+      <td width="50%" align="center" valign="top">
+        <strong>Synthwave</strong><br>
         <img src="art/themes/synthwave.jpg" width="100%" alt="Shop dashboard in the Synthwave theme">
       </td>
     </tr>
