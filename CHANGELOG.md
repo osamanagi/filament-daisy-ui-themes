@@ -3,6 +3,10 @@
 All notable changes to `filament-daisy-ui-themes` will be documented in this
 file.
 
+## v1.1.0 - 2026-10-01
+
+**Full Changelog**: https://github.com/osamanagi/filament-daisy-ui-themes/compare/1.0.0...1.1.0
+
 ## Unreleased
 
 - Widens Filament support from `^4.14 || ^5.9` to `^4.0 || ^5.0`, so the plugin
