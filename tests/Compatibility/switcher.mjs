@@ -48,8 +48,13 @@ try {
                 name: 'Choose theme',
                 exact: true,
             })
+            // Filament 4.15 / 5.10 moved dropdown list items to
+            // `role="menuitem"`, so `getByRole('button')` no longer finds them.
+            // Match through the theme swatch instead, but only on visible
+            // items: the role lookup used to skip the hidden (closed) panel,
+            // and without that the asserts run before the dropdown opens.
             const themeOption = (theme) =>
-                page.locator('.fi-dropdown-list-item').filter({
+                page.locator('.fi-dropdown-list-item:visible').filter({
                     has: page.locator(`[data-daisy-theme-swatch="${theme}"]`),
                 })
             async function capture(theme, stage) {
@@ -135,7 +140,12 @@ try {
                         .trim()
                         .startsWith('Cupcake'),
                 )
-                await page.keyboard.press('Tab')
+                // Filament 4.15 / 5.10 turns the dropdown into a real menu:
+                // items get `tabindex="-1"` and Tab *closes* the menu, so
+                // ArrowDown is what moves to the next option. Older versions
+                // only had plain buttons, where Tab moved focus onward.
+                const isMenu = (await first.getAttribute('tabindex')) === '-1'
+                await page.keyboard.press(isMenu ? 'ArrowDown' : 'Tab')
                 await page.keyboard.press('Enter')
                 await capture('nord', 'keyboard-selected')
                 await trigger.focus()
@@ -163,6 +173,7 @@ try {
                     await capture(theme, 'dashboard')
                     await trigger.click()
                     const selected = themeOption(theme)
+                    await selected.waitFor({ state: 'visible' })
                     assert.equal(
                         await selected.getAttribute('aria-pressed'),
                         'true',
