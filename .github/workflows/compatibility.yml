@@ -70,7 +70,7 @@ jobs:
           php-version: '8.4'
           extensions: intl, mbstring, pdo_sqlite, zip, gd
           coverage: none
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '22'
           cache: npm
@@ -118,7 +118,7 @@ jobs:
             curl --fail --silent "http://127.0.0.1:$port/cupcake/login" > /dev/null
           done
           node tests/Compatibility/release.mjs
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: compatibility-${{ matrix.browser }}-${{ matrix.css }}-${{ matrix.dependencies }}
@@ -153,7 +153,7 @@ jobs:
           php-version: '8.4'
           extensions: intl, mbstring, pdo_sqlite, zip, gd
           coverage: none
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: '22'
           cache: npm
@@ -186,7 +186,7 @@ jobs:
             curl --fail --silent "http://127.0.0.1:$port/allthemes/login" > /dev/null
           done
           node tests/Compatibility/theme-audit.mjs
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
           name: theme-audit-${{ matrix.browser }}
