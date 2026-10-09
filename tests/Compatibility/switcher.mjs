@@ -48,6 +48,10 @@ try {
                 name: 'Choose theme',
                 exact: true,
             })
+            const themeOption = (theme) =>
+                page.locator('.fi-dropdown-list-item').filter({
+                    has: page.locator(`[data-daisy-theme-swatch="${theme}"]`),
+                })
             async function capture(theme, stage) {
                 await page.waitForTimeout(400)
                 await settleStyles(page)
@@ -95,10 +99,7 @@ try {
             }
             async function choose(theme) {
                 await trigger.click()
-                const choice = page.getByRole('button', {
-                    name: theme[0].toUpperCase() + theme.slice(1),
-                    exact: true,
-                })
+                const choice = themeOption(theme)
                 await choice.waitFor({ state: 'visible' })
                 await choice.click()
                 await choice.waitFor({ state: 'hidden' })
@@ -126,10 +127,7 @@ try {
                 await page.waitForURL(origin + '/cupcake')
                 await trigger.focus()
                 await page.keyboard.press('Enter')
-                const first = page.getByRole('button', {
-                    name: 'Cupcake',
-                    exact: true,
-                })
+                const first = themeOption('cupcake')
                 await first.waitFor({ state: 'visible' })
                 assert.equal(await first.getAttribute('aria-pressed'), 'true')
                 await page.waitForFunction(() =>
@@ -164,10 +162,7 @@ try {
                     await choose(theme)
                     await capture(theme, 'dashboard')
                     await trigger.click()
-                    const selected = page.getByRole('button', {
-                        name: theme[0].toUpperCase() + theme.slice(1),
-                        exact: true,
-                    })
+                    const selected = themeOption(theme)
                     assert.equal(
                         await selected.getAttribute('aria-pressed'),
                         'true',
@@ -245,21 +240,9 @@ try {
                 }
                 await page.goto(origin + '/restricted/products')
                 await trigger.click()
-                assert.equal(
-                    await page
-                        .getByRole('button', { name: 'Cupcake', exact: true })
-                        .count(),
-                    0,
-                )
-                assert.equal(
-                    await page
-                        .getByRole('button', { name: 'Dracula', exact: true })
-                        .count(),
-                    0,
-                )
-                await page
-                    .getByRole('button', { name: 'Nord', exact: true })
-                    .waitFor({ state: 'visible' })
+                assert.equal(await themeOption('cupcake').count(), 0)
+                assert.equal(await themeOption('dracula').count(), 0)
+                await themeOption('nord').waitFor({ state: 'visible' })
                 await capture('nord', 'restricted')
                 assert.deepEqual(run.errors, [])
                 run.passed = true

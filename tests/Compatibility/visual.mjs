@@ -310,7 +310,7 @@ try {
                         'fileUpload',
                     ])
                     await page
-                        .getByRole('textbox', { name: /Available on/ })
+                        .locator('.fi-fo-date-time-picker-trigger')
                         .click()
                     await capture('date-picker', ['datePanel'])
                     await page.keyboard.press('Escape')
