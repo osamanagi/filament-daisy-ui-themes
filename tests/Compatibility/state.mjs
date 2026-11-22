@@ -1,9 +1,7 @@
 import assert from 'node:assert/strict'
 import { mkdirSync, writeFileSync } from 'node:fs'
-import { execFileSync } from 'node:child_process'
 import { pathToFileURL } from 'node:url'
 import { measure, normalizeColor, settleStyles } from './measure.mjs'
-const fixtures = process.env.COMPAT_FIXTURES || '/tmp/daisy-filament-milestone5'
 const output = process.env.COMPAT_OUTPUT || 'docs/compatibility/milestone5'
 const engines = await import(
     pathToFileURL(
@@ -24,11 +22,6 @@ try {
                 )
             )
                 continue
-            execFileSync(
-                'php',
-                [`${fixtures}/filament${major}/artisan`, 'cache:clear'],
-                { stdio: 'ignore' },
-            )
             const context = await browser.newContext({
                 viewport: mobile
                     ? { width: 390, height: 844 }

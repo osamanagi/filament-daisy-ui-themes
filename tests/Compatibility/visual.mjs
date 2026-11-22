@@ -1,14 +1,8 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
-import { execFileSync } from 'node:child_process'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { measure, settleStyles } from './measure.mjs'
 
-const fixtures = resolve(
-    process.env.COMPAT_FIXTURES ||
-        process.argv[2] ||
-        '/tmp/daisy-filament-milestone5',
-)
 const output = resolve(
     process.env.COMPAT_OUTPUT || 'docs/compatibility/milestone2',
 )
@@ -57,12 +51,6 @@ try {
                         )
                     },
                     { dark },
-                )
-                // Each browser case authenticates normally. Reset only this disposable app's limiter.
-                execFileSync(
-                    'php',
-                    [`${fixtures}/filament${major}/artisan`, 'cache:clear'],
-                    { stdio: 'ignore' },
                 )
                 const page = await context.newPage()
                 page.setDefaultTimeout(12000)

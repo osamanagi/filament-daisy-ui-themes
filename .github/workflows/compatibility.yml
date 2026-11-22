@@ -41,7 +41,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   browser:
-    runs-on: ubuntu-latest
+    # Playwright 1.58.2 supports Ubuntu 24.04 for all three engines.
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     strategy:
       fail-fast: false
@@ -105,9 +106,9 @@ jobs:
           PHP_CLI_SERVER_WORKERS: '4'
         run: |
           if [ "$CSS_LANE" != stock ]; then export COMPAT_HOST_THEME=1; fi
-          php "$COMPAT_FIXTURES/filament4/artisan" serve --host=127.0.0.1 --port=8104 > /tmp/filament4.log 2>&1 &
+          php "$COMPAT_FIXTURES/filament4/artisan" serve --no-reload --host=127.0.0.1 --port=8104 > /tmp/filament4.log 2>&1 &
           server4=$!
-          php "$COMPAT_FIXTURES/filament5/artisan" serve --host=127.0.0.1 --port=8105 > /tmp/filament5.log 2>&1 &
+          php "$COMPAT_FIXTURES/filament5/artisan" serve --no-reload --host=127.0.0.1 --port=8105 > /tmp/filament5.log 2>&1 &
           server5=$!
           trap 'kill "$server4" "$server5" 2>/dev/null || true' EXIT
           for port in 8104 8105; do
@@ -133,7 +134,7 @@ jobs:
     # Every shipped theme is rendered and contrast-checked on both Filament
     # majors, on each engine the component matrix uses. This is the milestone 7
     # gate; it is lighter than the 18-lane component matrix above.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     strategy:
       fail-fast: false

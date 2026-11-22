@@ -56,8 +56,7 @@ npm install --prefix /tmp/daisy-browser-tools playwright@1.58.2
 export PLAYWRIGHT_DIR=/tmp/daisy-browser-tools
 ```
 
-Run from the repository root, sequentially because authentication rate limits
-are shared within each fixture:
+Run from the repository root:
 
 ```sh
 node tests/Compatibility/switcher.mjs
@@ -105,9 +104,9 @@ python3 tests/Compatibility/install.py /tmp/daisy-filament-milestone6 \
 
 Start those apps on the same ports as above. Set
 `PHP_CLI_SERVER_WORKERS=4` before `php artisan serve --no-reload` when running
-multiple browsers locally. These fixtures use database cache so concurrent
-limiter resets do not race over deleted file-cache directories. Install all engines with `playwright install
-chromium firefox webkit`, then run:
+multiple browsers locally. The disposable fixtures keep rate-limit counters in
+request-local memory so parallel suites can sign in through the native form.
+Install all engines with `playwright install chromium firefox webkit`, then run:
 
 ```sh
 COMPAT_OUTPUT=docs/compatibility/milestone6/stock \

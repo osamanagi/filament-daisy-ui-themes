@@ -1,13 +1,11 @@
 import assert from 'node:assert/strict'
 import { mkdirSync, writeFileSync } from 'node:fs'
-import { execFileSync } from 'node:child_process'
 import { pathToFileURL } from 'node:url'
 const engines = await import(
     pathToFileURL(
         `${process.env.PLAYWRIGHT_DIR || '/tmp/daisy-filament-milestone1'}/node_modules/playwright/index.mjs`,
     )
 )
-const fixtures = process.env.COMPAT_FIXTURES || '/tmp/daisy-filament-milestone5'
 import { measure, normalizeColor, settleStyles } from './measure.mjs'
 const output = process.env.COMPAT_OUTPUT || 'docs/compatibility/milestone5'
 mkdirSync(output, { recursive: true })
@@ -24,11 +22,6 @@ try {
                 )
             )
                 continue
-            execFileSync(
-                'php',
-                [`${fixtures}/filament${major}/artisan`, 'cache:clear'],
-                { stdio: 'ignore' },
-            )
             const context = await browser.newContext({
                 viewport: mobile
                     ? { width: 390, height: 844 }

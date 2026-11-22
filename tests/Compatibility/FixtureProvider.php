@@ -31,6 +31,9 @@ class FixtureProvider extends ServiceProvider
 
     public function register(): void
     {
+        // Concurrent suites share a loopback IP and exercise repeated native logins.
+        $this->app['config']->set('cache.limiter', 'array');
+
         $this->loadViewsFrom(__DIR__, 'compatibility');
         // Read the shipped manifest so the fixture covers every built-in theme.
         $manifestPath = dirname((new \ReflectionClass(FilamentDaisyUiThemesPlugin::class))->getFileName()) . '/../resources/dist/theme-data.json';
