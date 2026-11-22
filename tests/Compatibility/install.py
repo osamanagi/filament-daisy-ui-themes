@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('directory', type=Path)
 parser.add_argument('--composer', default='composer')
 parser.add_argument('--archive', type=Path)
-parser.add_argument('--laravel', default='12.69.2')
+parser.add_argument('--laravel', default='^12.72.0')
 parser.add_argument('--latest', action='store_true')
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[2]
@@ -23,7 +23,7 @@ apps.mkdir(parents=True)
 composer = shlex.split(args.composer)
 def run(command, cwd):
     subprocess.run(command, cwd=cwd, check=True)
-for major, livewire in [(4,'3.8.9'),(5,'4.4.6')]:
+for major, livewire in [(4,'3.8.9'),(5,'4.4.8')]:
     app = apps / f'filament{major}'
     run(composer + ['create-project','laravel/laravel',str(app),'12.12.2','--no-install','--no-scripts','--no-interaction'],apps)
     manifest = {

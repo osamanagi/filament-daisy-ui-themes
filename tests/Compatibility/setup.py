@@ -34,7 +34,7 @@ package = {
 (fixtures / "package.json").write_text(json.dumps(package, indent=2) + "\n")
 run(["npm", "install"], fixtures)
 
-for major, filament, livewire in [(4, "4.14.0", "3.8.9"), (5, "5.9.0", "4.4.6")]:
+for major, filament, livewire in [(4, "4.14.0", "3.8.9"), (5, "5.9.0", "4.4.8")]:
     app = fixtures / f"filament{major}"
     if not app.exists():
         run(composer + ["create-project", "laravel/laravel", str(app), "12.12.2", "--no-install", "--no-scripts", "--no-interaction"], fixtures)
@@ -45,7 +45,7 @@ for major, filament, livewire in [(4, "4.14.0", "3.8.9"), (5, "5.9.0", "4.4.6")]
 
     manifest = {
         "name": f"compatibility/filament{major}", "type": "project",
-        "require": {"php": "^8.2", "laravel/framework": "12.69.2", "filament/filament": filament,
+        "require": {"php": "^8.2", "laravel/framework": "^12.72.0", "filament/filament": filament,
                     "livewire/livewire": livewire, "osamanagi/filament-daisy-ui-themes": "@dev"},
         "repositories": repositories,
         "autoload": {"psr-4": {"App\\": "app/", "Compatibility\\": str(root / "tests/Compatibility") + "/"}},

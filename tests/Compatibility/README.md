@@ -16,8 +16,8 @@ python3 tests/Compatibility/install.py /tmp/daisy-filament-milestone5
 # ... --composer 'php /path/to/composer.phar'
 ```
 
-This installs Laravel 12.69.2 with Filament 4.14.0 / Livewire 3.8.9 and Filament
-5.9.0 / Livewire 4.4.6. Both resolve the real package metadata using a Composer
+This resolves a patched Laravel 12 release (12.72.0 or later) with Filament
+4.14.0 / Livewire 3.8.9 and Filament 5.9.0 / Livewire 4.4.8. Both resolve the real package metadata using a Composer
 path repository. There is no Filament 4 metadata override, npm installation,
 CSS compilation, or manual copying of plugin assets into either app. The only
 publication command is `php artisan filament:assets`. Source changes are shared

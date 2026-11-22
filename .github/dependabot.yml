@@ -7,8 +7,6 @@ updates:
     open-pull-requests-limit: 10
     cooldown:
       default-days: 7
-    labels:
-      - dependencies
 
   - package-ecosystem: composer
     directory: /
@@ -17,8 +15,6 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
-    labels:
-      - dependencies
 
   - package-ecosystem: npm
     directory: /
@@ -27,5 +23,3 @@ updates:
     open-pull-requests-limit: 0
     cooldown:
       default-days: 7
-    labels:
-      - dependencies
